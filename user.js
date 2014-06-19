@@ -49,7 +49,10 @@ Fix the "hardcoding" of the values?
 Is called when the user presses submit (http post action)
 */
 function insertAnswerDb(req, res) {
-	values = [req.body.sivilstatus, req.body.pa_hodet];
+	values = [req.body.sivilstatus, req.body.pa_hodet, req.body.alder, 
+	req.body.studiested, req.body.programmeringsstil, req.body.musikk, 
+	req.body.personlighet, req.body.hypepreferanse, req.body.favorittgode, 
+	req.body.planerforkvelden, req.body.premiehvisduvinner];
 	db.insertAnswer(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);

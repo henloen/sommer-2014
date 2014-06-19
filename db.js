@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 
 	var connection = mysql.createConnection( {
-		host: "10.1.102.26",
+		host: "localhost",
 		user: "root",
 		password: "test"
 	});
@@ -20,17 +20,22 @@ function query(queryStr, callback) {
 }
 
 function readAnswers(callback) {
-	query("select * from test.svarinfo", callback);
+	query("select * from bod.answers", callback);
 }
 
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
-	query("insert into test.svarinfo(sivilstatus, pa_hodet)" +
-		"values ('" + values[0] +"', '" + values[1] + "');",callback);
+	query("insert into bod.answers(sivilstatus, pa_hodet, alder, studiested, \
+		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
+		planerforkvelden, premiehvisduvinner)" +
+		"values ('" + values[0] +"', '" + values[1] +"', '" + values[2]
+		 +"', '" + values[3] +"', '" + values[4] +"', '" + values[5]
+		  +"', '" + values[6] +"', '" + values[7]  +"', '" + values[8]
+		   +"', '" + values[9] +"', '" + values[10] + "');",callback);
 }
 
 function deleteAll(callback) {
-	query("truncate table test.svarinfo", callback);
+	query("truncate table bod.answers", callback);
 }
 
 exports.query = query;
