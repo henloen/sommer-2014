@@ -18,6 +18,9 @@ function printTableHtml(rows) {
 					'<td>' + rows[i]['pa_hodet'] + '</td></tr>'
 	}
 	html += '</table>\
+			<form action="/menu" method="get">\
+				<button name="backToMenu" type="submit">Tilbake til meny</button>\
+			</form>\
 		</body>\
 	</html>';
 
