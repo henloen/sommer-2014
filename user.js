@@ -63,7 +63,7 @@ function insertAnswerDb(req, res) {
 				errorHandler(err, res);
 			}
 			else {
-				res.send(row);
+				res.send("Ditt svar er nå registrert. Svarene dine var: " + JSON.stringify(row));
 				}
 			});
 		}
