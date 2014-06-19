@@ -52,13 +52,20 @@ function insertAnswerDb(req, res) {
 	values = [req.body.sivilstatus, req.body.pa_hodet, req.body.alder, 
 	req.body.studiested, req.body.programmeringsstil, req.body.musikk, 
 	req.body.personlighet, req.body.hypepreferanse, req.body.favorittgode, 
-	req.body.planerforkvelden, req.body.premiehvisduvinner];
+	req.body.planer_for_kvelden, req.body.premie_hvis_du_vinner];
 	db.insertAnswer(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("Your insert was successful. You inserted:\n " + JSON.stringify(rows));
+			db.readOneAnswer(rows['insertId'], function (err, row){
+			if(err) {
+				errorHandler(err, res);
+			}
+			else {
+				res.send(row);
+				}
+			});
 		}
 	});
 }
@@ -71,6 +78,10 @@ function insertAnswerPage(req,res) {
 //Used to fetch menuButtons.html that shows the menu with buttons
 function menu(req, res) {
 	res.sendfile("html/menuButtons.html");
+}
+
+function stylesheet(req, res) {
+	res.sendfile("html/stylesheet.css");
 }
 
 //Used to truncate (clear/delete) the table. Returns a message to the user if successful
@@ -99,6 +110,7 @@ exports.insertAnswerDb = insertAnswerDb;
 exports.menu = menu;
 exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;
+exports.stylesheet = stylesheet;
 
 //Old exports, methods now commented out
 //exports.insertPredefAnswerDb = insertPredefAnswerDb;

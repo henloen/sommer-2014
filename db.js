@@ -23,6 +23,10 @@ function readAnswers(callback) {
 	query("select * from bod.answers", callback);
 }
 
+function readOneAnswer(id, callback) {
+	query("select * from bod.answers where id_answers = " + id + ";", callback);
+}
+
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
 	query("insert into bod.answers(sivilstatus, pa_hodet, alder, studiested, \
@@ -42,3 +46,4 @@ exports.query = query;
 exports.readAnswers = readAnswers;
 exports.insertAnswer = insertAnswer;
 exports.deleteAll = deleteAll;
+exports.readOneAnswer = readOneAnswer;

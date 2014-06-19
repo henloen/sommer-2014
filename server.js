@@ -14,6 +14,7 @@ app.get("/insertAnswer", user.insertAnswerPage);
 app.post("/insertAnswerDb", user.insertAnswerDb);
 app.get("/menu", user.menu);
 app.get("/deleteAll", user.deleteAll);
+app.get("/html/stylesheet.css", user.stylesheet);
 
 
 var server = app.listen(port, function() {
