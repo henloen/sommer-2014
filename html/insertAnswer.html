@@ -1,0 +1,25 @@
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Enter answers</title>
+		</head>
+		<body>
+			<p>Vennligst registrer dine svar i skjemaet under</p>
+			<form action="/insertAnswerDb" method="post">
+				Sivilstatus:<br>
+				<input type="radio" name="sivilstatus" value="gift/samboer">Gift/Samboer<br>
+				<input type="radio" name="sivilstatus" value="skilt">Skilt<br>
+				<input type="radio" name="sivilstatus" value="singel">Singel<br>
+				<input type="radio" name="sivilstatus" value="complicated">It's complicated<br>
+				<br>
+				På hodet:<br>
+				<input type="radio" name="pa_hodet" value="caps">Caps<br>
+				<input type="radio" name="pa_hodet" value="turban">Turban<br>
+				<input type="radio" name="pa_hodet" value="hette">Hette<br>
+				<input type="radio" name="pa_hodet" value="hjelm">Hjem<br>
+				<input type="radio" name="pa_hodet" value="solbriller">Solbriller<br>
+				<input type="radio" name="pa_hodet" value="hijab">Hijab<br>
+				<input type="submit" value="Registrer svar">
+			</form>
+		</body>
+	</html>

@@ -1,0 +1,10 @@
+{
+	"name": "expressapp",
+	"description": "a test app of the express framework",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "4.4.3",
+		"node-mysql": "0.3.7"
+	}
+}
