@@ -9,10 +9,8 @@ var db = require("./db");
 var user = require("./user");
 
 // Routing
-app.get("/hello", user.hello);
 app.get("/readAnswers", user.readAllAnswers);
-app.get("/insertAnswer", user.insertAnswer);
-app.get("/insertAnswerDb", user.insertPredefAnswerDb);
+app.get("/insertAnswer", user.insertAnswerPage);
 app.post("/insertAnswerDb", user.insertAnswerDb);
 app.get("/menu", user.menu);
 app.get("/deleteAll", user.deleteAll);
