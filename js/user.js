@@ -104,7 +104,7 @@ function errorHandler(error, response) {
 }
 
 function jsAngularminjs(req, res) {
-	res.sendfile("js/angular.min.js");
+	res.sendfile("external_libs/angular.min.js");
 }
 
 function jsAppjs(req, res) {
