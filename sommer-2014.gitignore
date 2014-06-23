@@ -1,2 +1,3 @@
 # don't commit the following files
 npm-debug.log
+db.js

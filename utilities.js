@@ -38,7 +38,7 @@ function printTableHtml(rows) {
 					'</tr>';
 	}
 	html += '</table>\
-			<form action="/menu" method="get">\
+			<form action="/index" method="get">\
 				<button name="backToMenu" type="submit">Tilbake til meny</button>\
 			</form>\
 		</body>\
