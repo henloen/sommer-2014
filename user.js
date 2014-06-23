@@ -75,9 +75,9 @@ function insertAnswerPage(req,res) {
 	res.sendfile("html/insertAnswer.html");
 }
 
-//Used to fetch menuButtons.html that shows the menu with buttons
-function menu(req, res) {
-	res.sendfile("html/menuButtons.html");
+//Used to fetch index.html that shows the menu with buttons
+function index(req, res) {
+	res.sendfile("html/index.html");
 }
 
 function stylesheet(req, res) {
@@ -103,14 +103,23 @@ function errorHandler(error, response) {
 			response.send("There has been an error with the database, check the console for details...");
 }
 
+function jsAngularminjs(req, res) {
+	res.sendfile("js/angular.min.js");
+}
+
+function jsAppjs(req, res) {
+	res.sendfile("js/app.js");
+}
 
 
 exports.insertAnswerPage = insertAnswerPage;
 exports.insertAnswerDb = insertAnswerDb;
-exports.menu = menu;
+exports.index = index;
 exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;
 exports.stylesheet = stylesheet;
+exports.jsAngularminjs = jsAngularminjs;
+exports.jsAppjs = jsAppjs;
 
 //Old exports, methods now commented out
 //exports.insertPredefAnswerDb = insertPredefAnswerDb;
