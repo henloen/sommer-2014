@@ -1,83 +1,102 @@
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-			<title>bouvet</title>
+			<link type="text/css" rel="stylesheet" href="/html/stylesheet.css"/>
+			<title>Overskrift</title>
 		</head>
 		<body>
-			<p>Vennligst registrer dine svar i skjemaet under</p>
+			<h1> bouvet </h1>
+			<p>Registrer dine svar i skjemaet under</p>
+			
 			<form action="/insertAnswerDb" method="post">
-				Sivilstatus:<br>
-				<input type="radio" name="sivilstatus" value="gift/samboer">Gift/Samboer<br>
-				<input type="radio" name="sivilstatus" value="skilt">Skilt<br>
-				<input type="radio" name="sivilstatus" value="singel">Singel<br>
-				<input type="radio" name="sivilstatus" value="complicated">It's complicated<br>
-				<br>
-				På hodet:<br>
-				<input type="radio" name="pa_hodet" value="caps">Caps<br>
-				<input type="radio" name="pa_hodet" value="turban">Turban<br>
-				<input type="radio" name="pa_hodet" value="hette">Hette<br>
-				<input type="radio" name="pa_hodet" value="hjelm">Hjem<br>
-				<input type="radio" name="pa_hodet" value="solbriller">Solbriller<br>
-				<input type="radio" name="pa_hodet" value="hijab">Hijab<br>
-				<br>
-				Alder:<br>
-				<input type="radio" name="alder" value="youngster">Youngster<br>
-				<input type="radio" name="alder" value="coolcat">Cool Cat<br>
-				<input type="radio" name="alder" value="hipster">Hipster<br>
-				<input type="radio" name="alder" value="gammelringrev">Gammel Ringrev<br>
-				<br>
-				Studiested:<br>
-				<input type="radio" name="studiested" value="ntnu">NTNU<br>
-				<input type="radio" name="studiested" value="selvlaertrover">Selvlært Røver<br>
-				<input type="radio" name="studiested" value="annet">Annet<br>
-				<br>
-				Programmeringsstil:<br>
-				<input type="radio" name="programmeringsstil" value="batenblirtil">Båten blir til mens man ror<br>
-				<input type="radio" name="programmeringsstil" value="detordnerseg">Det ordner seg<br>
-				<input type="radio" name="programmeringsstil" value="ordenungmusssein">Ordenung Muss Sein<br>
-				<br>
-				Musikk:<br>
-				<input type="radio" name="musikk" value="indie">Indie<br>
-				<input type="radio" name="musikk" value="trash">Trash<br>
-				<input type="radio" name="musikk" value="disco">Disco<br>
-				<input type="radio" name="musikk" value="tronderrock">Trønderrock<br>
-				<input type="radio" name="musikk" value="metal">Metal<br>
-				<input type="radio" name="musikk" value="rave">Rave<br>
-				<input type="radio" name="musikk" value="klassisk">Klassisk<br>
-				<br>
-				Personlighet:<br>
-				<input type="radio" name="personlighet" value="introvert">Introvert<br>
-				<input type="radio" name="personlighet" value="ekstrovert">Ekstrovert<br>
-				<input type="radio" name="personlighet" value="ekstrovertpluss">Ekstrovert med litt innabords<br>
-				<br>
-				Hype-preferanse:<br>
-				<input type="radio" name="hypepreferanse" value="bigdata">Big Data<br>
-				<input type="radio" name="hypepreferanse" value="internetofthings">Internet of Things<br>
-				<input type="radio" name="hypepreferanse" value="laerkidsakoding">Lær Kidsa Koding<br>
-				<br>
-				Favorittgode på jobb:<br>
-				<input type="radio" name="favorittgode" value="fribar">Fri bar på julebordet<br>
-				<input type="radio" name="favorittgode" value="gadgetkonto">Gadgetkonto<br>
-				<input type="radio" name="favorittgode" value="kurskonferanse">Kurs og konferanser<br>
-				<input type="radio" name="favorittgode" value="frikantine">Fri kantine<br>
-				<input type="radio" name="favorittgode" value="pensjon">Pensjon<br>
-				<br>
-				Planer for kvelden:<br>
-				<input type="radio" name="planer_for_kvelden" value="endresivilstatus">Endre sivilstatus<br>
-				<input type="radio" name="planer_for_kvelden" value="smiskemedsjefen">Smiske med sjefen<br>
-				<input type="radio" name="planer_for_kvelden" value="mingle">Mingle<br>
-				<input type="radio" name="planer_for_kvelden" value="kode">Kode<br>
-				<input type="radio" name="planer_for_kvelden" value="nytelivet">Nyte livet<br>
-				<br>
-				Premie hvis du vinner: <br>
-				<input type="radio" name="premie_hvis_du_vinner" value="moto360">Moto360<br>
-				<input type="radio" name="premie_hvis_du_vinner" value="oculusrift">Oculus Rift<br>
+				<table>
+				<div class="container-left" >
+				<fieldset>
+					Sivilstatus:<br>
+					<input type="radio" name="sivilstatus" value="gift/samboer">Gift/Samboer<br>
+					<input type="radio" name="sivilstatus" value="skilt">Skilt<br>
+					<input type="radio" name="sivilstatus" value="singel">Singel<br>
+					<input type="radio" name="sivilstatus" value="complicated">It's complicated<br>
+					<br>
+					
+					På hodet:<br>
+					<input type="radio" name="pa_hodet" value="caps">Caps<br>
+					<input type="radio" name="pa_hodet" value="turban">Turban<br>
+					<input type="radio" name="pa_hodet" value="hette">Hette<br>
+					<input type="radio" name="pa_hodet" value="hjelm">Hjem<br>
+					<input type="radio" name="pa_hodet" value="solbriller">Solbriller<br>
+					<input type="radio" name="pa_hodet" value="hijab">Hijab<br>
+					<br>
+					Alder:<br>
+					<input type="radio" name="alder" value="youngster">Youngster<br>
+					<input type="radio" name="alder" value="coolcat">Cool Cat<br>
+					<input type="radio" name="alder" value="hipster">Hipster<br>
+					<input type="radio" name="alder" value="gammelringrev">Gammel Ringrev<br>
+					<br>
+				</fieldset>
+				</div>	
+
+				<div class="container-middle">
+				<fieldset>		
+					Studiested:<br>
+					<input type="radio" name="studiested" value="ntnu">NTNU<br>
+					<input type="radio" name="studiested" value="selvlaertrover">Selvlært Røver<br>
+					<input type="radio" name="studiested" value="annet">Annet<br>
+					<br>
+					Programmeringsstil:<br>
+					<input type="radio" name="programmeringsstil" value="batenblirtil">Båten blir til mens man ror<br>
+					<input type="radio" name="programmeringsstil" value="detordnerseg">Det ordner seg<br>
+					<input type="radio" name="programmeringsstil" value="ordenungmusssein">Ordenung Muss Sein<br>
+					<br>
+					Musikk:<br>
+					<input type="radio" name="musikk" value="indie">Indie<br>
+					<input type="radio" name="musikk" value="trash">Trash<br>
+					<input type="radio" name="musikk" value="disco">Disco<br>
+					<input type="radio" name="musikk" value="tronderrock">Trønderrock<br>
+					<input type="radio" name="musikk" value="metal">Metal<br>
+					<input type="radio" name="musikk" value="rave">Rave<br>
+					<input type="radio" name="musikk" value="klassisk">Klassisk<br>
+					<br>
+					Personlighet:<br>
+					<input type="radio" name="personlighet" value="introvert">Introvert<br>
+					<input type="radio" name="personlighet" value="ekstrovert">Ekstrovert<br>
+					<input type="radio" name="personlighet" value="ekstrovertpluss">Ekstrovert med litt innabords
+					<br>
+				</fieldset>
+				</div>	
 
 
+				<div class="container-right">
+				<fieldset>
+					Hype-preferanse:<br>
+					<input type="radio" name="hypepreferanse" value="bigdata">Big Data<br>
+					<input type="radio" name="hypepreferanse" value="internetofthings">Internet of Things<br>
+					<input type="radio" name="hypepreferanse" value="laerkidsakoding">Lær Kidsa Koding<br>
+					<br>
+					Favorittgode på jobb:<br>
+					<input type="radio" name="favorittgode" value="fribar">Fri bar på julebordet<br>
+					<input type="radio" name="favorittgode" value="gadgetkonto">Gadgetkonto<br>
+					<input type="radio" name="favorittgode" value="kurskonferanse">Kurs og konferanser<br>
+					<input type="radio" name="favorittgode" value="frikantine">Fri kantine<br>
+					<input type="radio" name="favorittgode" value="pensjon">Pensjon<br>
+					<br>
+					Planer for kvelden:<br>
+					<input type="radio" name="planer_for_kvelden" value="endresivilstatus">Endre sivilstatus<br>
+					<input type="radio" name="planer_for_kvelden" value="smiskemedsjefen">Smiske med sjefen<br>
+					<input type="radio" name="planer_for_kvelden" value="mingle">Mingle<br>
+					<input type="radio" name="planer_for_kvelden" value="kode">Kode<br>
+					<input type="radio" name="planer_for_kvelden" value="nytelivet">Nyte livet<br>
+					<br>
+					Premie hvis du vinner: <br>
+					<input type="radio" name="premie_hvis_du_vinner" value="moto360">Moto360<br>
+					<input type="radio" name="premie_hvis_du_vinner" value="oculusrift">Oculus Rift<br>
+				</fieldset>
+				</div>	
+			</table>
 
 				<br>
 				<input type="submit" value="Registrer svar">
 			</form>
+		
 		</body>
 	</html>
