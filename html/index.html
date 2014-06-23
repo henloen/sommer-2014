@@ -3,6 +3,8 @@
 <head>
 	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
 	<script type="text/javascript" src="../js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
 
@@ -12,27 +14,30 @@
 </form>
 -->
 
+<div class="container-fluid">
+	<div class="row row-custom" >
+		<form action="/readAnswerPage" method="get" class="navbar-form ">
+			<button class="btn btn-primary" name="readAnswer" type="submit">Se alle svar</button>
+		</form>
+	</div>
 
-<form action="/readAnswers" method="get">
-<button name="readAnswer" type="submit">Se alle svar</button>
-</form>
-
-
-<form action="/insertAnswer" method="get">
-<button name="InsertAnswer" type="submit">Registrere svar</button>
-</form>
+	<div class="row row-custom">
+		<form action="/insertAnswer" method="get"  class="navbar-form">
+			<button class="btn btn-primary" name="InsertAnswer" type="submit">Registrere svar</button>
+		</form>
+	</div>
 
 <!-- er en url for å pushe data til db, trenger ikke egen knapp (gir ikke mening?) 
 <form action="/insertAnswerDb" method="get">
 <button name="InsertAnswerDb" type="submit">Insert Answer Db</button>
 </form>
 -->
-
-<form action="/deleteAll" method="get">
-<button name="deleteAll" type="submit">Slett alle svar</button>
-</form>
-<p>{{"hei" + " pa deg"}}</p>
-
+	<div class="row row-custom">
+		<form action="/deleteAll" method="get"  class="navbar-form">
+			<button class="btn btn-primary" name="deleteAll" type="submit">Slett alle svar</button>
+		</form>
+	</div>
+	</div>
 </body>
 </html>
 

@@ -24,9 +24,13 @@ function readAllAnswers(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send(ut.printTableHtml(rows));
+			res.send((rows));
 		}
 	});
+}
+
+function readAnswerPage(req, res) {
+	res.sendfile("html/allAnswers.html");
 }
 
 /*Old method, used to hardcode an alternative into the db.
@@ -111,6 +115,17 @@ function jsAppjs(req, res) {
 	res.sendfile("js/app.js");
 }
 
+function bootstrapcss(req, res){
+	res.sendfile("external_libs/bootstrap/css/bootstrap.min.css");
+}
+
+function seeAnswersjs(req, res){
+	res.sendfile("js/seeAnswers.js");
+}
+
+function glyphicon(req, res) {
+	res.sendfile("external_libs/bootstrap/fonts/glyphicons-halflings-regular.woff");
+}
 
 exports.insertAnswerPage = insertAnswerPage;
 exports.insertAnswerDb = insertAnswerDb;
@@ -120,6 +135,10 @@ exports.readAllAnswers = readAllAnswers;
 exports.stylesheet = stylesheet;
 exports.jsAngularminjs = jsAngularminjs;
 exports.jsAppjs = jsAppjs;
+exports.readAnswerPage = readAnswerPage;
+exports.bootstrapcss = bootstrapcss;
+exports.seeAnswersjs = seeAnswersjs;
+exports.glyphicon = glyphicon;
 
 //Old exports, methods now commented out
 //exports.insertPredefAnswerDb = insertPredefAnswerDb;

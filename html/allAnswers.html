@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<title>All answers</title>
+	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
+	<script type="text/javascript" src="../js/seeAnswers.js"></script>
+	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div ng-controller="AnswerCtrl">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Sivilstatus</th>
+					<th>På hodet</th>
+					<th>Alder</th>
+					<th>Studiested</th>
+					<th>Programmeringsstil</th>
+					<th>Musikk</th>
+					<th>Personlighet</th>
+					<th>Hype-preferanse</th>
+					<th>Favorittgode</th>
+					<th>Planer for kvelden</th>
+					<th>Premie hvis du vinner</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="answer in answers">
+					<td>{{answer.id_answers}}</td>
+					<td>{{answer.sivilstatus}}</td>
+					<td>{{answer.pa_hodet}}</td>
+					<td>{{answer.alder}}</td>
+					<td>{{answer.studiested}}</td>
+					<td>{{answer.programmeringsstil}}</td>
+					<td>{{answer.musikk}}</td>
+					<td>{{answer.personlighet}}</td>
+					<td>{{answer.hypepreferanse}}</td>
+					<td>{{answer.favorittgode}}</td>
+					<td>{{answer.planerforkvelden}}</td>
+					<td>{{answer.premiehvisduvinner}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="/index" method="get">
+			<button type="submit" button name="backToMenu" class="btn btn-primary">
+				<span class="glyphicon glyphicon-home">
+				</span>
+				Tilbake til meny
+			</button>
+		</form>
+	</div>
+</body>
+</html>
