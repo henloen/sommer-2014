@@ -59,6 +59,7 @@ function errorHandler(error, response) {
 			response.send("There has been an error with the database, check the console for details...");
 }
 
+
 exports.insertAnswerDb = insertAnswerDb;
 exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;
