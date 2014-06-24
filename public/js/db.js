@@ -1,10 +1,10 @@
 var mysql = require("mysql");
 
-	var connection = mysql.createConnection( {
-		host: "localhost",
-		user: "root",
-		password: "test"
-	});
+var connection = mysql.createConnection( {
+	host: "localhost",
+	user: "root",
+	password: "test"
+});
 connection.connect();
 
 function query(queryStr, callback) {
@@ -23,9 +23,6 @@ function readAnswers(callback) {
 	query("select * from bod.answers", callback);
 }
 
-function readOneAnswer(id, callback) {
-	query("select * from bod.answers where id_answers = " + id + ";", callback);
-}
 
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
@@ -42,8 +39,26 @@ function deleteAll(callback) {
 	query("truncate table bod.answers", callback);
 }
 
+function insertParticipant(values, callback) {
+	query("insert into bod.participants(email, name)" + 
+		"values ('" + values[0] + "', '" + values[1] + "');", callback);
+}
+
+function getParticipants(callback) {
+	query("select * from bod.participants", callback);
+}
+
+function readOneAnswer(id, callback) {
+	query("select * from bod.answers where id_answers = " + id + ";", callback);
+}
+
+
+
+
 exports.query = query;
 exports.readAnswers = readAnswers;
 exports.insertAnswer = insertAnswer;
 exports.deleteAll = deleteAll;
+exports.insertParticipant = insertParticipant;
 exports.readOneAnswer = readOneAnswer;
+exports.getParticipants = getParticipants;

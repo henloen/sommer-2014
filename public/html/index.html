@@ -8,35 +8,31 @@
 </head>
 <body>
 
-<!-- not nec?
-<form action="/hello" method="get">
-<button name="hello" type="submit">Hello</button>
-</form>
--->
+	<div class="container-fluid">
+		<div class="row row-custom" >
+			<form action="/public/html/allAnswers.html" method="get" class="navbar-form ">
+				<button class="btn btn-primary" name="readAnswer" type="submit">Se alle svar</button>
+			</form>
+		</div>
 
-<div class="container-fluid">
-	<div class="row row-custom" >
-		<form action="/public/html/allAnswers.html" method="get" class="navbar-form ">
-			<button class="btn btn-primary" name="readAnswer" type="submit">Se alle svar</button>
-		</form>
-	</div>
+		<div class="row row-custom">
+			<form action="/public/html/insertAnswer.html" method="get"  class="navbar-form">
+				<button class="btn btn-primary" name="InsertAnswer" type="submit">Registrere svar</button>
+			</form>
+		</div>
 
-	<div class="row row-custom">
-		<form action="/public/html/insertAnswer.html" method="get"  class="navbar-form">
-			<button class="btn btn-primary" name="InsertAnswer" type="submit">Registrere svar</button>
-		</form>
-	</div>
+		<div class="row row-custom">
+			<form action="/deleteAll" method="get"  class="navbar-form">
+				<button class="btn btn-primary" name="deleteAll" type="submit">Slett alle svar</button>
+			</form>
+		</div>
 
-<!-- er en url for å pushe data til db, trenger ikke egen knapp (gir ikke mening?) 
-<form action="/insertAnswerDb" method="get">
-<button name="InsertAnswerDb" type="submit">Insert Answer Db</button>
-</form>
--->
-	<div class="row row-custom">
-		<form action="/deleteAll" method="get"  class="navbar-form">
-			<button class="btn btn-primary" name="deleteAll" type="submit">Slett alle svar</button>
-		</form>
-	</div>
+		<div class="row row-custom">
+			<form action="/public/html/participants.html" method="get"  class="navbar-form">
+				<button class="btn btn-primary" name="participants" type="submit">Se alle deltakere</button>
+			</form>
+		</div>
+
 	</div>
 </body>
 </html>

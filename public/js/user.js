@@ -52,7 +52,32 @@ function deleteAll(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-		res.send("Successfully deleted all answers");
+			res.send("Successfully deleted all answers");
+		}
+	});
+}
+
+
+function insertParticipant(req, res) {
+	values = [req.body.email, req.body.name];
+	console.log(values);
+	db.insertParticipant(values, function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Du er nå påmeldt, takk for dine svar.")
+		}
+	})
+}
+
+function getParticipants(req, res) {
+	db.getParticipants(function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send(rows);
 		}
 	});
 }
@@ -69,3 +94,5 @@ exports.index = index;
 exports.insertAnswerDb = insertAnswerDb;
 exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;
+exports.insertParticipant = insertParticipant;
+exports.getParticipants = getParticipants;

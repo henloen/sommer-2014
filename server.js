@@ -21,8 +21,14 @@ app.get("/readAnswers", user.readAllAnswers);
 //used to insert answers into database
 app.post("/insertAnswerDb", user.insertAnswerDb);
 
-//used to truncate table in database
+//used to truncate table into database
 app.get("/deleteAll", user.deleteAll);
+
+//used to insert a participant into the database
+app.post("/insertParticipant", user.insertParticipant);
+
+//used to access all the participants in json format
+app.get("/getParticipants", user.getParticipants);
 
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);
