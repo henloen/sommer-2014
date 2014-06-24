@@ -12,7 +12,6 @@ h1 {
 }
 
 .btn-group {
-
 	color: #ff6400;
   	background-color: #000;
   	font-size: 15px;
@@ -24,7 +23,7 @@ h1 {
 .header-question {
 	text-align: center;
 	font-size: 20px;
-	color: orange;
+	color: #ff6400;
 }
 
 .button-register {
