@@ -35,7 +35,7 @@ function insertAnswer(values, callback) {
 		   +"', '" + values[9] +"', '" + values[10] + "');",callback);
 }
 
-function deleteAll(callback) {
+function deleteAnswers(callback) {
 	query("truncate table bod.answers", callback);
 }
 
@@ -62,7 +62,7 @@ function deleteParticipants(callback) {
 exports.query = query;
 exports.readAnswers = readAnswers;
 exports.insertAnswer = insertAnswer;
-exports.deleteAll = deleteAll;
+exports.deleteAnswers = deleteAnswers;
 exports.insertParticipant = insertParticipant;
 exports.readOneAnswer = readOneAnswer;
 exports.getParticipants = getParticipants;

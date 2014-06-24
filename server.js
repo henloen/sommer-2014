@@ -22,7 +22,7 @@ app.get("/readAnswers", user.readAllAnswers);
 app.post("/insertAnswerDb", user.insertAnswerDb);
 
 //used to truncate table in database
-app.get("/deleteAll", user.deleteAll);
+app.get("/deleteAnswers", user.deleteAnswers);
 
 //used to insert a participant into the database
 app.post("/insertParticipant", user.insertParticipant);

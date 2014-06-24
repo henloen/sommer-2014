@@ -37,7 +37,7 @@ function insertAnswerDb(req, res) {
 				errorHandler(err, res);
 			}
 			else {
-				res.send("Ditt svar er nå registrert. Svarene dine var: " + JSON.stringify(row));
+				res.redirect("/public/html/submitInfo.html");
 				}
 			});
 		}
@@ -46,8 +46,8 @@ function insertAnswerDb(req, res) {
 
 
 //Used to truncate (clear/delete) the table. Returns a message to the user if successful
-function deleteAll(req, res) {
-	db.deleteAll(function(err, rows) {
+function deleteAnswers(req, res) {
+	db.deleteAnswers(function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
 		}
@@ -66,7 +66,7 @@ function insertParticipant(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("Du er nå påmeldt, takk for dine svar.")
+			res.redirect("public/html/registered.html");
 		}
 	})
 }
@@ -103,7 +103,7 @@ function errorHandler(error, response) {
 
 exports.index = index;
 exports.insertAnswerDb = insertAnswerDb;
-exports.deleteAll = deleteAll;
+exports.deleteAnswers = deleteAnswers;
 exports.readAllAnswers = readAllAnswers;
 exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
