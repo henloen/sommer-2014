@@ -1,5 +1,10 @@
 var db = require("./db");
 
+//used to route '/' to index.html
+function index(req, res){
+	res.redirect("/public/html/index.html");
+}
+
 //Used to get all rows from the database and return them as an array with JSON objects
 function readAllAnswers(req, res) {
 	db.readAnswers(function(err, rows) {
@@ -60,6 +65,7 @@ function errorHandler(error, response) {
 }
 
 
+exports.index = index;
 exports.insertAnswerDb = insertAnswerDb;
 exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;

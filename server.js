@@ -12,6 +12,9 @@ app.use(bodyParser.urlencoded());
 
 // Routing:
 
+//used for default route
+app.get("/", user.index);
+
 //used to access data in json format
 app.get("/readAnswers", user.readAllAnswers);
 
