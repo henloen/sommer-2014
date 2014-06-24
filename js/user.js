@@ -111,6 +111,17 @@ function jsAppjs(req, res) {
 	res.sendfile("js/app.js");
 }
 
+function jsBootstrap(req,res) {
+	res.sendfile("external_libs/bootstrap/js/bootstrap.min.js");
+}
+
+function cssBootstrap(req,res) {
+	res.sendfile("external_libs/bootstrap/css/bootstrap.min.css");
+}
+
+function bootstrapModify(req,res) {
+	res.sendfile("css/bootstrapModify.css");
+}
 
 exports.insertAnswerPage = insertAnswerPage;
 exports.insertAnswerDb = insertAnswerDb;
@@ -120,6 +131,11 @@ exports.readAllAnswers = readAllAnswers;
 exports.stylesheet = stylesheet;
 exports.jsAngularminjs = jsAngularminjs;
 exports.jsAppjs = jsAppjs;
+
+
+exports.jsBootstrap = jsBootstrap;
+exports.cssBootstrap = cssBootstrap;
+exports.bootstrapModify = bootstrapModify;
 
 //Old exports, methods now commented out
 //exports.insertPredefAnswerDb = insertPredefAnswerDb;

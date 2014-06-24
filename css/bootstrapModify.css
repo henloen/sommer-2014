@@ -1,0 +1,50 @@
+header {
+	color: orange;
+}
+
+body {
+	background-color: #000;
+}
+
+h1 {
+	font-size: 50px;
+	color: #ff6400;
+}
+
+.btn-group {
+
+	color: #ff6400;
+  	background-color: #000;
+  	font-size: 15px;
+  	border-color: #357ebd;
+
+}
+
+.header-question {
+	font-size: 20px;
+	color: orange;
+}
+
+.button-register {
+	font-size: 20px;
+	color: #fff;
+	border-color: #ff6400;
+	background-color: black;
+	border-style: dotted;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #000;
+	border-color: #000;
+}
+
+
+.btn:hover,
+.btn.active
+ {
+	background-color: #ff6400;
+	color: #000;
+}
+
+

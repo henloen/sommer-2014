@@ -19,6 +19,10 @@ app.get("/external_libs/angular.min.js", user.jsAngularminjs);
 app.get("/js/app.js", user.jsAppjs)
 
 
+app.get("/external_libs/bootstrap/js/bootstrap.min.js", user.jsBootstrap);
+app.get("/external_libs/bootstrap/css/bootstrap.min.css", user.cssBootstrap);
+app.get("/css/bootstrapModify.css", user.bootstrapModify);
+
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);
 });
