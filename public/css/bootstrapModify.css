@@ -1,5 +1,5 @@
 header {
-	color: orange;
+	color: #ff6400;
 }
 
 body {
@@ -9,15 +9,14 @@ body {
 h1 {
 	font-size: 50px;
 	color: #ff6400;
+
 }
 
 .btn-group {
 	color: #ff6400;
   	background-color: #000;
   	font-size: 15px;
-  	border-color: #357ebd;
-
-
+  	border-color: #ff6400;
 }
 
 .header-question {
@@ -26,12 +25,16 @@ h1 {
 	color: #ff6400;
 }
 
-.button-register {
+.btn-submit {
 	font-size: 20px;
 	color: #fff;
 	border-color: #ff6400;
 	background-color: black;
 	border-style: dotted;
+}
+
+.btn-submit.btn-start {
+	font-size: 70px;
 }
 
 .btn-primary {
@@ -46,9 +49,48 @@ h1 {
  {
 	background-color: #ff6400;
 	color: #000;
+	border-color: #ff6400;
 }
 
 
 .text-centering {
 	text-align: center;
+}
+
+.btn-main {
+	text-align: center
+}
+
+.container {
+	text-align: center;
+}
+
+.btn-start {
+	position: fixed;
+	top: 50%;
+	left: 45%;
+}
+
+.header-start {
+	position fixed;
+	top: 20%;
+	left: 50%;
+}
+
+.text-orange {
+	color: #ff6400;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.container-text {
+	color: #fff;
+}
+
+.form-field {
+	background-color: #000;
+	border-color: #ff6400;
+	border-style: solid 1px;
 }
