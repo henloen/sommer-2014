@@ -82,6 +82,17 @@ function getParticipants(req, res) {
 	});
 }
 
+function deleteParticipants(req, res) {
+	db.deleteParticipants(function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Successfully deleted all participants")
+		}
+	});
+}
+
 //Used to handle errors. Look into the error handler provided by express.js?
 function errorHandler(error, response) {
 			console.log("There has been an error:");
@@ -96,3 +107,4 @@ exports.deleteAll = deleteAll;
 exports.readAllAnswers = readAllAnswers;
 exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
+exports.deleteParticipants = deleteParticipants;

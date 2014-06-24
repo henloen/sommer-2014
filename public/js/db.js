@@ -52,6 +52,10 @@ function readOneAnswer(id, callback) {
 	query("select * from bod.answers where id_answers = " + id + ";", callback);
 }
 
+function deleteParticipants(callback) {
+	query("truncate table bod.participants", callback);
+}
+
 
 
 
@@ -62,3 +66,4 @@ exports.deleteAll = deleteAll;
 exports.insertParticipant = insertParticipant;
 exports.readOneAnswer = readOneAnswer;
 exports.getParticipants = getParticipants;
+exports.deleteParticipants = deleteParticipants;

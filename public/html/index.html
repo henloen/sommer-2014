@@ -4,32 +4,38 @@
 	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
 	<script type="text/javascript" src="../js/app.js"></script>
 	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrapModify.css">
 </head>
 <body>
 
-	<div class="container-fluid">
-		<div class="row row-custom" >
+	<div class="container-fluid btn-group-custom">
+		<div class="row" >
 			<form action="/public/html/allAnswers.html" method="get" class="navbar-form ">
-				<button class="btn btn-primary" name="readAnswer" type="submit">Se alle svar</button>
+				<button class="btn btn-primary-custom" name="readAnswer" type="submit">Se alle svar</button>
 			</form>
 		</div>
 
-		<div class="row row-custom">
+		<div class="row">
 			<form action="/public/html/insertAnswer.html" method="get"  class="navbar-form">
-				<button class="btn btn-primary" name="InsertAnswer" type="submit">Registrere svar</button>
+				<button class="btn btn-primary-custom" name="InsertAnswer" type="submit">Registrere svar</button>
 			</form>
 		</div>
 
-		<div class="row row-custom">
-			<form action="/deleteAll" method="get"  class="navbar-form">
-				<button class="btn btn-primary" name="deleteAll" type="submit">Slett alle svar</button>
+		<div class="row">
+			<form action="/deleteAllAnswers" method="get"  class="navbar-form">
+				<button class="btn btn-primary-custom" name="deleteAllAnswers" type="submit">Slett alle svar</button>
 			</form>
 		</div>
 
-		<div class="row row-custom">
+		<div class="row">
 			<form action="/public/html/participants.html" method="get"  class="navbar-form">
-				<button class="btn btn-primary" name="participants" type="submit">Se alle deltakere</button>
+				<button class="btn btn-primary-custom" name="participants" type="submit">Se alle deltakere</button>
+			</form>
+		</div>
+
+		<div class="row">
+			<form action="/deleteParticipants" method="get"  class="navbar-form">
+				<button class="btn btn-primary-custom" name="deleteAllParticipants" type="submit">Slett alle deltakere</button>
 			</form>
 		</div>
 
