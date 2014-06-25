@@ -23,6 +23,7 @@
 					<th>Favorittgode</th>
 					<th>Planer for kvelden</th>
 					<th>Premie hvis du vinner</th>
+					<th>Behandlet</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +40,13 @@
 					<td>{{answer.favorittgode}}</td>
 					<td>{{answer.planerforkvelden}}</td>
 					<td>{{answer.premiehvisduvinner}}</td>
+					<td ng-show="answer.processed === 0"><span class="glyphicon glyphicon-remove"></span></td>
+					<td ng-show="answer.processed === 1"><span class="glyphicon glyphicon-ok"></span></td>
+					
+					<!-- <td><div class="btn-group btn-toggle" data-toggle="buttons"> 
+    <button class="btn btn-default">ON</button>
+    <button class="btn btn-primary active">OFF</button>
+  </div></td> -->
 				</tr>
 			</tbody>
 		</table>
