@@ -1,256 +1,270 @@
 	<!DOCTYPE html>
 	<html >
-		<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap -->
+		<link href="../external_libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrapModify.css" rel="stylesheet">
+
+		<!-- Load Angular-->
+		<script src="http://code.angularjs.org/1.2.6/angular.js"></script>
+
+		<title>the Beauty of Data</title>
+
+	</head>
+	<body ng-app>
+		<h1> bouvet </h1>
+		<br>
+
+
+		<form action="/insertAnswerDb" method="post" name="userForm" role="form" novalidate>
 			
 
-			<!-- Bootstrap -->
-			<link href="../external_libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-			<link href="../css/bootstrapModify.css" rel="stylesheet">
-			
-			<title>the Beauty of Data</title>
-		</head>
+
+			<div class="wrapper text-centering container-fluid">
+					<div class="col-sm-4">
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Sivilstatus: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="sivilstatus" value="gift/samboer">Gift/Samboer<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="sivilstatus" value="skilt">Skilt<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="sivilstatus" value="singel">Singel<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="sivilstatus" value="complicated">It's complicated<br>
+							</label>
+						</div>	
+						<br><br>
 
 
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> På hodet: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="caps">Caps<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="turban">Turban<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="hette">Hette<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="hjelm">Hjem<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="solbriller">Solbriller<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="pa_hodet" value="hijab">Hijab<br>
+							</label>
+						</div>
+						<br><br>
 
-		<body>
-			<h1> bouvet </h1>
-			<br>
 
-			
-		<form action="/insertAnswerDb" method="post">
-			<table>
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Alder: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="alder" value="youngster">Youngster<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="alder" value="coolcat">Cool Cat<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="alder" value="hipster">Hipster<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="alder" value="gammelringrev">Gammel Ringrev<br>
+							</label>
+						</div>
 
-		
-	<div class="wrapper text-centering container-fluid">
-			<div class="col-sm-4">
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Sivilstatus: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="sivilstatus" value="gift/samboer">Gift/Samboer<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="sivilstatus" value="skilt">Skilt<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="sivilstatus" value="singel">Singel<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="sivilstatus" value="complicated">It's complicated<br>
-					</label>
-				</div>	
+						<br><br>
+
+
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Studiested: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="studiested" value="ntnu">NTNU<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="studiested" value="selvlaertrover">Selvlært Røver<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="studiested" value="annet">Annet<br>
+							</label>
+						</div>
+					</div>
 					<br><br>
 
 
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> På hodet: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="caps">Caps<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="turban">Turban<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="hette">Hette<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="hjelm">Hjem<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="solbriller">Solbriller<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="pa_hodet" value="hijab">Hijab<br>
-					</label>
-				</div>
+
+					<div class="col-sm-4">
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Programmeringsstil: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="programmeringsstil" value="batenblirtil">Båten blir til mens man ror<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="programmeringsstil" value="detordnerseg">Det ordner seg<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="programmeringsstil" value="ordenungmusssein">Ordenung Muss Sein<br>
+							</label>
+						</div>
+						<br><br>
+
+
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Musikk: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="indie">Indie<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="trash">Trash<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="disco">Disco<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="tronderrock">Trønderrock<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="metal">Metal<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="rave">Rave<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="musikk" value="klassisk">Klassisk<br>
+							</label>
+						</div>
+						<br><br>
+
+
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Personlighet: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="personlighet" value="introvert">Introvert<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="personlighet" value="ekstrovert">Ekstrovert<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="personlighet" value="ekstrovertpluss">Ekstrovert med litt innabords
+							</label>
+						</div>
+						<br><br>
+
+
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Hype-preferanse: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="hypepreferanse" value="bigdata">Big Data<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="hypepreferanse" value="internetofthings">Internet of Things<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="hypepreferanse" value="laerkidsakoding">Lær Kidsa Koding<br>
+							</label>
+						</div>
+					</div>
 					<br><br>
 
 
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Alder: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="alder" value="youngster">Youngster<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="alder" value="coolcat">Cool Cat<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="alder" value="hipster">Hipster<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="alder" value="gammelringrev">Gammel Ringrev<br>
-					</label>
+					<div class="col-sm-4">
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Favorittgode på jobb: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="favorittgode" value="fribar">Fri bar på julebordet<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="favorittgode" value="gadgetkonto">Gadgetkonto<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="favorittgode" value="kurskonferanse">Kurs og konferanser<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="favorittgode" value="frikantine">Fri kantine<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="favorittgode" value="pensjon">Pensjon<br>
+							</label>
+						</div>
+
+						<br><br>
+
+
+						<div class="btn-group-vertical" data-toggle="buttons">
+							<div class="header-question"> Planer for kvelden: </div><br>
+							<label class="btn btn-primary">
+								<input type="radio" name="planer_for_kvelden" value="endresivilstatus">Endre sivilstatus<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="planer_for_kvelden" value="smiskemedsjefen">Smiske med sjefen<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="planer_for_kvelden" value="mingle">Mingle<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="planer_for_kvelden" value="kode">Kode<br>
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="planer_for_kvelden" value="nytelivet">Nyte livet<br>
+							</div>
+							<br><br>
+
+
+							<div class="btn-group-vertical" data-toggle="buttons">
+								<div class="header-question"> Premie hvis du vinner: </div><br>
+								<label class="btn btn-primary">
+									<input type="radio" name="premie_hvis_du_vinner" value="moto360">Moto360<br>
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="premie_hvis_du_vinner" value="oculusrift">Oculus Rift<br>
+								</label>
+							</div>
+							<br><br><br>
+						</div>
+
+							<div class="btn-group-vertical" data-toggle="buttons">
+								<div class="header-question"> Kjønn: </div><br>
+								<label class="btn btn-primary">
+									<input type="radio" name="kjonn" value="john">John<br>
+								</label>
+								<label class="btn btn-primary">
+									<input type="radio" name="kjonn" value="jane">Jane<br>
+								</label>
+							</div>
+							
+
+
+						<br><br>
 				</div>
-			
-					<br><br>
 
 
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Studiested: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="studiested" value="ntnu">NTNU<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="studiested" value="selvlaertrover">Selvlært Røver<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="studiested" value="annet">Annet<br>
-					</label>
-				</div>
-				</div>
-					<br><br>
 
-
-			
-			<div class="col-sm-4">
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Programmeringsstil: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="programmeringsstil" value="batenblirtil">Båten blir til mens man ror<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="programmeringsstil" value="detordnerseg">Det ordner seg<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="programmeringsstil" value="ordenungmusssein">Ordenung Muss Sein<br>
-					</label>
-				</div>
-					<br><br>
-					
-
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Musikk: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="indie">Indie<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="trash">Trash<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="disco">Disco<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="tronderrock">Trønderrock<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="metal">Metal<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="rave">Rave<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="musikk" value="klassisk">Klassisk<br>
-					</label>
-				</div>
-					<br><br>
-
-
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Personlighet: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="personlighet" value="introvert">Introvert<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="personlighet" value="ekstrovert">Ekstrovert<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="personlighet" value="ekstrovertpluss">Ekstrovert med litt innabords
-					</label>
-				</div>
-					<br><br>
-
-
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Hype-preferanse: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="hypepreferanse" value="bigdata">Big Data<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="hypepreferanse" value="internetofthings">Internet of Things<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="hypepreferanse" value="laerkidsakoding">Lær Kidsa Koding<br>
-					</label>
-				</div>
-				</div>
-					<br><br>
-
-
-			<div class="col-sm-4">
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Favorittgode på jobb: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="favorittgode" value="fribar">Fri bar på julebordet<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="favorittgode" value="gadgetkonto">Gadgetkonto<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="favorittgode" value="kurskonferanse">Kurs og konferanser<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="favorittgode" value="frikantine">Fri kantine<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="favorittgode" value="pensjon">Pensjon<br>
-					</label>
-				</div>
-			
-					<br><br>
-
-
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Planer for kvelden: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="planer_for_kvelden" value="endresivilstatus">Endre sivilstatus<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="planer_for_kvelden" value="smiskemedsjefen">Smiske med sjefen<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="planer_for_kvelden" value="mingle">Mingle<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="planer_for_kvelden" value="kode">Kode<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="planer_for_kvelden" value="nytelivet">Nyte livet<br>
-				</div>
-					<br><br>
-
-
-				<div class="btn-group-vertical" data-toggle="buttons">
-					<div class="header-question"> Premie hvis du vinner: </div><br>
-					<label class="btn btn-primary">
-					<input type="radio" name="premie_hvis_du_vinner" value="moto360">Moto360<br>
-					</label>
-					<label class="btn btn-primary">
-					<input type="radio" name="premie_hvis_du_vinner" value="oculusrift">Oculus Rift<br>
-					</label>
-				</div>
-			</div>
-				<br><br>
-	</div>
-
-
-			</table>
 				<br><br><br>
-			<div class="container">
+				<div class="container">
 
-				<input class="btn btn-def-bouvet" type="submit" value="Registrer svar">
-			</form>
-		</div>
+					<input class="btn btn-def-bouvet" type="submit" value="Registrer svar">
+				</form>
+			</div>
 			<br><br>
 
 
-			 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			 <!-- Include all compiled plugins (below), or include individual files as needed -->
-			 <script src="../external_libs/bootstrap/js/bootstrap.min.js"></script>
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="../external_libs/bootstrap/js/bootstrap.min.js"></script>
 
 			<br><br>
 
 		</body>
-	</html>
+		</html>

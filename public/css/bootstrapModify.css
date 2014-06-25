@@ -30,7 +30,7 @@ h1 {
 	color: #fff;
 	border-color: #ff6400;
 	background-color: black;
-	border-style: dotted;
+	border-style: dotted 1px;
 }
 
 .btn-start {
