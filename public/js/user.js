@@ -66,7 +66,7 @@ function insertParticipant(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("public/html/registered.html");
+			res.redirect("/public/html/registered.html");
 		}
 	})
 }
@@ -93,6 +93,17 @@ function deleteParticipants(req, res) {
 	});
 }
 
+function updateAnswerStatus(req, res) {
+	db.updateAnswerStatus(req.params.id, function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.redirect("/public/html/allAnswers.html");
+		}
+	});
+}
+
 //Used to handle errors. Look into the error handler provided by express.js?
 function errorHandler(error, response) {
 			console.log("There has been an error:");
@@ -108,3 +119,4 @@ exports.readAllAnswers = readAllAnswers;
 exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
+exports.updateAnswerStatus = updateAnswerStatus;

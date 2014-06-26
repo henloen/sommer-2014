@@ -33,6 +33,9 @@ app.get("/getParticipants", user.getParticipants);
 //used to truncate table in database
 app.get("/deleteParticipants", user.deleteParticipants);
 
+//
+app.post("/updateAnswerStatus/:id", user.updateAnswerStatus);
+
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);
 });

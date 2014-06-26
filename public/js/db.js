@@ -42,7 +42,7 @@ function deleteAnswers(callback) {
 
 function insertParticipant(values, callback) {
 	query("insert into bod.participants(email, name)" + 
-		"values ('" + values[0] + "', '" + values[1] + "');", callback);
+		"values ('" + values.email + "', '" + values.name + "');", callback);
 }
 
 function getParticipants(callback) {
@@ -57,6 +57,10 @@ function deleteParticipants(callback) {
 	query("truncate table bod.participants", callback);
 }
 
+function updateAnswerStatus(id, callback) {
+	query("update bod.answers set processed = 1 where id_answers = " + id, callback);
+}
+
 
 
 
@@ -68,3 +72,4 @@ exports.insertParticipant = insertParticipant;
 exports.readOneAnswer = readOneAnswer;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
+exports.updateAnswerStatus = updateAnswerStatus;
