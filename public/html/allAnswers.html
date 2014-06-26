@@ -74,8 +74,8 @@
 									<div class="modal-footer">
 										<form action="{{'/updateAnswerStatus/' + answer.id_answers}}" method="post">
 											<button type="button" class="btn btn-default" data-dismiss="modal">Lukk</button>
-											<input ng-show="answer.processed === 0" type="submit" class="btn btn-primary" >Merk som behandlet</input>
-											<input ng-show="answer.processed === 1" type="submit" class="btn btn-primary" >Merk som ubehandlet</input>
+											<button ng-show="answer.processed === 0" type="submit" class="btn btn-primary" >Merk som behandlet</button>
+											<button ng-show="answer.processed === 1" type="submit" class="btn btn-primary" >Merk som ubehandlet</button>
 										</form>
 									</div>
 								</div>

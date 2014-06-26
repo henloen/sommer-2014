@@ -58,7 +58,7 @@ function deleteParticipants(callback) {
 }
 
 function updateAnswerStatus(id, callback) {
-	query("update bod.answers set processed = 1 where id_answers = " + id, callback);
+	query("update bod.answers set processed = not processed where id_answers = " + id, callback);
 }
 
 
