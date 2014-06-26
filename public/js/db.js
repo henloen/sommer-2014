@@ -30,10 +30,10 @@ function insertAnswer(values, callback) {
 		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
 		planerforkvelden, premiehvisduvinner, kjonn)" +
 		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.alder
-		 +"', '" + values.studiested +"', '" + values.studiested +"', '" + values.programmeringsstil
-		  +"', '" + values.musikk +"', '" + values.personlighet  +"', '" + values.hypepreferanse
-		   +"', '" + values.favorittgode +"', '" + values.planerforkvelden + "', '" +
-		    values.premiehvisduvinner + "');",callback);
+		 +"', '" + values.studiested +"', '" + values.programmeringsstil +"', '" + values.musikk
+		  +"', '" + values.personlighet +"', '" + values.hypepreferanse  +"', '" + values.favorittgode
+		   +"', '" + values.planer_for_kvelden +"', '" + values.premie_hvis_du_vinner+ "', '" +
+		    values.kjonn + "');",callback);
 }
 
 function deleteAnswers(callback) {
