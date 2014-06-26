@@ -28,11 +28,12 @@ function readAnswers(callback) {
 function insertAnswer(values, callback) {
 	query("insert into bod.answers(sivilstatus, pa_hodet, alder, studiested, \
 		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
-		planerforkvelden, premiehvisduvinner)" +
-		"values ('" + values[0] +"', '" + values[1] +"', '" + values[2]
-		 +"', '" + values[3] +"', '" + values[4] +"', '" + values[5]
-		  +"', '" + values[6] +"', '" + values[7]  +"', '" + values[8]
-		   +"', '" + values[9] +"', '" + values[10] + "');",callback);
+		planerforkvelden, premiehvisduvinner, kjonn)" +
+		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.alder
+		 +"', '" + values.studiested +"', '" + values.studiested +"', '" + values.programmeringsstil
+		  +"', '" + values.musikk +"', '" + values.personlighet  +"', '" + values.hypepreferanse
+		   +"', '" + values.favorittgode +"', '" + values.planerforkvelden + "', '" +
+		    values.premiehvisduvinner + "');",callback);
 }
 
 function deleteAnswers(callback) {
@@ -41,7 +42,7 @@ function deleteAnswers(callback) {
 
 function insertParticipant(values, callback) {
 	query("insert into bod.participants(email, name)" + 
-		"values ('" + values[0] + "', '" + values[1] + "');", callback);
+		"values ('" + values.email + "', '" + values.name + "');", callback);
 }
 
 function getParticipants(callback) {
@@ -56,6 +57,10 @@ function deleteParticipants(callback) {
 	query("truncate table bod.participants", callback);
 }
 
+function updateAnswerStatus(id, callback) {
+	query("update bod.answers set processed = 1 where id_answers = " + id, callback);
+}
+
 
 
 
@@ -67,3 +72,4 @@ exports.insertParticipant = insertParticipant;
 exports.readOneAnswer = readOneAnswer;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
+exports.updateAnswerStatus = updateAnswerStatus;

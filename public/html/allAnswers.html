@@ -3,6 +3,8 @@
 <head>
 	<title>All answers</title>
 	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
+	<script type="text/javascript" src="../external_libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../external_libs/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="../js/seeAnswers.js"></script>
 	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
 </head>
@@ -23,6 +25,7 @@
 					<th>Favorittgode</th>
 					<th>Planer for kvelden</th>
 					<th>Premie hvis du vinner</th>
+					<th>Behandlet</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +42,50 @@
 					<td>{{answer.favorittgode}}</td>
 					<td>{{answer.planerforkvelden}}</td>
 					<td>{{answer.premiehvisduvinner}}</td>
+					<td ng-show="answer.processed === 0"><span class="glyphicon glyphicon-remove"></span></td>
+					<td ng-show="answer.processed === 1"><span class="glyphicon glyphicon-ok"></span></td>
+					<td>
+						<!-- Button trigger modal -->
+						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}">
+							Behandle svar
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">Svar: {{answer.id_answers}}</h4>
+									</div>
+									<div class="modal-body">
+										<b>Sivilstatus:</b> {{answer.sivilstatus}}<br>
+										<b>På hodet: </b> {{answer.pa_hodet}}<br>
+										<b>Alder: </b> {{answer.alder}}<br>
+										<b>Studiested: </b> {{answer.studiested}}<br>
+										<b>Programmeringsstil: </b> {{answer.programmeringsstil}}<br>
+										<b>Musikk: </b> {{answer.musikk}}<br>
+										<b>Personlighet: </b> {{answer.personlighet}}<br>
+										<b>Hype-preferanse: </b> {{answer.hypepreferanse}}<br>
+										<b>Favorittgode: </b> {{answer.favorittgode}}<br>
+										<b>Planer for kvelden: </b> {{answer.planerforkvelden}}<br>
+										<b>Premie hvis du vinner: </b> {{answer.premiehvisduvinner}}<br>
+									</div>
+									<div class="modal-footer">
+										<form action="{{'/updateAnswerStatus/' + answer.id_answers}}" method="post">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Lukk</button>
+											<input ng-show="answer.processed === 0" type="submit" class="btn btn-primary" >Merk som behandlet</input>
+											<input ng-show="answer.processed === 1" type="submit" class="btn btn-primary" >Merk som ubehandlet</input>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<!-- <td><div class="btn-group btn-toggle" data-toggle="buttons"> 
+    <button class="btn btn-default">ON</button>
+    <button class="btn btn-primary active">OFF</button>
+  </div></td> -->
 				</tr>
 			</tbody>
 		</table>
