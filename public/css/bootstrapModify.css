@@ -106,7 +106,6 @@ h1 {
 .col-left-border {
 	border-left: 2px dotted; 
 	border-color: #fff;
-
 }
 
 .border-between-question {
@@ -116,9 +115,3 @@ h1 {
 }
 
 
-.col-lower-border {
-	border-bottom: 2px dotted;
-	border-color: #fff;
-	border-bottom-right-radius: 7em;
-
-}
