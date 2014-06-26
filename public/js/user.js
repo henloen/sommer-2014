@@ -23,10 +23,10 @@ Fix the "hardcoding" of the values?
 Is called when the user presses submit (http post action)
 */
 function insertAnswerDb(req, res) {
-	values = {sivilstatus: req.body.sivilstatus, pa_hodet: req.body.pa_hodet,alder: req.body.alder,
-		studiested: req.body.studiested, programmeringsstil: req.body.programmeringsstil, musikk: req.body.musikk, 
+	values = {sivilstatus: req.body.sivilstatus, pa_hodet: req.body.pa_hodet, alder: req.body.alder,
+	studiested: req.body.studiested, programmeringsstil: req.body.programmeringsstil, musikk: req.body.musikk, 
 	personlighet: req.body.personlighet, hypepreferanse: req.body.hypepreferanse, favorittgode: req.body.favorittgode, 
-	planer_for_kcelden: req.body.planer_for_kvelden, premie_hvis_du_vinner: req.body.premie_hvis_du_vinner, kjonn: req.body.kjonn};
+	planer_for_kvelden: req.body.planer_for_kvelden, premie_hvis_du_vinner: req.body.premie_hvis_du_vinner, kjonn: req.body.kjonn};
 	db.insertAnswer(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
