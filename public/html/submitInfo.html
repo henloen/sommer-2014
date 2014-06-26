@@ -10,33 +10,30 @@
 		<link href="../external_libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../css/bootstrapModify.css" rel="stylesheet">
 
+		<script type="text/javascript" src="../external_libs/angular.min.js"></script>
+		
+
 		<title>the Beauty of Data</title>
-
-		<!-- Load Angular-->
-		<script src="http://code.angularjs.org/1.2.6/angular.js"></script> 
-
 
 
 	</head>
 	<body ng-app>
 		
-		<h1 class="header-start">bouvet </h1>
+		
 		<div class="container">
-			<h2 class="text-orange">The Beauty of Data</h2>
-			<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
-			<h4 class="text-white">Vakkert i seg selv. Viktig for den det gjelder.</h4>
-			<br><br>
+			<h2 class="text-orange text-large">The Beauty of Data</h2>
+			<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
+			<p class="text-white text-medium">Vakkert i seg selv. Viktig for den det gjelder.</p>
+			<br><br><br><br>
 			<div class="text-white">
-				<p> Dine svar er nå registrert. Hvis du vil være med i trekningen av en premie, kan du fylle
+				<h2> Dine svar er nå registrert.</h2>
+				<br><br><br>
+				<p> Hvis du vil være med i trekningen av premien, kan du fylle
 					ut informasjonen under. </p>
-					<p> Bouvet vil ikke bruke informasjonen til noe annet formål enn selve trekningen. 
-						Data vil bli slettet etter trekningen.</p>
-					</div>
-					<br><br><br><br>
-
-
-
-
+				<p> Bouvet vil ikke bruke informasjonen til noe annet formål enn selve trekningen.</p> 
+				<p>Data vil bli slettet etter trekningen.</p>
+				</div>
+				<br><br>
 
 
 					<form action="/insertParticipant" method="post" class="form-horizontal" name="userForm" role="form" novalidate>
@@ -53,7 +50,8 @@
 						<br>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-8">
-								<button type="submit" ng-disabled="userForm.$invalid" class="btn btn-def-bouvet">Submit info</button>
+								<button type="submit" class="btn btn-def-bouvet">Submit info</button>
+								<!-- <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-def-bouvet">Submit info</button>To be used!!--> 
 							</div>
 						</div>
 					</form>
@@ -63,6 +61,8 @@
 						<input class="btn btn-escape" type="submit" value="Nei takk, tilbake til hovedsiden">
 					</form>
 
+
+				<div class="container logo-bottom-bouvet"> bouvet </div>
 
 				</div>
 

@@ -34,7 +34,23 @@ h1 {
 }
 
 .btn-start {
-	font-size: 60px;
+	font-size: 50px;
+	width: 250px;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -25px;
+}
+
+
+.btn-group-custom {
+	width: 450px;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
 }
 
 .btn-primary {
@@ -52,15 +68,6 @@ h1 {
 	border-color: #ff6400;
 }
 
-
-.text-centering {
-	text-align: center;
-}
-
-.btn-main {
-	text-align: center
-}
-
 .container {
 	text-align: center;
 }
@@ -68,7 +75,9 @@ h1 {
 .btn-start {
 	position: fixed;
 	top: 50%;
-	left: 45%;
+	left: 50%;
+	margin-top: -125px;
+    margin-left: -125px;
 }
 
 .btn-escape {
@@ -92,15 +101,22 @@ h1 {
 	color: #fff;
 }
 
+.text-large {
+	font-size:50px;
+}
+
+.text-medium {
+	font-size: 30px;
+}
+
+.text-small {
+	font-size: 20px;
+}
+
 .form-field {
 	background-color: #000;
 	border-color: #ff6400;
 	border-style: solid 1px;
-}
-
-.btn-group-custom {
-	text-align: center;
-	width: 250px;
 }
 
 .col-left-border {
@@ -114,4 +130,15 @@ h1 {
 	font-style: 4px dotted;
 }
 
+.btn-front-large {
+	font-size: 35px;
+}
+
+
+.logo-bottom-bouvet {
+	position: fixed;
+	bottom: 2%;
+	font-size: 65px;
+	color: #ff6400;
+}
 
