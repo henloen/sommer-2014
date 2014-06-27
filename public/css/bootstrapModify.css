@@ -1,106 +1,28 @@
-header {
-	color: #ff6400;
-}
+
+/*
+Bouvet-orange: #FF6400;
+White: #FFF;
+Black: #000;
+*/
+
+
 
 body {
 	background-color: #000;
-}
-
-h1 {
-	font-size: 50px;
-	color: #ff6400;
-
-}
-
-.btn-group {
-	color: #ff6400;
-  	background-color: #000;
-  	font-size: 15px;
-  	border-color: #ff6400;
-}
-
-.header-question {
-	text-align: center;
-	font-size: 20px;
-	color: #ff6400;
-}
-
-.btn-def-bouvet {
-	font-size: 20px;
-	color: #fff;
-	border-color: #ff6400;
-	background-color: black;
-	border-style: dotted 1px;
-}
-
-.btn-start {
-	font-size: 60px;
-}
-
-.btn-primary {
-	color: #fff;
-	background-color: #000;
-	border-color: #000;
-}
-
-
-.btn:hover,
-.btn.active
- {
-	background-color: #ff6400;
-	color: #000;
-	border-color: #ff6400;
-}
-
-
-.text-centering {
-	text-align: center;
-}
-
-.btn-main {
-	text-align: center
 }
 
 .container {
 	text-align: center;
 }
 
-.btn-start {
-	position: fixed;
-	top: 50%;
-	left: 45%;
-}
 
-.btn-escape {
-	color: #fff;
-	font-size: 16;
-	background-color: #000;
 
-}
+/* InsertAnswer-specific */
 
-.header-start {
-	position fixed;
-	top: 20%;
-	left: 50%;
-}
-
-.text-orange {
-	color: #ff6400;
-}
-
-.text-white {
-	color: #fff;
-}
-
-.form-field {
-	background-color: #000;
-	border-color: #ff6400;
-	border-style: solid 1px;
-}
-
-.btn-group-custom {
+.header-question {
 	text-align: center;
-	width: 250px;
+	font-size: 20px;
+	color: #ff6400;
 }
 
 .col-left-border {
@@ -113,6 +35,114 @@ h1 {
 	font-size: 15px;
 	font-style: 4px dotted;
 }
+
+/*------------------------*()
+
+
+
+/* Button formatting */
+
+.btn-group-custom {
+	width: 450px;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+}
+
+.btn-def-bouvet {
+	font-size: 20px;
+	color: #fff;
+	border-color: #ff6400;
+	background-color: black;
+	border-style: dotted 1px;
+}
+    
+.btn-start {
+	font-size: 50px;
+	width: 250px;
+	position: relative;
+    margin-top: 150px;
+}
+
+.btn-response {
+	color: #ffd;
+	background-color: #000;
+	border-color: #000;
+}
+
+.btn:hover,
+.btn.active
+ {
+	background-color: #ff6400;
+	color: #000;
+	border-color: #ff6400;
+}
+
+.btn-escape {
+	color: #fff;
+	background-color: #000;
+}
+
+/* -------------------------- */
+
+
+
+
+/* Font colors and sizes */
+
+
+.text-orange {
+	color: #ff6400;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.text-large {
+	font-size:50px;
+}
+
+.text-medium {
+	font-size: 30px;
+}
+
+.text-small {
+	font-size: 20px;
+}
+
+
+/*--------------*/
+
+
+/* Fixed page elements */
+
+
+
+.logo-bottom-bouvet {
+	position: relative;
+	bottom: -20px;
+	font-size: 60px;
+	color: #ff6400;
+	margin-top: 100px;
+}
+
+
+/*------------------------*/
+
+
+.form-field {
+	background-color: #000;
+	border-color: #ff6400;
+	border-style: solid 1px;
+}
+
+
+
+
+
 
 .modal-custom-female {
 	background-color: #ffe;
