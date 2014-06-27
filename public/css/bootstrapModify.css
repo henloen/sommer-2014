@@ -17,8 +17,6 @@ body {
 
 
 
-
-
 /* InsertAnswer-specific */
 
 .header-question {
@@ -60,15 +58,12 @@ body {
 	background-color: black;
 	border-style: dotted 1px;
 }
-
+    
 .btn-start {
 	font-size: 50px;
 	width: 250px;
-	position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -125px;
-    margin-left: -125px;
+	position: relative;
+    margin-top: 150px;
 }
 
 .btn-response {
@@ -127,10 +122,11 @@ body {
 
 
 .logo-bottom-bouvet {
-	position: fixed;
-	bottom: 2%;
-	font-size: 65px;
+	position: relative;
+	bottom: -20px;
+	font-size: 60px;
 	color: #ff6400;
+	margin-top: 100px;
 }
 
 
