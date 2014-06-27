@@ -114,4 +114,11 @@ h1 {
 	font-style: 4px dotted;
 }
 
+.modal-custom-female {
+	background-color: #ffe;
+}
 
+.modal-custom-male {
+	background-color: #ff6400;
+	color:#fff;
+}
