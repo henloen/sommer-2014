@@ -144,4 +144,11 @@ body {
 
 
 
+.modal-custom-female {
+	background-color: #ffe;
+}
 
+.modal-custom-male {
+	background-color: #ff6400;
+	color:#fff;
+}
