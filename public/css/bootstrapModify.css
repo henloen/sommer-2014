@@ -1,28 +1,56 @@
-header {
-	color: #ff6400;
-}
+
+/*
+Bouvet-orange: #FF6400;
+White: #FFF;
+Black: #000;
+*/
+
+
 
 body {
 	background-color: #000;
 }
 
-h1 {
-	font-size: 50px;
-	color: #ff6400;
-
+.container {
+	text-align: center;
 }
 
-.btn-group {
-	color: #ff6400;
-  	background-color: #000;
-  	font-size: 15px;
-  	border-color: #ff6400;
-}
+
+
+
+
+/* InsertAnswer-specific */
 
 .header-question {
 	text-align: center;
 	font-size: 20px;
 	color: #ff6400;
+}
+
+.col-left-border {
+	border-left: 2px dotted; 
+	border-color: #fff;
+}
+
+.border-between-question {
+	color: #fff;
+	font-size: 15px;
+	font-style: 4px dotted;
+}
+
+/*------------------------*()
+
+
+
+/* Button formatting */
+
+.btn-group-custom {
+	width: 450px;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
 }
 
 .btn-def-bouvet {
@@ -40,25 +68,14 @@ h1 {
     top: 50%;
     left: 50%;
     margin-top: -125px;
-    margin-left: -25px;
+    margin-left: -125px;
 }
 
-
-.btn-group-custom {
-	width: 450px;
-	position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -150px;
-    margin-left: -200px;
-}
-
-.btn-primary {
-	color: #fff;
+.btn-response {
+	color: #ffd;
 	background-color: #000;
 	border-color: #000;
 }
-
 
 .btn:hover,
 .btn.active
@@ -68,30 +85,18 @@ h1 {
 	border-color: #ff6400;
 }
 
-.container {
-	text-align: center;
-}
-
-.btn-start {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-    margin-left: -125px;
-}
-
 .btn-escape {
 	color: #fff;
-	font-size: 16;
 	background-color: #000;
-
 }
 
-.header-start {
-	position fixed;
-	top: 20%;
-	left: 50%;
-}
+/* -------------------------- */
+
+
+
+
+/* Font colors and sizes */
+
 
 .text-orange {
 	color: #ff6400;
@@ -113,26 +118,12 @@ h1 {
 	font-size: 20px;
 }
 
-.form-field {
-	background-color: #000;
-	border-color: #ff6400;
-	border-style: solid 1px;
-}
 
-.col-left-border {
-	border-left: 2px dotted; 
-	border-color: #fff;
-}
+/*--------------*/
 
-.border-between-question {
-	color: #fff;
-	font-size: 15px;
-	font-style: 4px dotted;
-}
 
-.btn-front-large {
-	font-size: 35px;
-}
+/* Fixed page elements */
+
 
 
 .logo-bottom-bouvet {
@@ -141,4 +132,20 @@ h1 {
 	font-size: 65px;
 	color: #ff6400;
 }
+
+
+/*------------------------*/
+
+
+.form-field {
+	background-color: #000;
+	border-color: #ff6400;
+	border-style: solid 1px;
+}
+
+
+
+
+
+
 
