@@ -99,9 +99,41 @@ function updateAnswerStatus(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/allAnswers.html");
+			toggleLockAnswerRedirect(req, res);
 		}
 	});
+}
+
+function getAnswer(req, res) {
+	db.readOneAnswer(req.params.id, function(err, row) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send(row);
+		}
+	})
+}
+
+function toggleLockAnswer(req, res) {
+	db.toggleLockAnswer(req.params.id, function(err) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+		}
+	})
+}
+
+function toggleLockAnswerRedirect(req, res) {
+	db.toggleLockAnswer(req.params.id, function(err) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.redirect("/public/html/allAnswers.html");
+		}
+	})
 }
 
 //Used to handle errors. Look into the error handler provided by express.js?
@@ -120,3 +152,6 @@ exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
+exports.getAnswer = getAnswer;
+exports.toggleLockAnswer = toggleLockAnswer;
+exports.toggleLockAnswerRedirect = toggleLockAnswerRedirect;

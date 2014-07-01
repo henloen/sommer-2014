@@ -18,6 +18,9 @@ app.get("/", user.index);
 //used to access data in json format
 app.get("/readAnswers", user.readAllAnswers);
 
+//used to get one particular answer
+app.get("/readAnswers/:id", user.getAnswer);
+
 //used to insert answers into database
 app.post("/insertAnswerDb", user.insertAnswerDb);
 
@@ -35,6 +38,10 @@ app.get("/deleteParticipants", user.deleteParticipants);
 
 //
 app.post("/updateAnswerStatus/:id", user.updateAnswerStatus);
+
+app.get("/toggleLockAnswer/:id", user.toggleLockAnswer);
+
+app.get("/toggleLockAnswerRedirect/:id", user.toggleLockAnswerRedirect);
 
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);
