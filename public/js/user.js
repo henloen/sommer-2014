@@ -99,9 +99,31 @@ function updateAnswerStatus(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/allAnswers.html");
+			res.send("status for answer " + req.params.id + " updated");
 		}
-	});
+	});	
+}
+
+function getAnswer(req, res) {
+	db.readOneAnswer(req.params.id, function(err, row) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send(row);
+		}
+	})
+}
+
+function toggleLockAnswer(req, res) {
+	db.toggleLockAnswer(req.params.id, function(err) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Answer: " + req.params.id + " toggled lock");
+		}
+	})
 }
 
 //Used to handle errors. Look into the error handler provided by express.js?
@@ -120,3 +142,5 @@ exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
+exports.getAnswer = getAnswer;
+exports.toggleLockAnswer = toggleLockAnswer;

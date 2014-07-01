@@ -2,15 +2,15 @@
 <html ng-app>
 <head>
 	<title>All answers</title>
-	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
 	<script type="text/javascript" src="../external_libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
 	<script type="text/javascript" src="../external_libs/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="../js/seeAnswers.js"></script>
+	<script type="text/javascript" src="../js/controllers.js"></script>
 	<link href="../css/bootstrapModify.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-	<div ng-controller="AnswerCtrl">
+	<div ng-controller="AnswerCtrl as ctrl">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -30,7 +30,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="answer in answers" ng-class="{danger : answer.processed === 0, success : answer.processed === 1}">
+				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
 					<td>{{answer.pa_hodet}}</td>
@@ -45,38 +45,45 @@
 					<td>{{answer.premiehvisduvinner}}</td>
 					<td>{{answer.kjonn}}</td>
 					<td>
+						
 						<!-- Button trigger modal -->
-						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}" ng-click="getAnswer(answer.id_answers)">
 							Behandle svar
 						</button>
 
 						<!-- Modal -->
-						<div class="modal fade" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
-									<div ng-class = "{'modal-header': true, 'modal-custom-female': answer.kjonn==='kvinne', 'modal-custom-male': answer.kjonn ==='mann'}">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title" id="myModalLabel">Svar: {{answer.id_answers}}</h4>
+									<div ng-class = "{'modal-header': true, 'modal-custom-female': oneAnswer.kjonn==='kvinne', 'modal-custom-male': oneAnswer.kjonn ==='mann'}">
+										<h4 class="modal-title" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
 									</div>
-									<div class="modal-body">
-										<b>Sivilstatus:</b> {{answer.sivilstatus}}<br>
-										<b>På hodet: </b> {{answer.pa_hodet}}<br>
-										<b>Alder: </b> {{answer.alder}}<br>
-										<b>Studiested: </b> {{answer.studiested}}<br>
-										<b>Programmeringsstil: </b> {{answer.programmeringsstil}}<br>
-										<b>Musikk: </b> {{answer.musikk}}<br>
-										<b>Personlighet: </b> {{answer.personlighet}}<br>
-										<b>Hype-preferanse: </b> {{answer.hypepreferanse}}<br>
-										<b>Favorittgode: </b> {{answer.favorittgode}}<br>
-										<b>Planer for kvelden: </b> {{answer.planerforkvelden}}<br>
-										<b>Premie hvis du vinner: </b> {{answer.premiehvisduvinner}}<br>
+									<div ng-show="oneAnswer.locked === 0" ng-class="modal-body">
+										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
+										<b>På hodet: </b> {{oneAnswer.pa_hodet}}<br>
+										<b>Alder: </b> {{oneAnswer.alder}}<br>
+										<b>Studiested: </b> {{oneAnswer.studiested}}<br>
+										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil}}<br>
+										<b>Musikk: </b> {{oneAnswer.musikk}}<br>
+										<b>Personlighet: </b> {{oneAnswer.personlighet}}<br>
+										<b>Hype-preferanse: </b> {{oneAnswer.hypepreferanse}}<br>
+										<b>Favorittgode: </b> {{oneAnswer.favorittgode}}<br>
+										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden}}<br>
+										<b>Premie hvis du vinner: </b> {{oneAnswer.premiehvisduvinner}}<br>
+									</div>
+									<div ng-show="oneAnswer.locked === 1" class="modal-body">
+										Dette svaret er låst.
 									</div>
 									<div class="modal-footer">
-										<form action="{{'/updateAnswerStatus/' + answer.id_answers}}" method="post">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Lukk</button>
-											<button ng-show="answer.processed === 0" type="submit" class="btn btn-primary" >Merk som behandlet</button>
-											<button ng-show="answer.processed === 1" type="submit" class="btn btn-primary" >Merk som ubehandlet</button>
-										</form>
+											<div ng-show="oneAnswer.locked === 0">
+												<button ng-show="oneAnswer.processed === 0" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som behandlet</button>
+												<button ng-show="oneAnswer.processed === 1" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som ubehandlet</button>
+												<button class="btn btn-default" ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lukk</button>
+											</div>
+											<div ng-show="oneAnswer.locked === 1">
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
+											</div>
 									</div>
 								</div>
 							</div>

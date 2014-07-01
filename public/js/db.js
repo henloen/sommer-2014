@@ -61,6 +61,10 @@ function updateAnswerStatus(id, callback) {
 	query("update bod.answers set processed = not processed where id_answers = " + id, callback);
 }
 
+function toggleLockAnswer(id, callback) {
+	query("update bod.answers set locked = not locked where id_answers = " + id, callback);
+}
+
 
 
 
@@ -73,3 +77,4 @@ exports.readOneAnswer = readOneAnswer;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
+exports.toggleLockAnswer = toggleLockAnswer;
