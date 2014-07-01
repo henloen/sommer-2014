@@ -52,11 +52,10 @@
 						</button>
 
 						<!-- Modal -->
-						<div class="modal fade" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div ng-class = "{'modal-header': true, 'modal-custom-female': oneAnswer.kjonn==='kvinne', 'modal-custom-male': oneAnswer.kjonn ==='mann'}">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 										<h4 class="modal-title" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
 									</div>
 									<div ng-show="oneAnswer.locked === 0" ng-class="modal-body">
@@ -71,25 +70,20 @@
 										<b>Favorittgode: </b> {{oneAnswer.favorittgode}}<br>
 										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden}}<br>
 										<b>Premie hvis du vinner: </b> {{oneAnswer.premiehvisduvinner}}<br>
-										<b>Locked: </b> {{oneAnswer.locked}}<br>
 									</div>
 									<div ng-show="oneAnswer.locked === 1" class="modal-body">
 										Dette svaret er låst.
 									</div>
 									<div class="modal-footer">
-										<div>
-											<form  ng-show="oneAnswer.locked === 0" action="{{'/updateAnswerStatus/' + answer.id_answers}}" method="post">
-												<button ng-show="oneAnswer.processed === 0" type="submit" class="btn btn-primary" >Merk som behandlet</button>
-												<button ng-show="oneAnswer.processed === 1" type="submit" class="btn btn-primary" >Merk som ubehandlet</button>
-											</form>
-											<form action="{{'/toggleLockAnswerRedirect/' + answer.id_answers}}" method="get">
-												<button ng-show="oneAnswer.locked === 0" type="submit" class="btn btn-default">Lukk</button>
-												<button ng-show="oneAnswer.locked === 1" type="submit" class="btn btn-primary">Lås opp</button>
-											</form>
-											<form ng-show="oneAnswer.locked === 1" action="/public/html/allAnswers.html" method="get">
-												<button type="submit" class="btn btn-default">Lukk</button>
-											</form>
-										</div>
+											<div ng-show="oneAnswer.locked === 0">
+												<button ng-show="oneAnswer.processed === 0" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som behandlet</button>
+												<button ng-show="oneAnswer.processed === 1" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som ubehandlet</button>
+												<button class="btn btn-default" ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lukk</button>
+											</div>
+											<div ng-show="oneAnswer.locked === 1">
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
+											</div>
 									</div>
 								</div>
 							</div>

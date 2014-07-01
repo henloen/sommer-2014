@@ -41,8 +41,6 @@ app.post("/updateAnswerStatus/:id", user.updateAnswerStatus);
 
 app.get("/toggleLockAnswer/:id", user.toggleLockAnswer);
 
-app.get("/toggleLockAnswerRedirect/:id", user.toggleLockAnswerRedirect);
-
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);
 });

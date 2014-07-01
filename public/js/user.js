@@ -99,9 +99,9 @@ function updateAnswerStatus(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			toggleLockAnswerRedirect(req, res);
+			res.send("status for answer " + req.params.id + " updated");
 		}
-	});
+	});	
 }
 
 function getAnswer(req, res) {
@@ -121,17 +121,7 @@ function toggleLockAnswer(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-		}
-	})
-}
-
-function toggleLockAnswerRedirect(req, res) {
-	db.toggleLockAnswer(req.params.id, function(err) {
-		if (err) {
-			errorHandler(err, res);
-		}
-		else {
-			res.redirect("/public/html/allAnswers.html");
+			res.send("Answer: " + req.params.id + " toggled lock");
 		}
 	})
 }
@@ -154,4 +144,3 @@ exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
 exports.getAnswer = getAnswer;
 exports.toggleLockAnswer = toggleLockAnswer;
-exports.toggleLockAnswerRedirect = toggleLockAnswerRedirect;
