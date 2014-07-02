@@ -6,7 +6,7 @@ function index(req, res){
 }
 
 //Used to get all rows from the database and return them as an array with JSON objects
-function readAllAnswers(req, res) {
+function getAnswers(req, res) {
 	db.readAnswers(function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
@@ -22,7 +22,7 @@ function readAllAnswers(req, res) {
 Fix the "hardcoding" of the values?
 Is called when the user presses submit (http post action)
 */
-function insertAnswerDb(req, res) {
+function insertAnswer(req, res) {
 	values = {sivilstatus: req.body.sivilstatus, pa_hodet: req.body.pa_hodet, alder: req.body.alder,
 	studiested: req.body.studiested, programmeringsstil: req.body.programmeringsstil, musikk: req.body.musikk, 
 	personlighet: req.body.personlighet, hypepreferanse: req.body.hypepreferanse, favorittgode: req.body.favorittgode, 
@@ -32,15 +32,8 @@ function insertAnswerDb(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			db.readOneAnswer(rows['insertId'], function (err, row){
-			if(err) {
-				errorHandler(err, res);
+			res.redirect("/public/html/register-participant.html");
 			}
-			else {
-				res.redirect("/public/html/submitInfo.html");
-				}
-			});
-		}
 	});
 }
 
@@ -66,7 +59,7 @@ function insertParticipant(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/registered.html");
+			res.redirect("/public/html/participant-registered.html");
 		}
 	})
 }
@@ -135,9 +128,9 @@ function errorHandler(error, response) {
 
 
 exports.index = index;
-exports.insertAnswerDb = insertAnswerDb;
+exports.insertAnswer = insertAnswer;
 exports.deleteAnswers = deleteAnswers;
-exports.readAllAnswers = readAllAnswers;
+exports.getAnswers = getAnswers;
 exports.insertParticipant = insertParticipant;
 exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;

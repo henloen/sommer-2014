@@ -152,3 +152,8 @@ body {
 	background-color: #ff6400;
 	color:#fff;
 }
+
+.modal-confirm-delete {
+	background-color: #ff3b30;
+	color:#fff;
+}

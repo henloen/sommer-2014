@@ -15,30 +15,32 @@ app.use(bodyParser.urlencoded());
 //used for default route
 app.get("/", user.index);
 
-//used to access data in json format
-app.get("/readAnswers", user.readAllAnswers);
-
-//used to get one particular answer
-app.get("/readAnswers/:id", user.getAnswer);
+//used to access answers in json format
+app.get("/answers", user.getAnswers);
 
 //used to insert answers into database
-app.post("/insertAnswerDb", user.insertAnswerDb);
+app.post("/answers", user.insertAnswer);
 
 //used to truncate table in database
-app.get("/deleteAnswers", user.deleteAnswers);
+app.delete("/answers", user.deleteAnswers);
 
-//used to insert a participant into the database
-app.post("/insertParticipant", user.insertParticipant);
+//used to get the answer with that id
+app.get("/answers/:id", user.getAnswer);
+
+//used to update the status of an answer with the id as parameter
+app.put("/answers/:id", user.updateAnswerStatus);
 
 //used to access all the participants in json format
-app.get("/getParticipants", user.getParticipants);
+app.get("/participants", user.getParticipants);
+
+//used to insert a participant into the database
+app.post("/participants", user.insertParticipant);
 
 //used to truncate table in database
-app.get("/deleteParticipants", user.deleteParticipants);
+app.delete("/participants", user.deleteParticipants);
 
-app.post("/updateAnswerStatus/:id", user.updateAnswerStatus);
-
-app.get("/toggleLockAnswer/:id", user.toggleLockAnswer);
+//used to toggle the lock field of the answer in the database
+app.put("/toggleLockAnswer/:id", user.toggleLockAnswer);
 
 var server = app.listen(port, function() {
 	console.log("Listening on port " + port);

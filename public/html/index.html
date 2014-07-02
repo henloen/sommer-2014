@@ -2,7 +2,6 @@
 <html ng-app="answerApp">
 <head>
 	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
-	<script type="text/javascript" src="../js/app.js"></script>
 	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapModify.css">
 	<title>The Beauty of Data</title>
@@ -10,14 +9,18 @@
 <body>
 
 	<div class="container-fluid btn-group-custom">
+
+		
+		<!--a button that takes you the page where all the answers in the database are displayed -->
 		<div class="row" >
-			<form action="/public/html/allAnswers.html" method="get" class="navbar-form ">
+			<form action="/public/html/view-answers.html" method="get" class="navbar-form ">
 				<button class="btn btn-def-bouvet btn-block btn-front-large" name="readAnswer" type="submit">
 					<span class="glyphicon glyphicon-list"></span>
 					Se alle svar</button>
 			</form>
 		</div>
 
+		<!--a button that takes you to the page to start registering answers -->
 		<div class="row">
 			<form action="/public/html/start.html" method="get"  class="navbar-form">
 				<button class="btn btn-def-bouvet btn-block btn-front-large" name="InsertAnswer" type="submit">
@@ -26,6 +29,8 @@
 			</form>
 		</div>
 
+		<!-- a button that deletes all answers in the database, now no longer in use
+
 		<div class="row">
 			<form action="/deleteAnswers" method="get"  class="navbar-form">
 				<button class="btn btn-def-bouvet btn-block btn-front-large" name="deleteAllAnswers" type="submit">
@@ -33,15 +38,18 @@
 					Slett alle svar</button>
 			</form>
 		</div>
+	-->
 
+		<!--a button that takes you to a page that displays all the participants in the database -->
 		<div class="row">
-			<form action="/public/html/participants.html" method="get"  class="navbar-form">
+			<form action="/public/html/view-participants.html" method="get"  class="navbar-form">
 				<button class="btn btn-def-bouvet btn-block btn-front-large" name="participants" type="submit">
 					<span class="glyphicon glyphicon-user"></span>
 				Se alle deltakere</button>
 			</form>
 		</div>
 
+		<!--
 		<div class="row">
 			<form action="/deleteParticipants" method="get"  class="navbar-form">
 				<button class="btn btn-def-bouvet btn-block btn-front-large" name="deleteAllParticipants" type="submit">
@@ -49,7 +57,9 @@
 					Slett alle deltakere</button>
 			</form>
 		</div>
+	-->
 	</div>
+
 </body>
 </html>
 

@@ -1,0 +1,65 @@
+<!doctype html>	
+<html ng-app>
+<head>
+	<title>All participants</title>
+	<script type="text/javascript" src="../external_libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../external_libs/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="../external_libs/angular.min.js"></script>
+	<script type="text/javascript" src="../js/controllers.js"></script>
+	<link href="../css/bootstrapModify.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../external_libs/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div ng-controller="ParticipantsCtrl">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>epost</th>
+					<th>navn</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="participant in participants">
+					<td>{{participant.email}}</td>
+					<td>{{participant.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!--a button that takes you back to the main menu -->
+		<form action="/public/html/index.html" method="get">
+			<button type="submit" button name="backToMenu" class="btn btn-primary">
+				<span class="glyphicon glyphicon-home">
+				</span>
+				Tilbake til meny
+			</button>
+		</form>
+
+		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
+		<button class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" >
+			<span class="glyphicon glyphicon-trash">
+			</span>
+			Slett alle deltakere
+		</button>
+
+		<!-- the modal that wants you to confirm that you want to delete all participants of the database -->
+		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content ">
+					<div class ="modal-header modal-confirm-delete">
+						<h4 class="modal-title">Bekreft sletting</h4>
+					</div>
+					<div ng-class="modal-body">
+						Er du sikker på at du vil slette alle deltakerne i databasen?
+					</div>
+					<div class="modal-footer">
+						<button class="btn modal-confirm-delete" ng-click="deleteParticipants()" data-dismiss="modal">Slett alle</button>
+						<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
