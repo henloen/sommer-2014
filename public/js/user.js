@@ -127,13 +127,13 @@ function errorHandler(error, response) {
 }
 
 
-exports.index = index;
-exports.insertAnswer = insertAnswer;
-exports.deleteAnswers = deleteAnswers;
-exports.getAnswers = getAnswers;
-exports.insertParticipant = insertParticipant;
-exports.getParticipants = getParticipants;
+exports.index              = index;
+exports.insertAnswer       = insertAnswer;
+exports.deleteAnswers      = deleteAnswers;
+exports.getAnswers         = getAnswers;
+exports.insertParticipant  = insertParticipant;
+exports.getParticipants    = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
-exports.getAnswer = getAnswer;
-exports.toggleLockAnswer = toggleLockAnswer;
+exports.getAnswer          = getAnswer;
+exports.toggleLockAnswer   = toggleLockAnswer;
