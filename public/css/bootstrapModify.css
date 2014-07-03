@@ -5,10 +5,9 @@ White: #FFF;
 Black: #000;
 */
 
-
-
 body {
 	background-color: #000;
+
 }
 
 .container {
@@ -27,11 +26,11 @@ body {
 
 .col-left-border {
 	border-left: 2px dotted; 
-	border-color: #fff;
+	border-color: #7f7f7f;
 }
 
 .border-between-question {
-	color: #fff;
+	color: #7f7f7f;
 	font-size: 15px;
 	font-style: 4px dotted;
 }
@@ -52,11 +51,12 @@ body {
 }
 
 .btn-def-bouvet {
-	font-size: 20px;
+	font-size: 25px;
 	color: #fff;
 	border-color: #ff6400;
 	background-color: black;
 	border-style: dotted 1px;
+	border-radius: 10px;
 }
     
 .btn-start {
@@ -64,13 +64,17 @@ body {
 	width: 250px;
 	position: relative;
     margin-top: 150px;
+    
 }
 
 .btn-response {
 	color: #ffd;
 	background-color: #000;
 	border-color: #000;
+
 }
+
+
 
 .btn:hover,
 .btn.active
@@ -79,6 +83,7 @@ body {
 	color: #000;
 	border-color: #ff6400;
 }
+
 
 .btn-escape {
 	color: #fff;
@@ -110,7 +115,7 @@ body {
 }
 
 .text-small {
-	font-size: 20px;
+	font-size: 25px;
 }
 
 
@@ -156,4 +161,10 @@ body {
 .modal-confirm-delete {
 	background-color: #ff3b30;
 	color:#fff;
+}
+
+
+.logo-bottom {
+	position: absolute;
+    margin-bottom: -150px;
 }
