@@ -2,7 +2,7 @@ var db = require("./db");
 
 //used to route '/' to index.html
 function index(req, res){
-	res.redirect("/public/html/index.html");
+	res.redirect("/public/index.html");
 }
 
 //Used to get all rows from the database and return them as an array with JSON objects
@@ -32,7 +32,7 @@ function insertAnswer(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/register-participant.html");
+			res.redirect("public/index.html#/partial-register-participant");
 			}
 	});
 }
@@ -53,13 +53,12 @@ function deleteAnswers(req, res) {
 
 function insertParticipant(req, res) {
 	values = {email: req.body.email, name: req.body.name};
-	console.log(values);
 	db.insertParticipant(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/participant-registered.html");
+			res.send("Participant successfully registered");
 		}
 	})
 }
@@ -127,13 +126,13 @@ function errorHandler(error, response) {
 }
 
 
-exports.index = index;
-exports.insertAnswer = insertAnswer;
-exports.deleteAnswers = deleteAnswers;
-exports.getAnswers = getAnswers;
-exports.insertParticipant = insertParticipant;
-exports.getParticipants = getParticipants;
+exports.index              = index;
+exports.insertAnswer       = insertAnswer;
+exports.deleteAnswers      = deleteAnswers;
+exports.getAnswers         = getAnswers;
+exports.insertParticipant  = insertParticipant;
+exports.getParticipants    = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
-exports.getAnswer = getAnswer;
-exports.toggleLockAnswer = toggleLockAnswer;
+exports.getAnswer          = getAnswer;
+exports.toggleLockAnswer   = toggleLockAnswer;
