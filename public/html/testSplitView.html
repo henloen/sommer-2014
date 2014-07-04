@@ -1,0 +1,81 @@
+<!--
+		<!DOCTYPE html>
+	<html >
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+		<!-- Load Bootstrap -->
+		<link href="../external_libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrapModify.css" rel="stylesheet">
+
+		<script type="text/javascript" src="../external_libs/angular.min.js"></script>
+		
+		<!-- bootstrap and jquery -->
+		<script type="text/javascript" src="../external_libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../external_libs/bootstrap/js/bootstrap.js"></script>
+
+		<title>The Beauty of Data</title>
+
+
+	</head>
+	<body ng-app>
+		
+		<div class="text-large"> &nbsp <img src="../photos/logo3.png"> </div>
+		<div class="container text-white">
+			<div class="text-orange text-large">The Beauty of Data</div>
+			<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
+			<p class="text-small">Vakkert i seg selv. Viktig for den det gjelder.</p>
+			
+
+			<h2> Dine svar er nå registrert.</h2>
+			<br><br>
+
+
+		
+
+		<div class="col-sm-offset-1 col-sm-5 col-right-border">
+		
+			<div class="text-white">
+				<br>
+				<p> Hvis du vil være med i trekningen av premien, kan du fylle
+					ut informasjonen under. Bouvet vil ikke bruke informasjonen til noe annet formål enn selve trekningen.</p> 
+				<p>Data vil bli slettet etter trekningen.</p>
+				</div>
+				<br>
+
+					<form action="/participants" method="post" class="form-horizontal" name="userForm" role="form" novalidate>
+						
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="text" class="form-control form-field text-white" name="name" placeholder="Navn" ng-model="participant.name" required>
+							</div>
+						</div>
+
+						
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-6">
+								<input type="email" class="form-control form-field text-white" name="email" placeholder="Email" ng-model="participant.email" required>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-10">
+								<button type="submit" class="btn btn-def-bouvet">Submit info</button>
+								<!-- <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-def-bouvet">Submit info</button>To be used!!--> 
+								</div>
+							</div>
+					</form>
+			</div>
+
+		<div class="col-sm-offset- col-sm-6">
+			<br><br><br><br><br><br><br>
+			<div class="form-group">
+					<a class="text-white text-small" href="/public/html/start.html">Nei takk, tilbake til start! </a>
+				</div>
+			</div>		
+
+			</body>
+			</html>

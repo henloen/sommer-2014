@@ -28,6 +28,11 @@ body {
 	border-color: #7f7f7f;
 }
 
+.col-right-border {
+	border-right: 2px dotted;
+	border-color: #7f7f7f;
+}
+
 .border-between-question {
 	color: #7f7f7f;
 	font-size: 15px;
