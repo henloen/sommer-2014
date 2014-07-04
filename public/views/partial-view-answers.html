@@ -1,0 +1,120 @@
+<div>
+
+		<!-- table displaying the contents of the database -->
+		<table class="table table-hover bg-white">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Sivilstatus</th>
+					<th>På hodet</th>
+					<th>Alder</th>
+					<th>Studiested</th>
+					<th>Programmeringsstil</th>
+					<th>Musikk</th>
+					<th>Personlighet</th>
+					<th>Hype-preferanse</th>
+					<th>Favorittgode</th>
+					<th>Planer for kvelden</th>
+					<th>Premie hvis du vinner</th>
+					<th>Kjønn</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
+				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
+					<td>{{answer.id_answers}}</td>
+					<td>{{answer.sivilstatus}}</td>
+					<td>{{answer.pa_hodet}}</td>
+					<td>{{answer.alder}}</td>
+					<td>{{answer.studiested}}</td>
+					<td>{{answer.programmeringsstil}}</td>
+					<td>{{answer.musikk}}</td>
+					<td>{{answer.personlighet}}</td>
+					<td>{{answer.hypepreferanse}}</td>
+					<td>{{answer.favorittgode}}</td>
+					<td>{{answer.planerforkvelden}}</td>
+					<td>{{answer.premiehvisduvinner}}</td>
+					<td>{{answer.kjonn}}</td>
+					<td>
+						
+						<!--a button that triggers a modal with the data -->
+						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}" ng-click="getAnswer(answer.id_answers)">
+							Behandle svar
+						</button>
+
+						<!-- a modal that displays the answers and gives the user the possibility of changing status -->
+						<div class="modal" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div ng-class = "{'modal-header': true, 'modal-custom-female': oneAnswer.kjonn==='kvinne', 'modal-custom-male': oneAnswer.kjonn ==='mann'}">
+										<h4 class="modal-title" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
+									</div>
+									<div ng-show="oneAnswer.locked === 0" ng-class="modal-body">
+										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
+										<b>På hodet: </b> {{oneAnswer.pa_hodet}}<br>
+										<b>Alder: </b> {{oneAnswer.alder}}<br>
+										<b>Studiested: </b> {{oneAnswer.studiested}}<br>
+										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil}}<br>
+										<b>Musikk: </b> {{oneAnswer.musikk}}<br>
+										<b>Personlighet: </b> {{oneAnswer.personlighet}}<br>
+										<b>Hype-preferanse: </b> {{oneAnswer.hypepreferanse}}<br>
+										<b>Favorittgode: </b> {{oneAnswer.favorittgode}}<br>
+										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden}}<br>
+										<b>Premie hvis du vinner: </b> {{oneAnswer.premiehvisduvinner}}<br>
+									</div>
+									<div ng-show="oneAnswer.locked === 1" class="modal-body">
+										Dette svaret er låst.
+									</div>
+									<div class="modal-footer">
+											<div ng-show="oneAnswer.locked === 0">
+												<button ng-show="oneAnswer.processed === 0" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som behandlet</button>
+												<button ng-show="oneAnswer.processed === 1" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som ubehandlet</button>
+												<button class="btn btn-default" ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lukk</button>
+											</div>
+											<div ng-show="oneAnswer.locked === 1">
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!--a button that takes you back to the menu -->
+			<a href="#/partial-index.html" class="btn btn-def-bouvet">
+				<span class="glyphicon glyphicon-home">
+				</span>
+				Tilbake til meny
+			</a>
+
+		<!--a button that triggers a modal to confirm that you want to delete all answers -->
+		<button class="btn btn-def-bouvet" data-toggle="modal" data-target="#confirmDeleteModal" >
+			<span class="glyphicon glyphicon-trash">
+			</span>
+			Slett alle svar
+		</button>
+
+		<!--a modal that wants you to confirm that you want to delete all answers -->
+		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content ">
+					<div class ="modal-header modal-confirm-delete">
+						<h4 class="modal-title">Bekreft sletting</h4>
+					</div>
+					<div ng-class="modal-body">
+						Er du sikker på at du vil slette alle svarene i databasen?
+					</div>
+					<div class="modal-footer">
+						<button class="btn modal-confirm-delete" ng-click="deleteAnswers()" data-dismiss="modal">Slett alle</button>
+						<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>

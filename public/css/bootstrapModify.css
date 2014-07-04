@@ -9,6 +9,10 @@ body {
 	background-color: #000;
 }
 
+.bg-white {
+	background-color: #fff;
+}
+
 .container {
 	text-align: center;
 }
