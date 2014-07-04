@@ -63,14 +63,44 @@ angular.module("bodApp.controllers", [])
 		}
 		
 	}])
-	.controller("RegisterAnswerCtrl", ["$scope", "$http", function($scope, $http) {
+	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
-		$scope.formData = {};
+		$scope.formData = {kjonn : "ikke def"};
 
-		$scope.submitForm = function() {
-			$http.post("/anwers", $scope.formData).success(function() {
-				console.log("form posting worked!")
+		$scope.submitAnswer = function() {
+			$http({
+				method : "POST",
+				url : "/answers",
+				data : $.param($scope.formData),
+				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
 			})
+			.success(function(data) {
+				$location.path("/partial-register-participant");
+			});
+		}
+
+		$scope.submitFormTest = function() {
+			console.log($scope.formData);
 		};
 
+		$scope.answerRegistered = function() {
+			$location.path("/partial-register-participant");
+		}
+
+	}])
+	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
+
+		$scope.participant = {};
+
+		$scope.submitParticipant = function() {
+			$http({
+				method : "POST",
+				url : "/participants",
+				data : $.param($scope.participant),
+				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
+			})
+			.success(function(data) {
+				$location.path("#/partial-participant-registered");
+			});
+		}
 	}])

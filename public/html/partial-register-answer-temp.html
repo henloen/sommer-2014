@@ -1,0 +1,292 @@
+<div>
+		<div class="text-large text-orange"> &nbsp bouvet </div>
+		<br>
+
+
+		<form ng-submit="submitAnswer()" novalidate>
+			
+
+
+
+			<div class="container">
+
+
+
+
+
+				<div class="col-sm-3 container">
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Kjønn: </div><br>
+						
+						<label class="btn btn-response">
+							<input type="radio" value="mann" ng-model="formData.kjonn" makeRadioButtonDetectChange/>Mann<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" value="kvinne" ng-model="formData.kjonn"makeRadioButtonDetectChange>Kvinne<br>
+						</label>
+						<br>
+					</div>
+					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+					<div class="header-question">{{formData.kjonn}}</div>
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Sivilstatus: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="sivilstatus" value="gift/samboer" ng-model="formData.sivilstatus">Gift/Samboer<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="sivilstatus" value="skilt" ng-model="formData.sivilstatus">Skilt<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="sivilstatus" value="singel" ng-model="formData.sivilstatus">Singel<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="sivilstatus" value="complicated" ng-model="formData.sivilstatus">It's complicated<br>
+						</label>
+					</div>	
+					<br><br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Alder: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="alder" value="youngster" ng-model="formData.alder">Youngster<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="alder" value="coolcat" ng-model="formData.alder">Cool Cat<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="alder" value="hipster" ng-model="formData.alder">Hipster<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="alder" value="gammelringrev" ng-model="formData.alder">Gammel Ringrev<br>
+						</label>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+				<div class="col-sm-3 container col-left-border">
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> På hodet: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="caps" ng-model="formData.pa_hodet">Caps<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="turban" ng-model="formData.pa_hodet">Turban<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="hette" ng-model="formData.pa_hodet">Hette<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="hjelm" ng-model="formData.pa_hodet">Hjem<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="solbriller" ng-model="formData.pa_hodet">Solbriller<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="pa_hodet" value="hijab" ng-model="formData.pa_hodet">Hijab<br>
+						</label>
+					</div>
+					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Studiested: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="studiested" value="ntnu" ng-model="formData.studiested">NTNU<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="studiested" value="selvlaertrover" ng-model="formData.studiested">Selvlært Røver<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="studiested" value="annet" ng-model="formData.studiested">Annet<br>
+						</label>
+					</div>
+					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Programmeringsstil: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="programmeringsstil" value="batenblirtil" ng-model="formData.programmeringsstil">Båten blir til mens man ror<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="programmeringsstil" value="detordnerseg" ng-model="formData.programmeringsstil">Det ordner seg<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="programmeringsstil" value="ordenungmusssein" ng-model="formData.programmeringsstil">Ordenung Muss Sein<br>
+						</label>
+					</div>
+				</div>
+				
+
+
+
+
+
+
+
+
+
+
+
+				<div class="col-sm-3 container col-left-border">
+					
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Musikk: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="indie" ng-model="formData.musikk">Indie<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="trash" ng-model="formData.musikk">Trash<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="disco" ng-model="formData.musikk">Disco<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="tronderrock" ng-model="formData.musikk">Trønderrock<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="metal" ng-model="formData.musikk">Metal<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="rave" ng-model="formData.musikk">Rave<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="musikk" value="klassisk" ng-model="formData.musikk">Klassisk<br>
+						</label>
+					</div>
+					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Personlighet: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="personlighet" value="introvert" ng-model="formData.personlighet">Introvert<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="personlighet" value="ekstrovert" ng-model="formData.personlighet">Ekstrovert<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="personlighet" value="ekstrovertpluss" ng-model="formData.personlighet">Ekstrovert med litt innabords
+						</label>
+					</div>
+					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Hype-preferanse: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="hypepreferanse" value="bigdata" ng-model="formData.hypepreferanse">Big Data<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="hypepreferanse" value="internetofthings" ng-model="formData.hypepreferanse">Internet of Things<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="hypepreferanse" value="laerkidsakoding" ng-model="formData.hypepreferanse">Lær Kidsa Koding<br>
+						</label>
+						<br>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<div class="col-sm-3 container col-left-border">
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Planer for kvelden: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="planer_for_kvelden" value="endresivilstatus" ng-model="formData.planer_for_kvelden">Endre sivilstatus<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="planer_for_kvelden" value="smiskemedsjefen" ng-model="formData.planer_for_kvelden">Smiske med sjefen<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="planer_for_kvelden" value="mingle" ng-model="formData.planer_for_kvelden">Mingle<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="planer_for_kvelden" value="kode" ng-model="formData.planer_for_kvelden">Kode<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="planer_for_kvelden" value="nytelivet" ng-model="formData.planer_for_kvelden">Nyte livet<br>
+						</label>
+						<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+					</div>		
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Favorittgode på jobb: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="favorittgode" value="fribar" ng-model="formData.favorittgode">Fri bar på julebordet<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="favorittgode" value="gadgetkonto" ng-model="formData.favorittgode">Gadgetkonto<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="favorittgode" value="kurskonferanse" ng-model="formData.favorittgode">Kurs og konferanser<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="favorittgode" value="frikantine" ng-model="formData.favorittgode">Fri kantine<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="favorittgode" value="pensjon" ng-model="formData.favorittgode">Pensjon<br>
+						</label>
+						<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
+					</div>
+
+
+
+					<div class="btn-group-vertical" data-toggle="buttons">
+						<div class="header-question"> Premie hvis du vinner: </div><br>
+						<label class="btn btn-response">
+							<input type="radio" name="premie_hvis_du_vinner" value="moto360" ng-model="formData.premie_hvis_du_vinner">Moto360<br>
+						</label>
+						<label class="btn btn-response">
+							<input type="radio" name="premie_hvis_du_vinner" value="oculusrift" ng-model="formData.premie_hvis_du_vinner">Oculus Rift<br>
+						</label>
+					</div>
+				</div>
+
+
+				<br>
+
+			</div>
+
+
+			<br>
+
+			<div class="container">
+
+				<button class="btn btn-def-bouvet" type="submit">Registrer svar</button>
+			</form>
+		</div>
+		<br><br>
+
+		<br><br>
+</div>

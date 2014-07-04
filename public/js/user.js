@@ -32,7 +32,7 @@ function insertAnswer(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/register-participant.html");
+			res.send("successful");
 			}
 	});
 }
@@ -52,6 +52,7 @@ function deleteAnswers(req, res) {
 
 
 function insertParticipant(req, res) {
+	console.log(req.body);
 	values = {email: req.body.email, name: req.body.name};
 	console.log(values);
 	db.insertParticipant(values, function(err, rows) {
@@ -59,7 +60,7 @@ function insertParticipant(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("/public/html/participant-registered.html");
+			res.send("Participant successfully registered");
 		}
 	})
 }
