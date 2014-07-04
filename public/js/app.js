@@ -17,7 +17,7 @@ config(["$routeProvider", function($routeProvider) {
 		});
 	$routeProvider.when("/partial-register-answer", 
 		{
-			templateUrl: "partial-register-answer-temp.html", controller: "RegisterAnswerCtrl"
+			templateUrl: "partial-register-answer.html", controller: "RegisterAnswerCtrl"
 		});
 	$routeProvider.when("/partial-view-answers", 
 		{
@@ -30,6 +30,10 @@ config(["$routeProvider", function($routeProvider) {
 	$routeProvider.when("/partial-register-participant", 
 		{
 			templateUrl: "partial-register-participant.html", controller: "RegisterParticipantCtrl"
+		});
+	$routeProvider.when("/partial-participant-registered", 
+		{
+			templateUrl: "partial-participant-registered.html", controller: "RegisterParticipantCtrl"
 		});
 	
 	$routeProvider.otherwise({redirectTo: "/partial-index"});

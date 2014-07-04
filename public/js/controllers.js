@@ -65,7 +65,7 @@ angular.module("bodApp.controllers", [])
 	}])
 	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
-		$scope.formData = {kjonn : "ikke def"};
+		$scope.formData = {};
 
 		$scope.submitAnswer = function() {
 			$http({
@@ -78,15 +78,6 @@ angular.module("bodApp.controllers", [])
 				$location.path("/partial-register-participant");
 			});
 		}
-
-		$scope.submitFormTest = function() {
-			console.log($scope.formData);
-		};
-
-		$scope.answerRegistered = function() {
-			$location.path("/partial-register-participant");
-		}
-
 	}])
 	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
@@ -100,7 +91,7 @@ angular.module("bodApp.controllers", [])
 				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
 			})
 			.success(function(data) {
-				$location.path("#/partial-participant-registered");
+				$location.path("/partial-participant-registered");
 			});
 		}
 	}])

@@ -32,7 +32,7 @@ function insertAnswer(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("successful");
+			res.redirect("public/html/index.html#/partial-register-participant");
 			}
 	});
 }
@@ -52,9 +52,7 @@ function deleteAnswers(req, res) {
 
 
 function insertParticipant(req, res) {
-	console.log(req.body);
 	values = {email: req.body.email, name: req.body.name};
-	console.log(values);
 	db.insertParticipant(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);
