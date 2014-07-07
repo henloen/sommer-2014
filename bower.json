@@ -1,0 +1,12 @@
+{
+  "name": "theBeautyOfData",
+  "description": "Bower file for the BoD app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "jquery": "1.10.2",
+    "bootstrap": "~3.1.1"
+  }
+}
