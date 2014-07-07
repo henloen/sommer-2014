@@ -1,11 +1,3 @@
-exports.config = {
-  allScriptsTimeout: 11000,
-
-  specs: [
-    'e2e/*.js'
-  ],
-
- 
 // An example configuration file.
 exports.config = {
   // The address of a running selenium server.
@@ -20,9 +12,7 @@ exports.config = {
   baseUrl: 'http://localhost:3000',
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  //specs: ['mainpage.js'],
-
-  framework: 'jasmine',
+  specs: ['titleTest.js'],
 
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
