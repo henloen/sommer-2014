@@ -20,9 +20,9 @@
 11 error You can get their info via:
 11 error     npm owner ls expressapp
 11 error There is likely additional logging output above.
-12 error System Windows_NT 6.1.7601
+12 error System Windows_NT 6.2.9200
 13 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
-14 error cwd C:\Users\henrik.loennechen\Documents\GitHub\sommer-2014
+14 error cwd C:\Users\lars.nedberg\Documents\GitHub\sommer-2014
 15 error node -v v0.10.28
 16 error npm -v 1.4.9
 17 error code ELIFECYCLE
