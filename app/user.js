@@ -91,7 +91,7 @@ function updateAnswerStatus(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("status for answer " + req.params.id + " updated");
+			res.send("status of answer " + req.params.id + " updated");
 		}
 	});	
 }
