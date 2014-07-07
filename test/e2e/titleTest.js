@@ -36,6 +36,9 @@ describe('test titles of pages', function() {
     browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@lars.no");
     browser.findElement(By.name("submitButton")).click();
-    expect(browser.getTitle()).toEqual("The Beauty of Data");
+    expect(browser.getTitle()).toEqual("The Beauty of Data")
+
+
+
   });
-}); 
+});

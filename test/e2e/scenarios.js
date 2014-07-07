@@ -2,7 +2,7 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
 
-describe('my app', function() {
+xdescribe('my app', function() {
 
   browser.get('index.html');
 
@@ -11,7 +11,7 @@ describe('my app', function() {
   });
 
 
-  describe('view1', function() {
+  xdescribe('view1', function() {
 
     beforeEach(function() {
       browser.get('index.html#/view1');
@@ -26,7 +26,7 @@ describe('my app', function() {
   });
 
 
-  describe('view2', function() {
+  xdescribe('view2', function() {
 
     beforeEach(function() {
       browser.get('index.html#/view2');
