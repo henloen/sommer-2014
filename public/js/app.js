@@ -1,10 +1,12 @@
+"use strict";
 
 /*Main app*/
 
 angular.module("bodApp", [
 	"ngRoute",
 	"bodApp.controllers",
-	"bodApp.directives"
+	"bodApp.directives",
+	"bodApp.services"
 	]).
 config(["$routeProvider", function($routeProvider) {
 	$routeProvider.when("/partial-index", 

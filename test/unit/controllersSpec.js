@@ -3,18 +3,19 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function(){
-  beforeEach(module('myApp.controllers'));
+  beforeEach(module('bodApp.controllers'));
+  beforeEach(module('bodApp.services'));
 
 
   it('should ....', inject(function($controller) {
     //spec body
-    var myCtrl1 = $controller('MyCtrl1', { $scope: {} });
-    expect(myCtrl1).toBeDefined();
+    var answerCtrl = $controller('AnswerCtrl', { $scope: {} });
+    expect(answerCtrl).toBeDefined();
   }));
 
   it('should ....', inject(function($controller) {
     //spec body
-    var myCtrl2 = $controller('MyCtrl2', { $scope: {} });
-    expect(myCtrl2).toBeDefined();
+    var participantsCtrl = $controller('ParticipantsCtrl', { $scope: {} });
+    expect(participantsCtrl).toBeDefined();
   }));
 });

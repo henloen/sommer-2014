@@ -2,8 +2,10 @@
 
 /* jasmine specs for directives go here */
 
+/* NOT IN USE AT THE MOMENT
+
 describe('directives', function() {
-  beforeEach(module('myApp.directives'));
+  beforeEach(module('bodApp.directives'));
 
   describe('app-version', function() {
     it('should print current version', function() {
@@ -17,3 +19,4 @@ describe('directives', function() {
     });
   });
 });
+*/
