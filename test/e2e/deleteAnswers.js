@@ -12,5 +12,6 @@ describe('answer database:', function() {
 
     //Checks that no elements with binding exist --> There are no entries in the answers table
   	expect(element(by.exactBinding('answer.id_answers')).isPresent()).toBe(false);
+	
 	});
 });

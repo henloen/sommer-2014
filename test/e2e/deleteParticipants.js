@@ -1,4 +1,4 @@
-describe('participants table:', function() {
+describe('participants database:', function() {
   
   it('should delete participants in table', function() {
     
