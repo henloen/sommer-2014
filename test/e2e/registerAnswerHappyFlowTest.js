@@ -12,43 +12,63 @@ describe('happy flow of application, with registering:', function() {
     
 
 
-    
+
+    //fill out answers
     var kjonn = browser.findElement(by.id("kjonn"));
     kjonn.findElement(by.name("kvinne")).click();
-    browser.sleep(50);
+    
 
     var sivilstatus = browser.findElement(by.id("sivilstatus"));
     sivilstatus.findElement(by.name("singel")).click();
-    browser.sleep(50);
+    
 
     var alder = browser.findElement(by.id("alder"));
     alder.findElement(by.name("hipster")).click();
-    browser.sleep(50);
+    
 
     var pahodet = browser.findElement(by.id("pa_hodet"));
     pahodet.findElement(by.name("hette")).click();
-    browser.sleep(50);
+    
 
     var studiested = browser.findElement(by.id("studiested"));
     studiested.findElement(by.name("ntnu")).click();
-    browser.sleep(50);
+    
 
-    browser.sleep(200);
+    var programmeringsstil = browser.findElement(by.id("programmeringsstil"));
+    programmeringsstil.findElement(by.name("detordnerseg")).click();
+    
 
+    var musikk = browser.findElement(by.id("musikk"));
+    musikk.findElement(by.name("disco")).click();
+    
+
+    var personlighet = browser.findElement(by.id("personlighet"));
+    personlighet.findElement(by.name("ekstrovertpluss")).click();
+    
+
+    var hypepreferanse = browser.findElement(by.id("hypepreferanse"));
+    hypepreferanse.findElement(by.name("bigdata")).click();
+    
+
+    var planerforkvelden = browser.findElement(by.id("planerforkvelden"));
+    planerforkvelden.findElement(by.name("mingle")).click();
+    
+    var favorittgode = browser.findElement(by.id("favorittgode"));
+    favorittgode.findElement(by.name("fribar")).click();
+    
+    var premie = browser.findElement(by.id("premie"));
+    premie.findElement(by.name("oculusrift")).click();
+    
 
     browser.findElement(by.name("registerButton")).click();
-    
 
 
 
     //partial-register-participant
- /*   var milliseconds = (new Date).getTime();
+    var milliseconds = (new Date).getTime();
     browser.findElement(By.name("participantName")).sendKeys("test");
-    browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@lars.no");
+    browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
     browser.findElement(By.name("submitButton")).click();
-  */  
-
-
-
-  });
+    
+    });
 });

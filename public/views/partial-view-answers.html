@@ -93,7 +93,7 @@
 			</a>
 
 		<!--a button that triggers a modal to confirm that you want to delete all answers -->
-		<button class="btn btn-def-bouvet" data-toggle="modal" data-target="#confirmDeleteModal" >
+		<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
 			<span class="glyphicon glyphicon-trash">
 			</span>
 			Slett alle svar
@@ -110,7 +110,7 @@
 						Er du sikker på at du vil slette alle svarene i databasen?
 					</div>
 					<div class="modal-footer">
-						<button class="btn modal-confirm-delete" ng-click="deleteAnswers()" data-dismiss="modal">Slett alle</button>
+						<button class="btn modal-confirm-delete" name="confirmDelete" ng-click="deleteAnswers()" data-dismiss="modal">Slett alle</button>
 						<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
 					</div>
 				</div>
