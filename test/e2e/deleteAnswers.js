@@ -1,20 +1,16 @@
-describe('test answer database:', function() {
+describe('answer database:', function() {
   
-  it('should delete entries in database', function() {
+  it('should delete answers in table', function() {
     
     //partial-index
     browser.get('/');
-
     browser.findElement(by.name("seeAllAnswers")).click();
 
-
+    //Delete all existing entries in answers
     browser.findElement(by.name("deleteAnswers")).click();
     browser.findElement(by.name("confirmDelete")).click();
 
-
-/*
-    HAS TO VERIFY THAT DATABASE ENTRIES ARE ACTUALLY DELETED!!
-*/
-
+    //Checks that no elements with binding exist --> There are no entries in the answers table
+  	expect(element(by.exactBinding('answer.id_answers')).isPresent()).toBe(false);
 	});
 });

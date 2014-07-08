@@ -1,10 +1,9 @@
-ddescribe('test of redirection:', function() {
+describe('test redirection and Urls:', function() {
   
-  it('should redirect page to correct Url', function() {
+  it('should redirect page to correct Url when navigating', function() {
     
     
   	//Does not register participant, but verifies all other links
-
 
     browser.get('/');
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-index");
@@ -18,7 +17,7 @@ ddescribe('test of redirection:', function() {
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-view-answers");
  
 
- 	browser.findElement(by.name("menuButton")).click();
+ 	  browser.findElement(by.name("menuButton")).click();
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-index");
 
 
@@ -38,7 +37,7 @@ ddescribe('test of redirection:', function() {
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-register-answer");
 
 
-	browser.findElement(by.name("registerButton")).click();
+	 browser.findElement(by.name("registerButton")).click();
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-register-participant");   	
 
 

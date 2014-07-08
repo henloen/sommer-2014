@@ -1,6 +1,6 @@
-describe('happy flow of application, with registering:', function() {
+describe('happy flow of application:', function() {
   
-  it('should test application flow', function() {
+  it('should click through application with default entries', function() {
     
     //partial-index
     browser.get('/');
