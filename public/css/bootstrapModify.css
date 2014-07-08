@@ -18,7 +18,6 @@ body {
 }
 
 
-
 /* InsertAnswer-specific */
 
 .header-question {
@@ -35,6 +34,12 @@ body {
 .col-right-border {
 	border-right: 2px dotted;
 	border-color: #7f7f7f;
+}
+
+.col-bottom-border {
+	width:200px;
+	border-bottom: 2px dotted;
+	border-color: #7f7f7f;		
 }
 
 .border-between-question {
