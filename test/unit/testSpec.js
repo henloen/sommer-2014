@@ -19,7 +19,7 @@ describe("BoD controllers", function() {
 		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
 			$httpBackend = _$httpBackend_;
 			scope = $rootScope.$new();
-			ctrl = $controller("AnswerCtrl", {$scope : scope})
+			ctrl = $controller("AnswerCtrl", {$scope : scope});
 
 		/*the controller loads all the answers with a get request to "/answers"
 		at instantiation, so even though we are not testing that functionality,
@@ -63,7 +63,7 @@ describe("BoD controllers", function() {
 			$httpBackend.flush();
 
 			expect(scope.oneAnswer).toEqual({"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0});
-		})
+		});
 
 		it("should have 'oneAnswer' undefined on start up, get one answer based on id and not change lock status it if it's already locked, TESTING 'getAnswer'", function() {
 			$httpBackend.expectGET("/answers/1").respond([
@@ -76,7 +76,7 @@ describe("BoD controllers", function() {
 
 			$httpBackend.flush();
 
-			expect(scope.oneAnswer).toEqual({"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":1})
+			expect(scope.oneAnswer).toEqual({"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":1});
 
 		});
 
@@ -141,65 +141,131 @@ describe("BoD controllers", function() {
 		});
 	});
 
-	describe("AnswerCtrl", function(){
+	describe("ParticipantsCtrl", function(){
 
-	/*Is called before each test, defining a the scope, the controller and a mock http service*/
-	beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-		$httpBackend = _$httpBackend_;
-		scope = $rootScope.$new();
-		ctrl = $controller("ParticipantsCtrl", {$scope : scope})
+		/*Is called before each test, defining a the scope, the controller and a mock http service*/
+		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+			$httpBackend = _$httpBackend_;
+			scope = $rootScope.$new();
+			ctrl = $controller("ParticipantsCtrl", {$scope : scope});
 
-	$httpBackend.expectGET("/participants").respond([
-		{"email":"henrik@test.no","name":"Henrik Tester"},
-		{"email":"test1404729597725@lars.no","name":"tester1"},
-		{"email":"test1404730290541@lars.no","name":"tester2"},
-		{"email":"test1404731209305@lars.no","name":"tester3"},
-		]);
+			$httpBackend.expectGET("/participants").respond([
+				{"email":"henrik@test.no","name":"Henrik Tester"},
+				{"email":"test1404729597725@lars.no","name":"tester1"},
+				{"email":"test1404730290541@lars.no","name":"tester2"},
+				{"email":"test1404731209305@lars.no","name":"tester3"},
+				]);
+		}));
 
-	}));
+		/*Verifying that all expected http requests have been done*/
+		afterEach(function() {
+			$httpBackend.verifyNoOutstandingExpectation();
+			$httpBackend.verifyNoOutstandingRequest();
+		});
 
-	/*Verifying that all expected http requests have been done*/
-	afterEach(function() {
-		$httpBackend.verifyNoOutstandingExpectation();
-		$httpBackend.verifyNoOutstandingRequest();
-	});
+		it("should have 'participants' undefined on start up and define it by loading all answers in database, here mocked as 4 elements, TESTING instantiation", function() {
 
-	it("should have 'participants' undefined on start up and define it by loading all answers in database, here mocked as 4 elements, TESTING instantiation", function() {
+			expect(scope.participants).toBeUndefined();
 
-		expect(scope.participants).toBeUndefined();
+			$httpBackend.flush();
 
-		$httpBackend.flush();
+			expect(scope.participants).toEqual([
+				{"email":"henrik@test.no","name":"Henrik Tester"},
+				{"email":"test1404729597725@lars.no","name":"tester1"},
+				{"email":"test1404730290541@lars.no","name":"tester2"},
+				{"email":"test1404731209305@lars.no","name":"tester3"},
+				]);
+		});
 
-		expect(scope.participants).toEqual([
-			{"email":"henrik@test.no","name":"Henrik Tester"},
-			{"email":"test1404729597725@lars.no","name":"tester1"},
-			{"email":"test1404730290541@lars.no","name":"tester2"},
-			{"email":"test1404731209305@lars.no","name":"tester3"},
-			]);
+		it("should delete all participants and reload all participants, TESTING deleteParticipants", function() {
+			$httpBackend.expectDELETE("/participants").respond("Successfully deleted all participants");
+			$httpBackend.expectGET("/participants").respond([]);
+			scope.participants = [
+				{"email":"henrik@test.no","name":"Henrik Tester"},
+				{"email":"test1404729597725@lars.no","name":"tester1"},
+				{"email":"test1404730290541@lars.no","name":"tester2"},
+				{"email":"test1404731209305@lars.no","name":"tester3"},
+				];
+
+			expect(scope.participants).toEqual([
+				{"email":"henrik@test.no","name":"Henrik Tester"},
+				{"email":"test1404729597725@lars.no","name":"tester1"},
+				{"email":"test1404730290541@lars.no","name":"tester2"},
+				{"email":"test1404731209305@lars.no","name":"tester3"},
+				]);
+
+			scope.deleteParticipants();
+
+			$httpBackend.flush();
+
+			expect(scope.participants).toEqual([]);
 		});
 	});
 
-	it("should delete all participants and reload all participants, TESTING deleteParticipants", function() {
-		$httpBackend.expectDELETE("/participants").respond("Successfully deleted all participants");
-		$httpBackend.expectGET("/participants").respond([]);
-		scope.participants = [
-			{"email":"henrik@test.no","name":"Henrik Tester"},
-			{"email":"test1404729597725@lars.no","name":"tester1"},
-			{"email":"test1404730290541@lars.no","name":"tester2"},
-			{"email":"test1404731209305@lars.no","name":"tester3"},
-			];
+	describe("RegisterAnswerCtrl", function(){
+		var location;
 
-		expect(scope.participants).toEqual([
-			{"email":"henrik@test.no","name":"Henrik Tester"},
-			{"email":"test1404729597725@lars.no","name":"tester1"},
-			{"email":"test1404730290541@lars.no","name":"tester2"},
-			{"email":"test1404731209305@lars.no","name":"tester3"},
-			]);
+		/*Is called before each test, defining a the scope, the controller and a mock http service*/
+		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, $location) {
+			$httpBackend = _$httpBackend_;
+			scope = $rootScope.$new();
+			ctrl = $controller("RegisterAnswerCtrl", {$scope : scope});
+			location = $location;
 
-		scope.deleteParticipants();
+		}));
 
-		$httpBackend.flush();
+		/*Verifying that all expected http requests have been done*/
+		afterEach(function() {
+			$httpBackend.verifyNoOutstandingExpectation();
+			$httpBackend.verifyNoOutstandingRequest();
+		});
 
-		expect(scope.participants).toEqual([]);
+		it("should have 'formData' initialized to '{}', post the object to '/answers' and relocate to '/partial-register-participant', TESTING submitAnswer", function() {
+			$httpBackend.expectPOST("/answers", 'sivilstatus=skilt&pa_hodet=hjelm&alder=coolcat&studiested=selvlaertrover&programmeringsstil=ordenungmusssein&musikk=tronderrock&personlighet=introvert&hypepreferanse=bigdata&favorittgode=gadgetkonto&planerforkvelden=undefined&premiehvisduvinner=moto360&processed=0&kjonn=kvinne&locked=0').respond("The answer was successfully recorded");
+			spyOn(location, 'path');
+
+			expect(scope.formData).toEqual({});
+
+			scope.formData = {sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0};
+			scope.submitAnswer(scope.formData);
+
+			$httpBackend.flush();
+
+			expect(location.path).toHaveBeenCalledWith("/partial-register-participant");
+		});
 	});
+
+	describe("RegisterParticipantCtrl", function() {
+		var location;
+
+		/*Is called before each test, defining a the scope, the controller and a mock http service*/
+		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, $location) {
+			$httpBackend = _$httpBackend_;
+			scope = $rootScope.$new();
+			ctrl = $controller("RegisterParticipantCtrl", {$scope : scope});
+			location = $location;
+		}));
+
+		/*Verifying that all expected http requests have been done*/
+		afterEach(function() {
+			$httpBackend.verifyNoOutstandingExpectation();
+			$httpBackend.verifyNoOutstandingRequest();
+		});
+
+		it("should have 'participant' initialized to '{}', post the object to '/participants' and relocate to '/partial-participant-registered', TESTING submitParticipant", function() {
+			$httpBackend.expectPOST("/participants", {email: "henrik l", name: "henrik@test.no"}).respond("Participant successfully registered");
+			spyOn(location, 'path');
+
+			expect(scope.participant).toEqual({});
+
+			scope.participant = {email: "henrik l", name: "henrik@test.no"};
+			scope.submitParticipant();
+
+			$httpBackend.flush();
+
+			expect(location.path).toHaveBeenCalledWith("/partial-participant-registered");
+		});
+	});
+	
+
 });

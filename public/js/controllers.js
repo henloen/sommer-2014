@@ -9,7 +9,7 @@ angular.module("bodApp.controllers", [])
 			Answers.getAll().success(function (data) {
 				$scope.answers = data;
 			});
-		}
+		};
 
 		$scope.getAnswers();
 
@@ -20,7 +20,7 @@ angular.module("bodApp.controllers", [])
 					Answers.toggleLock(id);
 				}
 			});
-		}
+		};
 
 		$scope.updateStatus = function(id) {
 			Answers.toggleLock(id).success(function() {
@@ -30,7 +30,7 @@ angular.module("bodApp.controllers", [])
 					});
 				});
 			});
-		}
+		};
 		
 		$scope.closeAndUnlock = function(id) {
 			Answers.toggleLock(id).success(function() {
@@ -38,7 +38,7 @@ angular.module("bodApp.controllers", [])
 						$scope.answers = data;
 				});
 			});
-		}
+		};
 
 		$scope.deleteAnswers = function() {
 			Answers.deleteAll().success(function () {
@@ -46,7 +46,7 @@ angular.module("bodApp.controllers", [])
 					$scope.answers = data;
 				});
 			});
-		}		
+		};		
 	}])
 
 	.controller("ParticipantsCtrl", ["$scope", "$http", "Participants", function($scope, $http, Participants) {
@@ -59,10 +59,9 @@ angular.module("bodApp.controllers", [])
 			Participants.deleteAll().success(function () {
 				Participants.getAll().success(function (data) {
 					$scope.participants = data;
-				} )
-			})
-		}
-		
+				});
+			});
+		};
 	}])
 
 	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", "Answers", function($scope, $http, $location, Answers) {
@@ -73,17 +72,23 @@ angular.module("bodApp.controllers", [])
 			Answers.create($.param($scope.formData)).success(function(data) {
 				$location.path("/partial-register-participant");
 			});
-		}
+		};
 	}])
 
 	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", "Participants", function($scope, $http, $location, Participants) {
 
 		$scope.participant = {};
 
-		$scope.submitParticipant = function() {
+		/*$scope.submitParticipant = function() {
 			Participants.create($.param($scope.participant))
 			.success(function(data) {
 				$location.path("/partial-participant-registered");
 			});
-		}
+		};*/
+		$scope.submitParticipant = function() {
+			Participants.create($scope.participant)
+			.success(function(data){
+				$location.path("/partial-participant-registered");
+			});
+		};
 	}])

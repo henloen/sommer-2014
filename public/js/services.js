@@ -39,13 +39,16 @@ angular.module("bodApp.services", [])
 			deleteAll : function() {
 				return $http.delete("/participants")
 			},
-			create : function(participant) {
+		/*	create : function(participant) {
 				return 	$http({
 				method : "POST",
 				url : "/participants",
 				data : participant,
 				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
 				})
+			}	*/
+			create : function(participant) {
+				return $http.post("/participants", participant)
 			}
 		}
 	})
