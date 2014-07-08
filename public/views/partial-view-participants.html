@@ -15,7 +15,7 @@
 		</table>
 
 		<!--a button that takes you back to the main menu -->
-		<a href="#/partial-index" class="btn btn-def-bouvet">
+		<a href="#/partial-index" name="menuButton" class="btn btn-def-bouvet">
 			<span class="glyphicon glyphicon-home">
 			</span>
 			Tilbake til meny
@@ -23,7 +23,7 @@
 
 		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
 
-		<button class="btn btn-def-bouvet" data-toggle="modal" data-target="#confirmDeleteModal" >
+		<button class="btn btn-def-bouvet" name="deleteParticipants" data-toggle="modal" data-target="#confirmDeleteModal" >
 			<span class="glyphicon glyphicon-trash">
 			</span>
 			Slett alle deltakere
@@ -40,7 +40,7 @@
 						Er du sikker på at du vil slette alle deltakerne i databasen?
 					</div>
 					<div class="modal-footer">
-						<button class="btn modal-confirm-delete" ng-click="deleteParticipants()" data-dismiss="modal">Slett alle</button>
+						<button class="btn modal-confirm-delete" name="confirmDelete" ng-click="deleteParticipants()" data-dismiss="modal">Slett alle</button>
 						<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
 					</div>
 				</div>
