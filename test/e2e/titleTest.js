@@ -2,7 +2,7 @@
 
 describe('test titles of pages', function() {
   
-  it('correct title on all pages', function() {
+  it('should confirm correct title on all pages', function() {
     
     //partial-index
     browser.get('/');

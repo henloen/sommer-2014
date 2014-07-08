@@ -19,7 +19,7 @@
 					<th>Kjønn</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="listview">
 				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
 				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
