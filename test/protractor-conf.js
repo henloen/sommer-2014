@@ -17,6 +17,8 @@ exports.config = {
     showColors: true,
     defaultTimeoutInterval: 30000
   }
+
 };
 
 //npm run protractor
+
