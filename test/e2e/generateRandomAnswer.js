@@ -1,4 +1,15 @@
-describe('happy flow of application:', function() {
+
+
+/*
+
+********************
+TO BE IMPLEMENTED!!!
+********************
+
+*/
+
+
+xdescribe('happy flow of application:', function() {
   
   it('should click through application with random entries', function() {
     
@@ -79,5 +90,6 @@ describe('happy flow of application:', function() {
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
     browser.findElement(By.name("submitButton")).click();
 */    
+
     });
 });

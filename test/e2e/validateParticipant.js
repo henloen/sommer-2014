@@ -1,9 +1,10 @@
 
 /*
 
-************************************************************
-//NOT TESTED AS VALIDATION IMPLEMENTATION IS NOT FINISHED!!!
-************************************************************
+**********************************************************
+NOT TESTED AS VALIDATION IMPLEMENTATION IS NOT FINISHED!!!
+COMMENTED OUT UNTIL IMPLEMENTED
+**********************************************************
 
 */
 xdescribe('register participant:', function() {
