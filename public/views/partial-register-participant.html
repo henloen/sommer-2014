@@ -14,7 +14,7 @@
 				<br>
 
 
-					<form class="form-horizontal" ng-submit="submitParticipant()" novalidate>
+					<form class="form-horizontal" name="userForm" ng-submit="submitParticipant()" novalidate>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-4">
 								<input type="text" class="form-control form-field text-white" name="participantName" placeholder="Navn" ng-model="participant.name" required>
@@ -29,7 +29,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-8">
 								<button type="submit" name="submitButton" class="btn btn-def-bouvet" >Submit info</button>
-								<!-- <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-def-bouvet">Submit info</button>To be used!!--> 
+							<!--	<button type="submit" ng-disabled="userForm.$invalid" class="btn btn-def-bouvet">Submit info</button>To be used!! -->
 							</div>
 						</div>
 					</form>
