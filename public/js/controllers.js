@@ -3,7 +3,7 @@
 /*Controllers*/
 
 angular.module("bodApp.controllers", [])
-	.controller("AnswerCtrl", ["$scope", "$http", "Answers", function($scope, $http, Answers) {
+	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
 		
 		$scope.getAnswers = function() {
 			Answers.getAll().success(function (data) {
