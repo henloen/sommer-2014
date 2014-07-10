@@ -81,10 +81,9 @@ body {
 
     
 .btn-start {
-	font-size: 50px;
-	width: 300px;
+	font-size: 35px;
+	width: 250px;
     margin-top: 10%;
-    
 }
 
 .btn-response {
@@ -93,7 +92,7 @@ body {
 }
 
 .btn-group-vertical>.btn:not(:first-child):not(:last-child) {
-	border-radius: 30px;
+	border-radius: 10px;
 }
 
 
@@ -137,6 +136,10 @@ body {
 
 .text-small {
 	font-size: 25px;
+}
+
+.text-smaller {
+	font-size: 18px;
 }
 
 
