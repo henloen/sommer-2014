@@ -5,6 +5,7 @@ var port = 3000;
 var router = require("./app/router");
 
 app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 
 router(app);

@@ -1,97 +1,94 @@
+"use strict";
 
 /*Controllers*/
 
 angular.module("bodApp.controllers", [])
-	.controller("AnswerCtrl", ["$scope", "$http", function($scope, $http) {
+	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
 		
 		$scope.getAnswers = function() {
-			$http.get("/answers").success(function (data) {
+			Answers.getAll().success(function (data) {
 				$scope.answers = data;
 			});
-		}
+		};
 
 		$scope.getAnswers();
 
 		$scope.getAnswer = function(id) {
-			$http.get("/answers/" +id).success(function (data) {
+			Answers.get(id).success(function (data) {
 				$scope.oneAnswer = data[0];
 				if (data[0].locked === 0) {
-					$http.put("/toggleLockAnswer/" + id);
+					Answers.toggleLock(id);
 				}
 			});
-		}
+		};
 
 		$scope.updateStatus = function(id) {
-			$http.put("/toggleLockAnswer/" + id).success(function() {
-				$http.put("/answers/" + id).success(function() {
-					$http.get("/answers").success(function (data) {
+			Answers.toggleLock(id).success(function() {
+				Answers.update(id).success(function() {
+					Answers.getAll().success(function (data) {
 						$scope.answers = data;
 					});
 				});
 			});
-		}
+		};
 		
 		$scope.closeAndUnlock = function(id) {
-			$http.put("/toggleLockAnswer/" + id).success(function() {
-				$http.get("/answers").success(function (data) {
+			Answers.toggleLock(id).success(function() {
+				Answers.getAll().success(function (data) {
 						$scope.answers = data;
 				});
 			});
-		}
+		};
 
 		$scope.deleteAnswers = function() {
-			$http.delete("/answers").success(function () {
-				$http.get("/answers").success(function (data) {
+			Answers.deleteAll().success(function () {
+				Answers.getAll().success(function (data) {
 					$scope.answers = data;
 				});
 			});
-		}
-		
+		};		
 	}])
-	.controller("ParticipantsCtrl", ["$scope", "$http", function($scope, $http) {
 
-		$http.get("/participants").success(function (data) {
+	.controller("ParticipantsCtrl", ["$scope", "$http", "Participants", function($scope, $http, Participants) {
+
+		Participants.getAll().success(function (data) {
 			$scope.participants = data;
 		});
 
 		$scope.deleteParticipants =function() {
-			$http.delete("/participants").success(function () {
-				$http.get("/participants").success(function (data) {
+			Participants.deleteAll().success(function () {
+				Participants.getAll().success(function (data) {
 					$scope.participants = data;
-				} )
-			})
-		}
-		
+				});
+			});
+		};
 	}])
-	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
+
+	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", "Answers", function($scope, $http, $location, Answers) {
 
 		$scope.formData = {};
 
 		$scope.submitAnswer = function() {
-			$http({
-				method : "POST",
-				url : "/answers",
-				data : $.param($scope.formData),
-				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
-			})
-			.success(function(data) {
+			Answers.create($.param($scope.formData)).success(function(data) {
 				$location.path("/partial-register-participant");
 			});
-		}
+		};
 	}])
-	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
+
+	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", "Participants", function($scope, $http, $location, Participants) {
 
 		$scope.participant = {};
 
-		$scope.submitParticipant = function() {
-			$http({
-				method : "POST",
-				url : "/participants",
-				data : $.param($scope.participant),
-				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
-			})
+		/*$scope.submitParticipant = function() {
+			Participants.create($.param($scope.participant))
 			.success(function(data) {
 				$location.path("/partial-participant-registered");
 			});
-		}
+		};*/
+		$scope.submitParticipant = function() {
+			Participants.create($scope.participant)
+			.success(function(data){
+				$location.path("/partial-participant-registered");
+			});
+		};
 	}])
