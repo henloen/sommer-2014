@@ -219,7 +219,7 @@ describe("BoD controllers and services", function() {
 		});
 
 		it("should have 'formData' initialized to '{}', post the object to '/answers' and relocate to '/partial-register-participant', TESTING submitAnswer", function() {
-			$httpBackend.expectPOST("/answers", 'sivilstatus=skilt&pa_hodet=hjelm&alder=coolcat&studiested=selvlaertrover&programmeringsstil=ordenungmusssein&musikk=tronderrock&personlighet=introvert&hypepreferanse=bigdata&favorittgode=gadgetkonto&planerforkvelden=undefined&premiehvisduvinner=moto360&processed=0&kjonn=kvinne&locked=0').respond("The answer was successfully recorded");
+			$httpBackend.expectPOST("/answers", {sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0}).respond("The answer was successfully recorded");
 			spyOn(location, 'path');
 
 			expect(scope.formData).toEqual({});

@@ -69,7 +69,7 @@ angular.module("bodApp.controllers", [])
 		$scope.formData = {};
 
 		$scope.submitAnswer = function() {
-			Answers.create($.param($scope.formData)).success(function(data) {
+			Answers.create($scope.formData).success(function(data) {
 				$location.path("/partial-register-participant");
 			});
 		};
