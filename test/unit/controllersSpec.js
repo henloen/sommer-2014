@@ -342,7 +342,7 @@ describe("BoD controllers", function() {
 			expect(scope.formData).toEqual({});
 			scope.formData = {sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0};
 			scope.submitAnswer();
-			expect(answersMock.create).toHaveBeenCalledWith("sivilstatus=skilt&pa_hodet=hjelm&alder=coolcat&studiested=selvlaertrover&programmeringsstil=ordenungmusssein&musikk=tronderrock&personlighet=introvert&hypepreferanse=bigdata&favorittgode=gadgetkonto&planerforkvelden=undefined&premiehvisduvinner=moto360&processed=0&kjonn=kvinne&locked=0");
+			expect(answersMock.create).toHaveBeenCalledWith({sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0});
 			scope.$apply();
 			expect(location.path).toHaveBeenCalledWith("/partial-register-participant");
 		});

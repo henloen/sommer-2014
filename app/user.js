@@ -32,7 +32,7 @@ function insertAnswer(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.redirect("public/index.html#/partial-register-participant");
+			res.send("Successfully registered the answer");
 			}
 	});
 }

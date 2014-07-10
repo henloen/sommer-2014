@@ -16,19 +16,20 @@
 
 				<div class="col-sm-3 container">
 					<div class="btn-group-vertical" data-toggle="buttons">
-						<div class="header-question"> Kjønn: </div><br>
+						<div class="header-question"> Kjønn: {{formData.kjonn}}</div><br>
 						
 						<label class="btn btn-response">
-							<input type="radio" value="mann" ng-model="formData.kjonn" makeRadioButtonDetectChange/>Mann<br>
+							<input type="radio" value="mann" ng-model="formData.kjonn" make-radio-button-detect-change/>Mann<br>
 						</label>
 						<label class="btn btn-response">
-							<input type="radio" value="kvinne" ng-model="formData.kjonn"makeRadioButtonDetectChange>Kvinne<br>
+							<input type="radio" value="kvinne" ng-model="formData.kjonn"make-radio-button-detect-change>Kvinne<br>
 						</label>
 						<br>
 					</div>
 					<br><div class="border-between-question"> - - - - - - - - - - - - - - - - - </div><br>
 
-					<div class="header-question">{{formData.kjonn}}</div>
+
+					<div class="header-question"></div>
 
 
 
