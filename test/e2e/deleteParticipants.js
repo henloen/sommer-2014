@@ -11,6 +11,6 @@ describe('participants database:', function() {
     browser.findElement(by.name("confirmDelete")).click();
 
 	//Checks that no elements with binding exist --> There are no entries in the participants table
-    expect(element(by.exactBinding('participant.email')).isPresent()).toBe(false);
+    expect(element(by.binding('participant.email')).isPresent()).toBe(false);
 	});
 });
