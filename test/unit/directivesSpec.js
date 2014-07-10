@@ -2,9 +2,9 @@
 
 /* jasmine specs for directives go here */
 
-/* NOT IN USE AT THE MOMENT
 
-describe('directives', function() {
+
+xdescribe('directives', function() {
   beforeEach(module('bodApp.directives'));
 
   describe('app-version', function() {
@@ -19,4 +19,3 @@ describe('directives', function() {
     });
   });
 });
-*/

@@ -2,173 +2,231 @@
 
 /* Testing the controllers of the app using http backend for mocking  */
 
-/*Main spec*/
-
 describe("BoD controllers", function() {
-	var scope, ctrl, $httpBackend;
-
-	beforeEach(module("bodApp.controllers"));
-	beforeEach(module("bodApp.services"));
-
-
+	var scope, ctrl, deferred, q;
 
 	/*Spec of AnswerCtrl*/
 	describe("AnswerCtrl", function(){
+		var answersMock;
+		/*Is called before each test, defining a the scope, the controller and a mock Answers service*/
+		beforeEach(module("bodApp.controllers", function($provide) {
+			 
+			 //used to extend the promise returned by $q
+			 $provide.decorator('$q', function ($delegate) {
+			    var defer = $delegate.defer;
+			    $delegate.defer = function () {
+			      var deferred = defer();
+			      deferred.promise.success = function (fn) {
+			        deferred.promise.then(function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      deferred.promise.error = function (fn) {
+			        deferred.promise.then(null, function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      return deferred;
+			    };
+			    return $delegate;
+			  });
 
-		/*Is called before each test, defining a the scope, the controller and a mock http service*/
-		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-			$httpBackend = _$httpBackend_;
-			scope = $rootScope.$new();
-			ctrl = $controller("AnswerCtrl", {$scope : scope});
-
-		/*the controller loads all the answers with a get request to "/answers"
-		at instantiation, so even though we are not testing that functionality,
-		we have to expect the request for the test to pass*/
-			$httpBackend.expectGET("/answers").respond([
-				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
-				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
-				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
-				]);
+			answersMock = {
+				getAll : function() {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
+						{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
+						{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
+					]);
+					return deferred.promise;
+				},
+				get : function(id) {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":id},
+						]);
+					return deferred.promise;
+				},
+				toggleLock : function(id) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				},
+				update : function(id) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				},
+				deleteAll : function() {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;	
+				},
+				create : function(answer) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				}
+			}
+			spyOn(answersMock, "getAll").andCallThrough();
+			spyOn(answersMock, "get").andCallThrough();
+			spyOn(answersMock, "toggleLock").andCallThrough();
+			spyOn(answersMock, "update").andCallThrough();
+			spyOn(answersMock, "deleteAll").andCallThrough();
+			spyOn(answersMock, "create").andCallThrough();
+			$provide.value("Answers", answersMock);
 		}));
 
-		/*Verifying that all expected http requests have been done*/
-		afterEach(function() {
-			$httpBackend.verifyNoOutstandingExpectation();
-			$httpBackend.verifyNoOutstandingRequest();
-		});
+		beforeEach(
+			inject(function($rootScope, $controller, $q) {
+				q = $q;
+				scope = $rootScope.$new();
+				ctrl = $controller("AnswerCtrl", {$scope : scope});
+			}));
 
-		it("should have 'answers' undefined on start up and define 'answers' with three answers fetched from mock http backend, TESTING 'getAnswers'", function() {
+		it("should have scope.answers to be undefined and then to equal the data returned by the promise, TESTING getAnswers", function() {			
 			expect(scope.answers).toBeUndefined();
-
-			$httpBackend.flush();
-
+			scope.$apply();
 			expect(scope.answers).toEqual([
 				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
 				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
 				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
 				]);
+			expect(answersMock.getAll).toHaveBeenCalled();
 		});
 
-
-		it("should have 'oneAnswer' undefined on start up, get one answer based on id and lock it if the answer is unlocked, TESTING 'getAnswer'", function() {
-			$httpBackend.expectGET("/answers/1").respond([
-				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
-				]);
-			$httpBackend.expectPUT("/toggleLockAnswer/1").respond("Answer: 1 toggled lock");
-
-			expect(scope.oneAnswer).toBeUndefined();
-
-			scope.getAnswer(1);
-
-			$httpBackend.flush();
-
+		it("should have scope.oneAnswer undefined, get an answer based on the id passed in, lock the answer if unlocked and set oneAnswer equal to the answer returned by the promise, TESTING getAnswer", function(id) {
+			expect(scope.oneAnswer).toBeUndefined()
+			scope.getAnswer(0);
+			expect(answersMock.get).toHaveBeenCalledWith(0);
+			scope.$apply();
+			expect(answersMock.toggleLock).toHaveBeenCalledWith(0);
 			expect(scope.oneAnswer).toEqual({"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0});
 		});
 
-		it("should have 'oneAnswer' undefined on start up, get one answer based on id and not change lock status it if it's already locked, TESTING 'getAnswer'", function() {
-			$httpBackend.expectGET("/answers/1").respond([
-				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":1},
-				]);
-
-			expect(scope.oneAnswer).toBeUndefined();
-
+		it("should have scope.oneAnswer undefined, get an answer based on the id passed in, don't unlock the answer if it's locked if unlocked and set oneAnswer equal to the answer returned by the promise, TESTING getAnswer", function(id) {
+			expect(scope.oneAnswer).toBeUndefined()
 			scope.getAnswer(1);
-
-			$httpBackend.flush();
-
+			expect(answersMock.get).toHaveBeenCalledWith(1);
+			scope.$apply();
+			expect(answersMock.toggleLock).not.toHaveBeenCalled();
 			expect(scope.oneAnswer).toEqual({"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":1});
-
 		});
 
-		it("should update an answer by unlocking and updating the status of the answer, and then reload all answers, TESTING 'updateStatus'", function() {
-			$httpBackend.expectPUT("/toggleLockAnswer/1").respond("Answer: 1 toggled lock");
-			$httpBackend.expectPUT("/answers/1").respond("status of answer 1 updated");
-			$httpBackend.expectGET("/answers").respond([
-				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":1,"kjonn":"mann","locked":0},
-				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
-				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
-				]);
-
-			scope.answers = [{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0}];
-
-			expect(scope.answers[0].processed).toEqual(0);
-
-			scope.updateStatus(1);
-
-			expect(scope.answers[0].processed).toEqual(0);
-
-			$httpBackend.flush();
-
-			expect(scope.answers[0].processed).toEqual(1);
-		});
-
-		it("should unlock the locked answer and reload all answers, TESTING 'closeAndUnlock'", function() {
-			$httpBackend.expectPUT("/toggleLockAnswer/1").respond("Answer: 1 toggled lock");
-			$httpBackend.expectGET("/answers").respond([{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0}]);
-
-			scope.answers = [{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":1}];
-
-			expect(scope.answers[0].locked).toEqual(1);
-
-			scope.closeAndUnlock(1);
-
-			$httpBackend.flush();
-
-			expect(scope.answers[0].locked).toEqual(0);
-		});
-
-		it("should delete all answers and reload all answers again, TESTING 'deleteAnswers'", function() {
-			$httpBackend.expectDELETE("/answers").respond("Successfully deleted all answers");
-			$httpBackend.expectGET("/answers").respond([]);
-			
-			scope.answers = [
-				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
-				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
-				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
-				];
-
+		it("should update an answer by unlocking and updating the status of the answer, and then reload all answers, TESTING updateStatus", function() {
+			expect(scope.answers).toBeUndefined();
+			scope.updateStatus(10);
+			expect(answersMock.toggleLock).toHaveBeenCalledWith(10);
+			scope.$apply();
+			expect(answersMock.update).toHaveBeenCalledWith(10);
+			expect(answersMock.getAll).toHaveBeenCalled();
 			expect(scope.answers).toEqual([
 				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
 				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
 				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
 				]);
-
-			scope.deleteAnswers();
-
-			$httpBackend.flush();
-
-			expect(scope.answers).toEqual([]);
 		});
+
+		it("should unlock the locked answer and reload all answers, TESTING 'closeAndUnlock'", function() {
+			expect(scope.answers).toBeUndefined();
+			scope.closeAndUnlock(5);
+			expect(answersMock.toggleLock).toHaveBeenCalledWith(5);
+			scope.$apply();
+			expect(answersMock.getAll).toHaveBeenCalled();
+			expect(scope.answers).toEqual([
+				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
+				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
+				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
+				]);
+		});
+
+		it("should delete all answers and reload all answers again, TESTING 'deleteAnswers'", function() {
+			expect(scope.answers).toBeUndefined();
+			scope.deleteAnswers();
+			scope.$apply();
+			expect(answersMock.deleteAll).toHaveBeenCalled();
+			expect(answersMock.getAll).toHaveBeenCalled();
+			expect(scope.answers).toEqual([
+				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
+				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
+				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
+				]);
+		});
+
 	});
 
+	/*Spec of ParticipantsCtrl*/
 	describe("ParticipantsCtrl", function(){
+		var participantsMock;
+		/*Is called before each test, defining a the scope, the controller and a mock Participants*/
 
-		/*Is called before each test, defining a the scope, the controller and a mock http service*/
-		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-			$httpBackend = _$httpBackend_;
-			scope = $rootScope.$new();
-			ctrl = $controller("ParticipantsCtrl", {$scope : scope});
+		beforeEach(module("bodApp.controllers", function($provide) {
+			 
+			 //used to extend the promise returned by $q
+			 $provide.decorator('$q', function ($delegate) {
+			    var defer = $delegate.defer;
+			    $delegate.defer = function () {
+			      var deferred = defer();
+			      deferred.promise.success = function (fn) {
+			        deferred.promise.then(function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      deferred.promise.error = function (fn) {
+			        deferred.promise.then(null, function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      return deferred;
+			    };
+			    return $delegate;
+			  });
 
-			$httpBackend.expectGET("/participants").respond([
-				{"email":"henrik@test.no","name":"Henrik Tester"},
-				{"email":"test1404729597725@lars.no","name":"tester1"},
-				{"email":"test1404730290541@lars.no","name":"tester2"},
-				{"email":"test1404731209305@lars.no","name":"tester3"},
-				]);
+			participantsMock = {
+				getAll : function() {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"email":"henrik@test.no","name":"Henrik Tester"},
+						{"email":"test1404729597725@lars.no","name":"tester1"},
+						{"email":"test1404730290541@lars.no","name":"tester2"},
+						{"email":"test1404731209305@lars.no","name":"tester3"},
+						]);
+					return deferred.promise;
+				},
+				deleteAll : function() {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;	
+				},
+				create : function(answer) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				}
+			}
+			spyOn(participantsMock, "getAll").andCallThrough();
+			spyOn(participantsMock, "deleteAll").andCallThrough();
+			spyOn(participantsMock, "create").andCallThrough();
+			$provide.value("Participants", participantsMock);
 		}));
 
-		/*Verifying that all expected http requests have been done*/
-		afterEach(function() {
-			$httpBackend.verifyNoOutstandingExpectation();
-			$httpBackend.verifyNoOutstandingRequest();
-		});
+		beforeEach(
+			inject(function($rootScope, $controller, $q) {
+				q = $q;
+				scope = $rootScope.$new();
+				ctrl = $controller("ParticipantsCtrl", {$scope : scope});
+			})
+		);
 
 		it("should have 'participants' undefined on start up and define it by loading all answers in database, here mocked as 4 elements, TESTING instantiation", function() {
-
 			expect(scope.participants).toBeUndefined();
-
-			$httpBackend.flush();
-
+			expect(participantsMock.getAll).toHaveBeenCalled();
+			scope.$apply();
 			expect(scope.participants).toEqual([
 				{"email":"henrik@test.no","name":"Henrik Tester"},
 				{"email":"test1404729597725@lars.no","name":"tester1"},
@@ -178,94 +236,192 @@ describe("BoD controllers", function() {
 		});
 
 		it("should delete all participants and reload all participants, TESTING deleteParticipants", function() {
-			$httpBackend.expectDELETE("/participants").respond("Successfully deleted all participants");
-			$httpBackend.expectGET("/participants").respond([]);
-			scope.participants = [
-				{"email":"henrik@test.no","name":"Henrik Tester"},
-				{"email":"test1404729597725@lars.no","name":"tester1"},
-				{"email":"test1404730290541@lars.no","name":"tester2"},
-				{"email":"test1404731209305@lars.no","name":"tester3"},
-				];
-
-			expect(scope.participants).toEqual([
-				{"email":"henrik@test.no","name":"Henrik Tester"},
-				{"email":"test1404729597725@lars.no","name":"tester1"},
-				{"email":"test1404730290541@lars.no","name":"tester2"},
-				{"email":"test1404731209305@lars.no","name":"tester3"},
-				]);
-
+			expect(scope.participants).toBeUndefined();
 			scope.deleteParticipants();
-
-			$httpBackend.flush();
-
-			expect(scope.participants).toEqual([]);
+			expect(participantsMock.deleteAll).toHaveBeenCalled();
+			scope.$apply();
+			expect(participantsMock.getAll).toHaveBeenCalled();
+			//even though the participants should have been deleted, we use the moced getAll-method,
+			//which doesn't change when the mocked deleteAll method is called.
+			expect(scope.participants).toEqual([
+						{"email":"henrik@test.no","name":"Henrik Tester"},
+						{"email":"test1404729597725@lars.no","name":"tester1"},
+						{"email":"test1404730290541@lars.no","name":"tester2"},
+						{"email":"test1404731209305@lars.no","name":"tester3"},
+						]);
 		});
 	});
 
+	/*Spec of RegisterAnswerCtrl*/
 	describe("RegisterAnswerCtrl", function(){
-		var location;
+		var answersMock, location;
+		/*Is called before each test, defining a the scope, the controller and a mock Participants*/
 
-		/*Is called before each test, defining a the scope, the controller and a mock http service*/
-		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, $location) {
-			$httpBackend = _$httpBackend_;
-			scope = $rootScope.$new();
-			ctrl = $controller("RegisterAnswerCtrl", {$scope : scope});
-			location = $location;
+		beforeEach(module("bodApp.controllers", function($provide) {
+			 
+			 //used to extend the promise returned by $q
+			 $provide.decorator('$q', function ($delegate) {
+			    var defer = $delegate.defer;
+			    $delegate.defer = function () {
+			      var deferred = defer();
+			      deferred.promise.success = function (fn) {
+			        deferred.promise.then(function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      deferred.promise.error = function (fn) {
+			        deferred.promise.then(null, function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      return deferred;
+			    };
+			    return $delegate;
+			  });
 
+			answersMock = {
+				getAll : function() {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
+						{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
+						{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
+					]);
+					return deferred.promise;
+				},
+				get : function(id) {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":id},
+						]);
+					return deferred.promise;
+				},
+				toggleLock : function(id) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				},
+				update : function(id) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				},
+				deleteAll : function() {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;	
+				},
+				create : function(answer) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				}
+			}
+			spyOn(answersMock, "getAll").andCallThrough();
+			spyOn(answersMock, "get").andCallThrough();
+			spyOn(answersMock, "toggleLock").andCallThrough();
+			spyOn(answersMock, "update").andCallThrough();
+			spyOn(answersMock, "deleteAll").andCallThrough();
+			spyOn(answersMock, "create").andCallThrough();
+			$provide.value("Answers", answersMock);
 		}));
 
-		/*Verifying that all expected http requests have been done*/
-		afterEach(function() {
-			$httpBackend.verifyNoOutstandingExpectation();
-			$httpBackend.verifyNoOutstandingRequest();
-		});
+		beforeEach(
+			inject(function($rootScope, $controller, $q, $location) {
+				q = $q;
+				scope = $rootScope.$new();
+				ctrl = $controller("RegisterAnswerCtrl", {$scope : scope});
+				location = $location;
+			})
+		);
 
-		it("should have 'formData' initialized to '{}', post the object to '/answers' and relocate to '/partial-register-participant', TESTING submitAnswer", function() {
-			$httpBackend.expectPOST("/answers", 'sivilstatus=skilt&pa_hodet=hjelm&alder=coolcat&studiested=selvlaertrover&programmeringsstil=ordenungmusssein&musikk=tronderrock&personlighet=introvert&hypepreferanse=bigdata&favorittgode=gadgetkonto&planerforkvelden=undefined&premiehvisduvinner=moto360&processed=0&kjonn=kvinne&locked=0').respond("The answer was successfully recorded");
-			spyOn(location, 'path');
-
+		it("should have 'formData' initialized to '{}', call the create method with formData as argument, and relocate to '/partial-register-participant', TESTING submitAnswer", function() {
+			spyOn(location, "path")
 			expect(scope.formData).toEqual({});
-
 			scope.formData = {sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0};
-			scope.submitAnswer(scope.formData);
-
-			$httpBackend.flush();
-
+			scope.submitAnswer();
+			expect(answersMock.create).toHaveBeenCalledWith("sivilstatus=skilt&pa_hodet=hjelm&alder=coolcat&studiested=selvlaertrover&programmeringsstil=ordenungmusssein&musikk=tronderrock&personlighet=introvert&hypepreferanse=bigdata&favorittgode=gadgetkonto&planerforkvelden=undefined&premiehvisduvinner=moto360&processed=0&kjonn=kvinne&locked=0");
+			scope.$apply();
 			expect(location.path).toHaveBeenCalledWith("/partial-register-participant");
 		});
 	});
 
-	describe("RegisterParticipantCtrl", function() {
-		var location;
+	/*Spec of RegisterParticipantCtrl*/
+	describe("RegisterParticipantCtrl", function(){
+		var participantsMock, location;
+		/*Is called before each test, defining a the scope, the controller and a mock Participants*/
 
-		/*Is called before each test, defining a the scope, the controller and a mock http service*/
-		beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, $location) {
-			$httpBackend = _$httpBackend_;
-			scope = $rootScope.$new();
-			ctrl = $controller("RegisterParticipantCtrl", {$scope : scope});
-			location = $location;
+		beforeEach(module("bodApp.controllers", function($provide) {
+			 
+			 //used to extend the promise returned by $q
+			 $provide.decorator('$q', function ($delegate) {
+			    var defer = $delegate.defer;
+			    $delegate.defer = function () {
+			      var deferred = defer();
+			      deferred.promise.success = function (fn) {
+			        deferred.promise.then(function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      deferred.promise.error = function (fn) {
+			        deferred.promise.then(null, function (value) {
+			          fn(value);
+			        });
+			        return deferred.promise;
+			      };
+			      return deferred;
+			    };
+			    return $delegate;
+			  });
+
+			participantsMock = {
+				getAll : function() {
+					var deferred = q.defer();
+					deferred.resolve([
+						{"email":"henrik@test.no","name":"Henrik Tester"},
+						{"email":"test1404729597725@lars.no","name":"tester1"},
+						{"email":"test1404730290541@lars.no","name":"tester2"},
+						{"email":"test1404731209305@lars.no","name":"tester3"},
+						]);
+					return deferred.promise;
+				},
+				deleteAll : function() {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;	
+				},
+				create : function(answer) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
+				}
+			}
+			spyOn(participantsMock, "getAll").andCallThrough();
+			spyOn(participantsMock, "deleteAll").andCallThrough();
+			spyOn(participantsMock, "create").andCallThrough();
+			$provide.value("Participants", participantsMock);
 		}));
 
-		/*Verifying that all expected http requests have been done*/
-		afterEach(function() {
-			$httpBackend.verifyNoOutstandingExpectation();
-			$httpBackend.verifyNoOutstandingRequest();
-		});
+		beforeEach(
+			inject(function($rootScope, $controller, $q, $location) {
+				q = $q;
+				scope = $rootScope.$new();
+				ctrl = $controller("RegisterParticipantCtrl", {$scope : scope});
+				location = $location;
+			})
+		);
 
-		it("should have 'participant' initialized to '{}', post the object to '/participants' and relocate to '/partial-participant-registered', TESTING submitParticipant", function() {
-			$httpBackend.expectPOST("/participants", {email: "henrik l", name: "henrik@test.no"}).respond("Participant successfully registered");
-			spyOn(location, 'path');
-
+		it("should have 'participant' initialized to '{}', call the create method with it as parameter, and relocate to '/partial-register-participant', TESTING submitParticipant", function() {
+			spyOn(location, "path")
 			expect(scope.participant).toEqual({});
-
 			scope.participant = {email: "henrik l", name: "henrik@test.no"};
 			scope.submitParticipant();
-
-			$httpBackend.flush();
-
+			expect(participantsMock.create).toHaveBeenCalledWith({email: "henrik l", name: "henrik@test.no"});
+			scope.$apply();
 			expect(location.path).toHaveBeenCalledWith("/partial-participant-registered");
 		});
 	});
-	
-
 });

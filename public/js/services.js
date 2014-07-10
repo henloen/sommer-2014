@@ -20,13 +20,9 @@ angular.module("bodApp.services", [])
 			deleteAll : function() {
 				return $http.delete("/answers")
 			},
+			//not used yet
 			create : function(answer) {
-				return $http({
-				method : "POST",
-				url : "/answers",
-				data : answer,
-				headers : {"Content-Type" : "application/x-www-form-urlencoded"}
-				})
+				return $http.post("/answers", answer);
 			}
 		}
 	})
@@ -39,7 +35,8 @@ angular.module("bodApp.services", [])
 			deleteAll : function() {
 				return $http.delete("/participants")
 			},
-		/*	create : function(participant) {
+		/*	old method, kept for reference
+			create : function(participant) {
 				return 	$http({
 				method : "POST",
 				url : "/participants",
