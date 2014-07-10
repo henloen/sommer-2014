@@ -38,11 +38,11 @@ describe('test redirection and Urls:', function() {
 
 
 	 browser.findElement(by.name("registerButton")).click();
-   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-register-participant");   	
+   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-register-participant");   	
 
 
    	browser.findElement(by.name("escapeButton")).click();
-   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-start");   	
+   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-start");   	
 
 	});
 });
