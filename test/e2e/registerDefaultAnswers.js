@@ -56,7 +56,7 @@ describe('happy flow of application:', function() {
     var favorittgode = browser.findElement(by.id("favorittgode"));
     favorittgode.findElement(by.name("fribar")).click();
     
-    var premie = browser.findElement(by.id("premie"));
+    var premie = browser.findElement(by.id("premiehvisduvinner"));
     premie.findElement(by.name("oculusrift")).click();
     
 
