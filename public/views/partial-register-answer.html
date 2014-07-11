@@ -2,7 +2,7 @@
 		<br>
 
 
-		<form ng-submit="submitAnswer()" novalidate>
+		<form name="answerForm" ng-submit="submitAnswer()" novalidate>
 			
 
 
@@ -13,7 +13,7 @@
 						<div ng-class="{'btn-group-vertical' : true, 'col-bottom-border' : !$last}" id="{{question.name}}" data-toggle="buttons">
 							<div class="header-question">{{question.title}}:</div><br>
 							<label ng-repeat="option in question.options"class="btn btn-response" name="{{option.value}}">
-								<input type="radio" name="{{question.name}}" value="{{option.value}}" ng-model="formData[question.name]" make-radio-button-detect-change>{{option.output}}<br>
+								<input type="radio" name="{{question.name}}" value="{{option.value}}" ng-model="formData[question.name]" make-radio-button-detect-change required>{{option.output}}<br>
 							</label>
 								<br>
 						</div>
@@ -27,7 +27,9 @@
 		<br><br>
 
 			<div class="container">
-				<input class="btn btn-def-bouvet" name="registerButton" type="submit" value="Registrer svar">
+				<button ng-disabled="answerForm.$invalid" class="btn btn-def-bouvet" name="registerButton" type="submit">
+					Registrer svar
+				</button>
 			</form>
 		</div>
 		<br><br>	
