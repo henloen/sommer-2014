@@ -5,9 +5,19 @@ exports.config = {
     'e2e/*.js'
   ],
 
+
+/*
+capabilities: {
+  'browserName': 'phantomjs',
+  'phantom.binary.path': 'sommer-2014/node_modules/phantomjs/bin'
+},
+*/
+
+
   capabilities: {
     'browserName': 'chrome'
   },
+
 
   baseUrl: 'http://localhost:3000/public/',
 
@@ -15,7 +25,7 @@ exports.config = {
 
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 40000
   }
 
 };

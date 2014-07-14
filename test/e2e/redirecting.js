@@ -36,6 +36,7 @@ describe('test redirection and Urls:', function() {
   	browser.findElement(by.name("startButton")).click();
    	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-register-answer");
 
+
      //fill out answers, needed to pass activate the button for registering the answer
     var kjonn = browser.findElement(by.id("kjonn"));
     kjonn.findElement(by.name("kvinne")).click();
@@ -88,7 +89,7 @@ describe('test redirection and Urls:', function() {
 
 
    	browser.findElement(by.name("escapeButton")).click();
-   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-start");   	
+   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-index");   	
 
 	});
 });

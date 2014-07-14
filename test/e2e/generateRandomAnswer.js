@@ -1,17 +1,12 @@
-
-
 /*
-
 ********************
 TO BE IMPLEMENTED!!!
 ********************
-
 */
 
-
-xdescribe('happy flow of application:', function() {
+xdescribe('submitting an answer:', function() {
   
-  it('should click through application with random entries', function() {
+  it('should generate a random input', function() {
     
     //partial-index
     browser.get('/');
@@ -20,15 +15,33 @@ xdescribe('happy flow of application:', function() {
     browser.findElement(by.name("startButton")).click();
     
 
-
-
     //fill out answers
-    var kjonn = browser.findElement(by.id("kjonn"));
-    kjonn.findElement(by.name("kvinne")).click();
-    
+
+    element.all(by.repeater('question in col')).each(function(elem) {
+        
+            elem(by.name("kjonn")).then(function(text) {
+                console.log(text); 
+    //         console.log(list.length);   
+            });
+        });
+    });
+});
+
+    // console.log("length of list: " + list.getSize());
+
+    // for (var i=0; i < list.length; i++) {
+    //     console.log("i: " + list[i]);
+    // }
 
 
 
+/*================================================================================
+    element.all(by.repeater('option in question.options')).each(function(elem) {
+        elem.getText().then(function(text) {
+            console.log(text); 
+        });
+    });
+================================================================================*/
 
 
 
@@ -90,6 +103,3 @@ xdescribe('happy flow of application:', function() {
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
     browser.findElement(By.name("submitButton")).click();
 */    
-
-    });
-});

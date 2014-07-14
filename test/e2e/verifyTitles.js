@@ -78,14 +78,12 @@ describe('test titles of pages', function() {
     expect(browser.getTitle()).toEqual("The Beauty of Data")
 
 
-
     //partial-register-participant
     var milliseconds = (new Date).getTime();
     browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@lars.no");
     browser.findElement(By.name("submitButton")).click();
     expect(browser.getTitle()).toEqual("The Beauty of Data")
-
 
 
   });
