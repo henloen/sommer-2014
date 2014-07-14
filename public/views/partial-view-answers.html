@@ -1,4 +1,16 @@
 <div>
+		<!--a button that takes you back to the menu -->
+			<a href="#/partial-index.html" name="menuButton" class="btn btn-def-bouvet">
+				<span class="glyphicon glyphicon-home">
+				</span>
+				Tilbake til meny
+			</a>
+
+		<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
+		</button> 
+
+		<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
+		</button>
 
 		<!-- table displaying the contents of the database -->
 		<table class="table table-hover bg-white">
@@ -85,12 +97,6 @@
 			</tbody>
 		</table>
 
-		<!--a button that takes you back to the menu -->
-			<a href="#/partial-index.html" name="menuButton" class="btn btn-def-bouvet">
-				<span class="glyphicon glyphicon-home">
-				</span>
-				Tilbake til meny
-			</a>
 
 		<!--a button that triggers a modal to confirm that you want to delete all answers -->
 		<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >

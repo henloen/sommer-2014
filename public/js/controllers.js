@@ -4,14 +4,26 @@
 
 angular.module("bodApp.controllers", [])
 	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
+
+		$scope.viewAll = false;
+
+		$scope.toggleViewAll = function(viewAll) {
+			if (viewAll) {
+				$scope.viewAll = false;
+			}
+			else {
+				$scope.viewAll = true;
+			}
+			$scope.getAnswers($scope.viewAll);
+		}
 		
-		$scope.getAnswers = function() {
-			Answers.getAll().success(function (data) {
-				$scope.answers = data;
+		$scope.getAnswers = function(viewAll) {
+			Answers.getAll(viewAll).success(function (data) {
+					$scope.answers = data;
 			});
 		};
 
-		$scope.getAnswers();
+		$scope.getAnswers($scope.viewAll);
 
 		$scope.getAnswer = function(id) {
 			Answers.get(id).success(function (data) {
@@ -25,26 +37,20 @@ angular.module("bodApp.controllers", [])
 		$scope.updateStatus = function(id) {
 			Answers.toggleLock(id).success(function() {
 				Answers.update(id).success(function() {
-					Answers.getAll().success(function (data) {
-						$scope.answers = data;
-					});
+					$scope.getAnswers($scope.viewAll);
 				});
 			});
 		};
 		
 		$scope.closeAndUnlock = function(id) {
 			Answers.toggleLock(id).success(function() {
-				Answers.getAll().success(function (data) {
-						$scope.answers = data;
-				});
+				$scope.getAnswers($scope.viewAll);
 			});
 		};
 
 		$scope.deleteAnswers = function() {
 			Answers.deleteAll().success(function () {
-				Answers.getAll().success(function (data) {
-					$scope.answers = data;
-				});
+				$scope.getAnswers($scope.viewAll);
 			});
 		};		
 	}])

@@ -23,6 +23,10 @@ function readAnswers(callback) {
 	query("select * from bod.answers", callback);
 }
 
+function readUnprocessedAnswers(callback) {
+	query("select * from bod.answers where processed = 0", callback);
+}
+
 
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
@@ -78,3 +82,4 @@ exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
 exports.toggleLockAnswer = toggleLockAnswer;
+exports.readUnprocessedAnswers = readUnprocessedAnswers;
