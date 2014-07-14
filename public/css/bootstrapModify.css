@@ -19,6 +19,10 @@ body {
 	text-align: center;
 }
 
+.top-pad {
+	padding-top: 4%;
+}
+
 
 /* InsertAnswer-specific */
 
@@ -81,10 +85,9 @@ body {
 
     
 .btn-start {
-	font-size: 50px;
-	width: 300px;
+	font-size: 35px;
+	width: 250px;
     margin-top: 10%;
-    
 }
 
 .btn-response {
@@ -93,7 +96,7 @@ body {
 }
 
 .btn-group-vertical>.btn:not(:first-child):not(:last-child) {
-	border-radius: 30px;
+	border-radius: 10px;
 }
 
 
@@ -139,16 +142,25 @@ body {
 	font-size: 25px;
 }
 
+.text-smaller {
+	font-size: 20px;
+}
+
 
 /*--------------*/
 
 
-/* Fixed page elements */
+/* Absolute page elements */
 
 
-
-.logo-bottom-bouvet {
-	margin-top: 13%;
+.logo-bottom-bouvet-absolute {
+	position:absolute;
+	left: 0; right:0;
+	margin-left: auto;
+	margin-right: auto;
+	bottom: 25px;
+/*	margin-bottom: 30px;
+*/
 }
 
 
@@ -174,8 +186,4 @@ body {
 .modal-confirm-delete {
 	background-color: #ff3b30;
 	color:#fff;
-}
-
-.top-pad {
-	padding-top: 4%;
 }
