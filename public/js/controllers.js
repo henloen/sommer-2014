@@ -83,7 +83,7 @@ angular.module("bodApp.controllers", [])
 			}
 			else
 			{
-				scope.submitted = true;
+				$scope.submitted = true;
 			}
 		};
 

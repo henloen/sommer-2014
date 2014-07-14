@@ -146,6 +146,10 @@ body {
 	font-size: 20px;
 }
 
+.text-smallest {
+	font-size: 15px;
+}
+
 
 /*--------------*/
 
@@ -186,4 +190,9 @@ body {
 .modal-confirm-delete {
 	background-color: #ff3b30;
 	color:#fff;
+}
+
+.has-error-custom {
+	color: #e50000;
+
 }
