@@ -32,7 +32,7 @@ function insertAnswer(values, callback) {
 		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.alder
 		 +"', '" + values.studiested +"', '" + values.programmeringsstil +"', '" + values.musikk
 		  +"', '" + values.personlighet +"', '" + values.hypepreferanse  +"', '" + values.favorittgode
-		   +"', '" + values.planer_for_kvelden +"', '" + values.premie_hvis_du_vinner+ "', '" +
+		   +"', '" + values.planerforkvelden +"', '" + values.premiehvisduvinner+ "', '" +
 		    values.kjonn + "');",callback);
 }
 
