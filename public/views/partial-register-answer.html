@@ -2,7 +2,7 @@
 		<br>
 
 
-		<form name="answerForm" ng-submit="submitAnswer()" novalidate>
+		<form name="answerForm" ng-submit="submitAnswer(answersForm.$valid)" novalidate>
 			<div class="container">
 				<div ng-repeat="col in questions">
 					<div ng-class="{'col-sm-3 container' : true, 'col-left-border': col === questions.BsecondCol || col === questions.CthirdCol || col === questions.DfourthCol}">	
@@ -13,6 +13,7 @@
 									<input type="radio" name="{{question.name}}" value="{{option.value}}" ng-model="formData[question.name]" make-radio-button-detect-change required>{{option.output}}<br>
 								</label>
 								<br>
+									<p ng-show="answerForm.$invalid" class="help-block">Required field!</p>
 							</div>
 							<br>
 							<br ng-hide="$last">
@@ -24,7 +25,7 @@
 			<br><br>
 
 			<div class="container">
-				<button ng-disabled="answerForm.$invalid" class="btn btn-def-bouvet" name="registerButton" type="submit">
+				<button class="btn btn-def-bouvet" name="registerButton" type="submit">
 					Registrer svar
 				</button>
 			</form>

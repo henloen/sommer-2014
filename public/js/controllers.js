@@ -67,11 +67,18 @@ angular.module("bodApp.controllers", [])
 	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", "Answers", function($scope, $http, $location, Answers) {
 
 		$scope.formData = {};
+		$scope.submitted = false;
 
-		$scope.submitAnswer = function() {
-			Answers.create($scope.formData).success(function(data) {
-				$location.path("/partial-register-participant");
-			});
+		$scope.submitAnswer = function(isValid) {
+			if (isValid) {
+				Answers.create($scope.formData).success(function(data) {
+					$location.path("/partial-register-participant");
+				});
+			}
+			else
+			{
+				scope.submitted = true;
+			}
 		};
 
 		$scope.questions = {
