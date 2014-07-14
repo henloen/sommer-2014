@@ -42,7 +42,7 @@ describe('test redirection and Urls:', function() {
 
 
    	browser.findElement(by.name("escapeButton")).click();
-   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-start");   	
+   	expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/#/partial-index");   	
 
 	});
 });
