@@ -7,9 +7,7 @@ function index(req, res){
 
 //Used to get all rows from the database and return them as an array with JSON objects
 function getAnswers(req, res) {
-	console.log("view all: " + req.param("viewAll"));
 	if (req.param("viewAll") === "true") {
-		console.log("eval to true");
 		db.readAnswers(function(err, rows) {
 			if (err) {
 				errorHandler(err, res);
