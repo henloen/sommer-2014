@@ -61,13 +61,27 @@ angular.module("bodApp.controllers", [])
 			$scope.participants = data;
 		});
 
-		$scope.deleteParticipants =function() {
+		$scope.winners = [];
+
+		$scope.deleteParticipants = function() {
 			Participants.deleteAll().success(function () {
 				Participants.getAll().success(function (data) {
 					$scope.participants = data;
 				});
 			});
 		};
+
+		$scope.pickWinner = function() {
+			var winnerIndex = Math.floor(Math.random() * $scope.participants.length);
+			var winnerName = $scope.participants[winnerIndex].name;
+			var winnerEmail = $scope.participants[winnerIndex].email;
+			$scope.winners.push({name: winnerName, email: winnerEmail});
+		}
+
+		$scope.deleteWinners = function() {
+			$scope.winners = [];
+		}
+
 	}])
 
 	.controller("RegisterAnswerCtrl", ["$scope", "$http", "$location", "Answers", function($scope, $http, $location, Answers) {
@@ -361,17 +375,23 @@ angular.module("bodApp.controllers", [])
 	.controller("RegisterParticipantCtrl", ["$scope", "$http", "$location", "Participants", function($scope, $http, $location, Participants) {
 
 		$scope.participant = {};
+		$scope.duplicateEmail = "";
 
-		/*$scope.submitParticipant = function() {
-			Participants.create($.param($scope.participant))
-			.success(function(data) {
-				$location.path("/partial-participant-registered");
-			});
-		};*/
+		$scope.checkDuplicate = function() {
+			$scope.duplicateEmail = $scope.participant.email;
+		}
+
+
 		$scope.submitParticipant = function() {
 			Participants.create($scope.participant)
 			.success(function(data){
 				$location.path("/partial-participant-registered");
+			})
+			.error(function(data, status) {
+				if (status === 400) {
+					console.log(data);
+					$scope.checkDuplicate();
+				}
 			});
 		};
 	}])

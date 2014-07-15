@@ -134,7 +134,12 @@ function toggleLockAnswer(req, res) {
 function errorHandler(error, response) {
 			console.log("There has been an error:");
 			console.log(error);
-			response.send("There has been an error with the database, check the console for details...");
+			if (error.errno === 1062) {
+				response.send(400, "The email already exists");
+			}
+			else {
+				response.send(500, "There has been an error with the database, check the console for details...");
+			}
 }
 
 
