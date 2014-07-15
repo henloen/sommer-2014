@@ -5,8 +5,12 @@ angular.module("bodApp.services", [])
 
 	.factory("Answers", function($http) {
 		return {
-			getAll : function() {
-				return $http.get("/answers");
+			getAll : function(viewAllParam) {
+				return $http.get("/answers", {
+					params : {
+						viewAll : viewAllParam
+					}
+				});
 			},
 			get : function(id) {
 				return $http.get("/answers/" + id);
