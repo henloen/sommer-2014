@@ -1,38 +1,42 @@
 
 var user = require("./user");
 
+var authorization = require("./authorization");
+
 // Routing:
 
 module.exports = function(app) {
 
+	//test.authorize('hei','yer','asdf');
+
 //used for default route
 	app.route("/")
-		.get(user.index);
+		.get(authorization.authorize, user.index);
 
 	app.route("/answers")
 		//used to access answers in json format
-		.get(user.getAnswers)
+		.get(authorization.authorize, user.getAnswers)
 		//used to insert answers into database
-		.post(user.insertAnswer)
+		.post(authorization.authorize, user.insertAnswer)
 		//used to truncate table in database
-		.delete(user.deleteAnswers);
+		.delete(authorization.authorize, user.deleteAnswers);
 
 
 	app.route("/answers/:id")
 		//used to get the answer with that id
-		.get(user.getAnswer)
+		.get(authorization.authorize, user.getAnswer)
 		//used to update the status of an answer with the id as parameter
-		.put(user.updateAnswerStatus);
+		.put(authorization.authorize, user.updateAnswerStatus);
 
 	app.route("/participants")
 		//used to access all the participants in json format
-		.get(user.getParticipants)
+		.get(authorization.authorize, user.getParticipants)
 		//used to insert a participant into the database
-		.post(user.insertParticipant)
+		.post(authorization.authorize, user.insertParticipant)
 		//used to truncate table in database
-		.delete(user.deleteParticipants);
+		.delete(authorization.authorize, user.deleteParticipants);
 
 	app.route("/toggleLockAnswer/:id")
 		//used to toggle the lock field of the answer in the database
-		.put(user.toggleLockAnswer);
+		.put(authorization.authorize, user.toggleLockAnswer);
 }
