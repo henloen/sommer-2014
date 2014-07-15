@@ -1,4 +1,4 @@
-describe('happy flow of application:', function() {
+xdescribe('happy flow of application:', function() {
   
 
     var kjonn = ["kvinne", "mann"];
