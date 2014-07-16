@@ -377,7 +377,7 @@ angular.module("bodApp.controllers", [])
 		$scope.participant = {};
 		$scope.duplicateEmail = "";
 
-		$scope.checkDuplicate = function() {
+		$scope.setDuplicateEmail = function() {
 			$scope.duplicateEmail = $scope.participant.email;
 		}
 
@@ -389,8 +389,7 @@ angular.module("bodApp.controllers", [])
 			})
 			.error(function(data, status) {
 				if (status === 400) {
-					console.log(data);
-					$scope.checkDuplicate();
+					$scope.setDuplicateEmail();
 				}
 			});
 		};

@@ -144,16 +144,25 @@ describe("BoD controllers", function() {
 		});
 
 		it("should delete all answers and reload all answers again, TESTING 'deleteAnswers'", function() {
+			expect(answersMock.getAll).toHaveBeenCalled();
 			expect(scope.answers).toBeUndefined();
 			scope.deleteAnswers();
 			scope.$apply();
 			expect(answersMock.deleteAll).toHaveBeenCalled();
-			expect(answersMock.getAll).toHaveBeenCalled();
 			expect(scope.answers).toEqual([
 				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
 				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
 				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
 				]);
+		});
+
+		it("should have viewAll set to false by default, change it with toggleViewAll and load data again, TESTING toggleViewAll", function(){
+			expect(answersMock.getAll).toHaveBeenCalledWith(false);
+			expect(scope.answers).toBeUndefined();
+			expect(scope.viewAll).toBe(false);
+			scope.toggleViewAll(scope.viewAll);
+			expect(answersMock.getAll).toHaveBeenCalledWith(true);
+			expect(scope.viewAll).toBe(true);
 		});
 
 	});
@@ -225,6 +234,7 @@ describe("BoD controllers", function() {
 
 		it("should have 'participants' undefined on start up and define it by loading all answers in database, here mocked as 4 elements, TESTING instantiation", function() {
 			expect(scope.participants).toBeUndefined();
+			expect(scope.winners).toEqual([]);
 			expect(participantsMock.getAll).toHaveBeenCalled();
 			scope.$apply();
 			expect(scope.participants).toEqual([
@@ -250,6 +260,32 @@ describe("BoD controllers", function() {
 						{"email":"test1404731209305@lars.no","name":"tester3"},
 						]);
 		});
+
+		it("should pick a winner from the list of participants", function() {
+			expect(scope.winners).toEqual([]);
+			expect(scope.participants).toBeUndefined();
+			scope.$apply();
+			expect(scope.participants).toEqual([
+				{"email":"henrik@test.no","name":"Henrik Tester"},
+				{"email":"test1404729597725@lars.no","name":"tester1"},
+				{"email":"test1404730290541@lars.no","name":"tester2"},
+				{"email":"test1404731209305@lars.no","name":"tester3"},
+				]);
+			expect(scope.winners).toEqual([]);
+			scope.pickWinner();
+			expect(scope.winners).not.toEqual([]);
+			expect(scope.participants).toContain(scope.winners[0]);
+		});
+
+		it("should be able to reset the list of winners", function() {
+			expect(scope.winners).toEqual([]);
+			scope.$apply();
+			scope.pickWinner();
+			expect(scope.winners).not.toEqual([]);
+			scope.deleteWinners();
+			expect(scope.winners).toEqual([]);
+		})
+
 	});
 
 	/*Spec of RegisterAnswerCtrl*/
@@ -340,12 +376,20 @@ describe("BoD controllers", function() {
 		it("should have 'formData' initialized to '{}', call the create method with formData as argument, and relocate to '/partial-register-participant', TESTING submitAnswer", function() {
 			spyOn(location, "path")
 			expect(scope.formData).toEqual({});
+			expect(scope.submitted).toBe(false);
 			scope.formData = {sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0};
 			scope.submitAnswer(true);
 			expect(answersMock.create).toHaveBeenCalledWith({sivilstatus:"skilt",pa_hodet:"hjelm",alder:"coolcat",studiested:"selvlaertrover",programmeringsstil:"ordenungmusssein",musikk:"tronderrock",personlighet:"introvert",hypepreferanse:"bigdata",favorittgode:"gadgetkonto",planerforkvelden:"undefined",premiehvisduvinner:"moto360",processed:0,kjonn:"kvinne",locked:0});
 			scope.$apply();
 			expect(location.path).toHaveBeenCalledWith("/partial-register-participant");
 		});
+	
+		it("submitAnswer should set submitted to true if not valid form is submitted, TESTING submitAnswer", function() {
+			expect(scope.submitted).toBe(false);
+			scope.submitAnswer(false);
+			expect(scope.submitted).toBe(true);
+		});
+
 	});
 
 	/*Spec of RegisterParticipantCtrl*/
@@ -368,7 +412,7 @@ describe("BoD controllers", function() {
 			      };
 			      deferred.promise.error = function (fn) {
 			        deferred.promise.then(null, function (value) {
-			          fn(value);
+			          fn(value.data, value.status);
 			        });
 			        return deferred.promise;
 			      };
@@ -395,9 +439,14 @@ describe("BoD controllers", function() {
 				},
 				create : function(answer) {
 					var deferred = q.defer();
-					deferred.resolve();
+					if(answer.email === 'henrik@test.no') {
+						deferred.reject({data: "Reject", status: 400});
+					}
+					else {
+						deferred.resolve();
+					}
 					return deferred.promise;
-				}
+				},
 			}
 			spyOn(participantsMock, "getAll").andCallThrough();
 			spyOn(participantsMock, "deleteAll").andCallThrough();
@@ -417,11 +466,28 @@ describe("BoD controllers", function() {
 		it("should have 'participant' initialized to '{}', call the create method with it as parameter, and relocate to '/partial-register-participant', TESTING submitParticipant", function() {
 			spyOn(location, "path")
 			expect(scope.participant).toEqual({});
-			scope.participant = {email: "henrik l", name: "henrik@test.no"};
+			scope.participant = {email: "henrikl@test.no", name: "Henrik L"};
 			scope.submitParticipant();
-			expect(participantsMock.create).toHaveBeenCalledWith({email: "henrik l", name: "henrik@test.no"});
+			expect(participantsMock.create).toHaveBeenCalledWith({email: "henrikl@test.no", name: "Henrik L"});
 			scope.$apply();
 			expect(location.path).toHaveBeenCalledWith("/partial-participant-registered");
 		});
+
+		it("should have duplicateEmail initialized to '', and when receiving an error it should check whether it's a duplicate, TESTING submitParticipant", function() {
+			expect(scope.duplicateEmail).toEqual("");
+			scope.participant = {email: "henrik@test.no", name: "Henrik L"};
+			scope.submitParticipant();
+			expect(participantsMock.create).toHaveBeenCalledWith({email: "henrik@test.no", name: "Henrik L"})
+			scope.$apply();
+			expect(scope.duplicateEmail).toEqual("henrik@test.no");
+		});
+
+		it("should set duplicateEmail to the current email of participant, TESTING setDuplicateEmail", function() {
+			expect(scope.duplicateEmail).toEqual("");
+			scope.participant = {email: "henrik@test2.no", name: "henrik"};
+			scope.setDuplicateEmail();
+			expect(scope.duplicateEmail).toEqual("henrik@test2.no");
+
+		})
 	});
 });
