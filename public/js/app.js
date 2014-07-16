@@ -6,7 +6,8 @@ angular.module("bodApp", [
 	"ngRoute",
 	"bodApp.controllers",
 	"bodApp.directives",
-	"bodApp.services"
+	"bodApp.services",
+	"infinite-scroll"
 	]).
 config(["$routeProvider", function($routeProvider) {
 	$routeProvider.when("/partial-index", 

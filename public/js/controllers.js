@@ -6,6 +6,7 @@ angular.module("bodApp.controllers", [])
 	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
 
 		$scope.viewAll = false;
+		$scope.answerLimit = 10;
 
 		$scope.toggleViewAll = function(viewAll) {
 			if (viewAll) {
@@ -52,6 +53,10 @@ angular.module("bodApp.controllers", [])
 			Answers.deleteAll().success(function () {
 				$scope.getAnswers($scope.viewAll);
 			});
+		};
+
+		$scope.updatePaging = function() {
+			$scope.answerLimit += 10;
 		};		
 	}])
 

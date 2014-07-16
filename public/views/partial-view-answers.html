@@ -12,6 +12,13 @@
 		<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
 		</button>
 
+		<!--a button that triggers a modal to confirm that you want to delete all answers -->
+		<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
+			<span class="glyphicon glyphicon-trash">
+			</span>
+			Slett alle svar
+		</button>
+
 		<!-- table displaying the contents of the database -->
 		<table class="table table-hover bg-white">
 			<thead>
@@ -33,7 +40,8 @@
 			</thead>
 			<tbody class="listview">
 				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
-				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
+				<div infinite-scroll="updatePaging()" infinite-scroll-distance="3">
+				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers'] | limitTo:answerLimit" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
 					<td>{{answer.pa_hodet}}</td>
@@ -94,16 +102,10 @@
 
 					</td>
 				</tr>
+				</div>
 			</tbody>
 		</table>
 
-
-		<!--a button that triggers a modal to confirm that you want to delete all answers -->
-		<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
-			<span class="glyphicon glyphicon-trash">
-			</span>
-			Slett alle svar
-		</button>
 
 		<!--a modal that wants you to confirm that you want to delete all answers -->
 		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
