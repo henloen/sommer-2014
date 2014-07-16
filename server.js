@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 //****************AUTHORIZATION******************
-app.use('/public', authorization.authorize)
+//app.use('/public', authorization.authorize)
 //***********************************************
 
 
