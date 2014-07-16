@@ -5,7 +5,9 @@
 angular.module("bodApp.controllers", [])
 	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
 
-		$scope.viewAll = false;
+		$scope.viewAll = true;
+		$scope.limitAnswers = 10;
+		$scope.viewProcessed = 'processed';
 
 		$scope.toggleViewAll = function(viewAll) {
 			if (viewAll) {
@@ -15,6 +17,16 @@ angular.module("bodApp.controllers", [])
 				$scope.viewAll = true;
 			}
 			$scope.getAnswers($scope.viewAll);
+		}
+
+		$scope.toggleView = function(){
+			if ($scope.viewProcessed === 'processed') {
+				$scope.viewProcessed = '-processed';
+			}
+			else{
+				$scope.viewProcessed = 'processed';
+			}
+			
 		}
 		
 		$scope.getAnswers = function(viewAll) {

@@ -5,8 +5,12 @@
 				</span>
 				Tilbake til meny
 			</a>
-
+		<!--
 		<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
+		</button>
+	-->
+
+		<button class="btn btn-def-bouvet" ng-click="toggleView()">Sortering
 		</button> 
 
 		<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
@@ -33,7 +37,7 @@
 			</thead>
 			<tbody class="listview">
 				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
-				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
+				<tr ng-repeat="answer in answers | startFrom:100 | orderBy:[viewProcessed, 'id_answers'] | limitTo:limitAnswers" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
 					<td>{{answer.pa_hodet}}</td>
