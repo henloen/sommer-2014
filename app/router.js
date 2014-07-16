@@ -11,7 +11,8 @@ module.exports = function(app) {
 
 //used for default route
 	app.route("/")
-		.get(authorization.authorize, user.index);
+		//.get(authorization.authorize, user.index);
+		.get(user.index);
 
 	app.route("/answers")
 		//used to access answers in json format
