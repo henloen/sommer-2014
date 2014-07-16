@@ -21,18 +21,28 @@
 					<form class="form-horizontal" name="userForm" ng-submit="submitParticipant()" novalidate>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-4">
-								<input type="text" class="form-control form-field text-white" name="participantName" placeholder="Navn" ng-model="participant.name" required>
+								<input type="text" class="form-control form-field text-white" name="participantName" placeholder="Navn" ng-model="participant.name" required ng-maxlength="90">
 							</div>
 						</div>
+						<p ng-show="userForm.participantName.$error.maxlength" class="help-block has-error-custom">
+							Navnet er for langt, maks lengde er 90 tegn.
+						</p>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-4">
-								<input type="email" class="form-control form-field text-white" name="participantEmail" placeholder="Email" ng-model="participant.email" required>
+								<input type="email" class="form-control form-field text-white" name="participantEmail" placeholder="Email" ng-model="participant.email" required ng-maxlength="90">
 							</div>
 						</div>
+						<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
+							E-postadressen er for lang, maks lengde er 90 tegn.
+						</p>
+						<p ng-show="duplicateEmail === participant.email" class="help-block has-error-custom">
+							Denne e-postadressen er allerede registrert.
+							Vennligst prøv en annen.
+						</p>
 						<br>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-8">
-								<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid">Submit info</button>
+								<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid || duplicateEmail === participant.email">Submit info</button>
 							</div>
 						</div>
 					</form>
