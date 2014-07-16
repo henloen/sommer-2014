@@ -1,69 +1,58 @@
+describe('register answer:', function() {
+    
+    var kjonn = ["kvinne", "mann"];
+    var sivilstatus = ["gift/samboer", "skilt", "singel", "complicated"];
+    var alder = ["youngster","coolcat", "hipster", "gammelringrev"];
+    var hodet = ["caps","turban","hette","hjelm","solbriller","hijab"];
+    var studiested = ["ntnu","selvlaertrover","annet"];
+    var programmeringsstil = ["batenblirtil","detordnerseg","ordenungmusssein"];
+    var musikk = ["indie","trash","disco","tronderrock","metal","rave","klassisk"];
+    var personlighet = ["introvert", "ekstrovert", "ekstrovertpluss"];
+    var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding"];
+    var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
+    var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
+    var premiehvisduvinner = ["moto360", "oculusrift"];
 
-/*
 
-************************************************************
-NOT TESTED AS VALIDATION IMPLEMENTATION IS NOT FINISHED!!!
-COMMENTED OUT UNTIL IMPLEMENTED
-************************************************************
 
-*/
-
-xdescribe('register answer:', function() {
-  
+  it('should not redirect when pressing "register" button when all questions are not answered', function() {
     browser.get('/');
     browser.findElement(by.name("registerAnswer")).click();
     browser.findElement(by.name("startButton")).click();  
-
-
-  it('should hide "register" button when all questions are not answered', function() {    
-    //Verifies that button can't be pressed when form is not valid
-    expect(element(by.name('registerButton')).getAttribute('disabled')).toBeTruthy();
-  	});
-
-
-
-  it('should show "register" button when all questions are answered', function() {
     
     //fill out answers
-    var kjonn = browser.findElement(by.id("kjonn"));
-    kjonn.findElement(by.name("kvinne")).click();
-    
-    var sivilstatus = browser.findElement(by.id("sivilstatus"));
-    sivilstatus.findElement(by.name("singel")).click();
-    
-    var alder = browser.findElement(by.id("alder"));
-    alder.findElement(by.name("hipster")).click();
-    
-    var pahodet = browser.findElement(by.id("pa_hodet"));
-    pahodet.findElement(by.name("hette")).click();
-    
-    var studiested = browser.findElement(by.id("studiested"));
-    studiested.findElement(by.name("ntnu")).click();
+    browser.findElement(by.name(getRandom(kjonn))).click();
+    browser.findElement(by.name(getRandom(sivilstatus))).click();
+    browser.findElement(by.name(getRandom(alder))).click();
+    browser.findElement(by.name(getRandom(hodet))).click();
+    browser.findElement(by.name(getRandom(studiested))).click();
+    browser.findElement(by.name(getRandom(programmeringsstil))).click();
+    browser.findElement(by.name(getRandom(musikk))).click();
+    browser.findElement(by.name(getRandom(personlighet))).click();
+    browser.findElement(by.name(getRandom(hypepreferanse))).click();
+    browser.findElement(by.name(getRandom(planerforkvelden))).click();
+    browser.findElement(by.name(getRandom(favorittgode))).click();
 
-    var programmeringsstil = browser.findElement(by.id("programmeringsstil"));
-    programmeringsstil.findElement(by.name("detordnerseg")).click();
+    browser.findElement(by.name("registerButton")).click();
 
-    var musikk = browser.findElement(by.id("musikk"));
-    musikk.findElement(by.name("disco")).click();
-    
-    var personlighet = browser.findElement(by.id("personlighet"));
-    personlighet.findElement(by.name("ekstrovertpluss")).click();
-    
-    var hypepreferanse = browser.findElement(by.id("hypepreferanse"));
-    hypepreferanse.findElement(by.name("bigdata")).click();
-    
-    var planerforkvelden = browser.findElement(by.id("planerforkvelden"));
-    planerforkvelden.findElement(by.name("mingle")).click();
-    
-    var favorittgode = browser.findElement(by.id("favorittgode"));
-    favorittgode.findElement(by.name("fribar")).click();
-    
-    var premie = browser.findElement(by.id("premie"));
-    premie.findElement(by.name("oculusrift")).click();
-
-
-    //Verifies that button can be pressed when form is valid
-    expect(element(by.name('submitButton')).getAttribute('disabled')).toBeFalsy();
-
+    //URL does not change because form is not completed
+    expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-register-answer");
   });
+
+
+  it('should redirect when pressing "register" button when all questions are answered', function() {
+    
+    browser.findElement(by.name(getRandom(premiehvisduvinner))).click();
+    browser.findElement(by.name("registerButton")).click();
+    
+    //URL does change because form is completed
+    expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/public/index.html#/partial-register-participant")
+  });
+
+
+
+  function getRandom(list) {
+        return list[Math.floor((Math.random() * list.length))];
+    }
+
 });

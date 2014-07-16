@@ -1,24 +1,35 @@
-
-
 describe('test titles of pages', function() {
   
+
+    var kjonn = ["kvinne", "mann"];
+    var sivilstatus = ["gift/samboer", "skilt", "singel", "complicated"];
+    var alder = ["youngster","coolcat", "hipster", "gammelringrev"];
+    var hodet = ["caps","turban","hette","hjelm","solbriller","hijab"];
+    var studiested = ["ntnu","selvlaertrover","annet"];
+    var programmeringsstil = ["batenblirtil","detordnerseg","ordenungmusssein"];
+    var musikk = ["indie","trash","disco","tronderrock","metal","rave","klassisk"];
+    var personlighet = ["introvert", "ekstrovert", "ekstrovertpluss"];
+    var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding"];
+    var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
+    var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
+    var premiehvisduvinner = ["moto360", "oculusrift"];
+
+    var milliseconds = (new Date).getTime();
+
   it('should confirm correct title on all pages', function() {
     
     //partial-index
     browser.get('/');
     expect(browser.getTitle()).toEqual("The Beauty of Data");
 
-
     //partial-view-answers
     browser.findElement(By.name("seeAllAnswers")).click();
     expect(browser.getTitle()).toEqual("The Beauty of Data")
   
-
     //partial-start
     browser.findElement(By.name("menuButton")).click();
     browser.findElement(By.name("registerAnswer")).click();
     expect(browser.getTitle()).toEqual("The Beauty of Data")
-
 
     //partial-register-answer
     browser.findElement(By.name("startButton")).click();
@@ -26,65 +37,34 @@ describe('test titles of pages', function() {
 
 
     //partial-register-participant
+    //fill out answers
+    browser.findElement(by.name(getRandom(kjonn))).click();
+    browser.findElement(by.name(getRandom(sivilstatus))).click();
+    browser.findElement(by.name(getRandom(alder))).click();
+    browser.findElement(by.name(getRandom(hodet))).click();
+    browser.findElement(by.name(getRandom(studiested))).click();
+    browser.findElement(by.name(getRandom(programmeringsstil))).click();
+    browser.findElement(by.name(getRandom(musikk))).click();
+    browser.findElement(by.name(getRandom(personlighet))).click();
+    browser.findElement(by.name(getRandom(hypepreferanse))).click();
+    browser.findElement(by.name(getRandom(planerforkvelden))).click();
+    browser.findElement(by.name(getRandom(favorittgode))).click();
+    browser.findElement(by.name(getRandom(premiehvisduvinner))).click();
 
-        //fill out answers
-    var kjonn = browser.findElement(by.id("kjonn"));
-    kjonn.findElement(by.name("kvinne")).click();
-    
-
-    var sivilstatus = browser.findElement(by.id("sivilstatus"));
-    sivilstatus.findElement(by.name("singel")).click();
-    
-
-    var alder = browser.findElement(by.id("alder"));
-    alder.findElement(by.name("hipster")).click();
-    
-
-    var pahodet = browser.findElement(by.id("pa_hodet"));
-    pahodet.findElement(by.name("hette")).click();
-    
-
-    var studiested = browser.findElement(by.id("studiested"));
-    studiested.findElement(by.name("ntnu")).click();
-    
-
-    var programmeringsstil = browser.findElement(by.id("programmeringsstil"));
-    programmeringsstil.findElement(by.name("detordnerseg")).click();
-    
-
-    var musikk = browser.findElement(by.id("musikk"));
-    musikk.findElement(by.name("disco")).click();
-    
-
-    var personlighet = browser.findElement(by.id("personlighet"));
-    personlighet.findElement(by.name("ekstrovertpluss")).click();
-    
-
-    var hypepreferanse = browser.findElement(by.id("hypepreferanse"));
-    hypepreferanse.findElement(by.name("bigdata")).click();
-    
-
-    var planerforkvelden = browser.findElement(by.id("planerforkvelden"));
-    planerforkvelden.findElement(by.name("mingle")).click();
-    
-    var favorittgode = browser.findElement(by.id("favorittgode"));
-    favorittgode.findElement(by.name("fribar")).click();
-    
-    var premie = browser.findElement(by.id("premiehvisduvinner"));
-    premie.findElement(by.name("oculusrift")).click();
-
-    
     browser.findElement(By.name("registerButton")).click();
     expect(browser.getTitle()).toEqual("The Beauty of Data")
 
-
     //partial-register-participant
-    var milliseconds = (new Date).getTime();
     browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@lars.no");
     browser.findElement(By.name("submitButton")).click();
     expect(browser.getTitle()).toEqual("The Beauty of Data")
 
-
   });
+
+
+    function getRandom(list) {
+        return list[Math.floor((Math.random() * list.length))];
+    }
+
 });

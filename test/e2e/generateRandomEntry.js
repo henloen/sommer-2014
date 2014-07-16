@@ -12,26 +12,17 @@ describe('happy flow of application:', function() {
     var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
     var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
     var premiehvisduvinner = ["moto360", "oculusrift"];
-  
 
-  it('should click through application with random entries and register participant', function() {
+    var milliseconds = (new Date).getTime();
+
+
+  it('should click through application with random entries', function() {
     
     //partial-index
     browser.get('/');
-   
 
-    
     browser.findElement(by.name("registerAnswer")).click();
     browser.findElement(by.name("startButton")).click();
-    
-
-
-    function getRandom(list) {
-        return list[Math.floor((Math.random() * list.length))];
-    }
-
-    //fill out answers
-
 
     browser.findElement(by.name(getRandom(kjonn))).click();
     browser.findElement(by.name(getRandom(sivilstatus))).click();
@@ -45,17 +36,20 @@ describe('happy flow of application:', function() {
     browser.findElement(by.name(getRandom(planerforkvelden))).click();
     browser.findElement(by.name(getRandom(favorittgode))).click();
     browser.findElement(by.name(getRandom(premiehvisduvinner))).click();
-    
 
     browser.findElement(by.name("registerButton")).click();
-
-
-
-    //partial-register-participant
-    var milliseconds = (new Date).getTime();
-    browser.findElement(By.name("participantName")).sendKeys("test");
-    browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
-    browser.findElement(By.name("submitButton")).click();
-    
     });
+
+
+  it('should register participant', function() {
+        browser.findElement(By.name("participantName")).sendKeys("test");
+        browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
+        browser.findElement(By.name("submitButton")).click();
+  });
+    
+
+    function getRandom(list) {
+        return list[Math.floor((Math.random() * list.length))];
+    }
+
 });

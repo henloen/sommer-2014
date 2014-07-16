@@ -1,4 +1,4 @@
-describe('answer database:', function() {
+xdescribe('answer database:', function() {
   
   it('should delete answers in table', function() {
     
