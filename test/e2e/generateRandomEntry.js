@@ -1,55 +1,19 @@
+var utilities = require("./utilities");
+
 describe('happy flow of application:', function() {
   
-    var kjonn = ["kvinne", "mann"];
-    var sivilstatus = ["gift/samboer", "skilt", "singel", "complicated"];
-    var alder = ["youngster","coolcat", "hipster", "gammelringrev"];
-    var hodet = ["caps","turban","hette","hjelm","solbriller","hijab"];
-    var studiested = ["ntnu","selvlaertrover","annet"];
-    var programmeringsstil = ["batenblirtil","detordnerseg","ordenungmusssein"];
-    var musikk = ["indie","trash","disco","tronderrock","metal","rave","klassisk"];
-    var personlighet = ["introvert", "ekstrovert", "ekstrovertpluss"];
-    var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding"];
-    var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
-    var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
-    var premiehvisduvinner = ["moto360", "oculusrift"];
-
-    var milliseconds = (new Date).getTime();
-
-
-  it('should click through application with random entries', function() {
-    
-    //partial-index
-    browser.get('/');
-
-    browser.findElement(by.name("registerAnswer")).click();
-    browser.findElement(by.name("startButton")).click();
-
-    browser.findElement(by.name(getRandom(kjonn))).click();
-    browser.findElement(by.name(getRandom(sivilstatus))).click();
-    browser.findElement(by.name(getRandom(alder))).click();
-    browser.findElement(by.name(getRandom(hodet))).click();
-    browser.findElement(by.name(getRandom(studiested))).click();
-    browser.findElement(by.name(getRandom(programmeringsstil))).click();
-    browser.findElement(by.name(getRandom(musikk))).click();
-    browser.findElement(by.name(getRandom(personlighet))).click();
-    browser.findElement(by.name(getRandom(hypepreferanse))).click();
-    browser.findElement(by.name(getRandom(planerforkvelden))).click();
-    browser.findElement(by.name(getRandom(favorittgode))).click();
-    browser.findElement(by.name(getRandom(premiehvisduvinner))).click();
-
-    browser.findElement(by.name("registerButton")).click();
+  iit('should click through application with random entries', function() {
+    utilities.getIndex(browser);
+    utilities.getToAnswerPage(browser);
+    utilities.fillAnswer(browser);
+    utilities.submitAnswers(browser);
     });
 
 
-  it('should register participant', function() {
-        browser.findElement(By.name("participantName")).sendKeys("test");
-        browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@happyflow.no");
-        browser.findElement(By.name("submitButton")).click();
+  iit('should register participant', function() {
+        utilities.registerParticipant(browser);
+        utilities.submitParticipant(browser);
   });
     
-
-    function getRandom(list) {
-        return list[Math.floor((Math.random() * list.length))];
-    }
 
 });
