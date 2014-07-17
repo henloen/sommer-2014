@@ -15,5 +15,4 @@ describe('happy flow of application:', function() {
         utilities.submitParticipant(browser);
   });
     
-
 });
