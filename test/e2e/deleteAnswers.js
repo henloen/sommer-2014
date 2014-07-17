@@ -1,17 +1,16 @@
-xdescribe('answer database:', function() {
+var util = require("./utilities");
+
+describe('answer database:', function() {
   
   it('should delete answers in table', function() {
     
-    //partial-index
-    browser.get('/');
-    browser.findElement(by.name("seeAllAnswers")).click();
+    util.directToIndex(browser);
+    util.directToViewAnswers(browser);
 
-    //Delete all existing entries in answers
-    browser.findElement(by.name("deleteAnswers")).click();
-    browser.findElement(by.name("confirmDelete")).click();
+    util.deleteAnswers(browser);
 
     //Checks that no elements with binding exist --> There are no entries in the answers table
-  	expect(element(by.binding('answer.id_answers')).isPresent()).toBe(false);
-	
+  	expect(element(by.binding('answer.id_answers')).isPresent()).toBe(false);	
 	});
+
 });
