@@ -15,12 +15,16 @@ body {
 	background-color: #fff;
 }
 
-.container {
-	text-align: center;
-}
-
 .top-pad {
 	padding-top: 4%;
+}
+
+.top-pad-small {
+	padding-top: 1%;
+}
+
+.middle-pos {
+	text-align: center;
 }
 
 

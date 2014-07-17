@@ -3,10 +3,10 @@
 /*Filters*/
 
 angular.module("bodApp.filters", [])
-	.filter("startFrom", function() {
-		return function(input, start) {
+	.filter("answersFromTo", function() {
+		return function(input, start, end) {
 			start = +start;
 			input = input || [];
-			return input.slice(start);
+			return input.slice(start, end);
 		}
 	});

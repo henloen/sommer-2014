@@ -3,11 +3,28 @@
 /*Controllers*/
 
 angular.module("bodApp.controllers", [])
-	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
+	.controller("AnswerCtrl", ["$scope", "filterFilter", "Answers", function($scope, filterFilter, Answers) {
 
 		$scope.viewAll = true;
 		$scope.limitAnswers = 10;
 		$scope.viewProcessed = 'processed';
+		$scope.startAnswers = 0;
+
+		$scope.tenNextAnswers = function() {
+			if ($scope.startAnswers + 10 < $scope.answers.length) {
+				$scope.startAnswers += 10;
+			}
+		}
+
+		$scope.tenPrevAnswers = function() {
+			if ($scope.startAnswers - 10 >= 0) {
+				$scope.startAnswers -= 10;
+			}
+		}
+
+		$scope.setNumberOfUnprocessed = function() {
+			$scope.numberOfUnprocessed = filterFilter($scope.answers, {processed : 0}).length;
+		}
 
 		$scope.toggleViewAll = function(viewAll) {
 			if (viewAll) {
@@ -32,10 +49,12 @@ angular.module("bodApp.controllers", [])
 		$scope.getAnswers = function(viewAll) {
 			Answers.getAll(viewAll).success(function (data) {
 					$scope.answers = data;
+					$scope.setNumberOfUnprocessed();
 			});
 		};
 
 		$scope.getAnswers($scope.viewAll);
+		//$scope.setNumberOfUnprocessed();
 
 		$scope.getAnswer = function(id) {
 			Answers.get(id).success(function (data) {

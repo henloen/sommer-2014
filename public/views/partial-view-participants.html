@@ -1,4 +1,5 @@
 <div>
+	<div class="container">
 		<!--a button that takes you back to the main menu -->
 		<a href="#/partial-index" name="menuButton" class="btn btn-def-bouvet">
 			<span class="glyphicon glyphicon-home">
@@ -12,7 +13,20 @@
 			Trekk vinner
 		</button>
 
-			<div class="text-orange text-medium container">Deltakere</div>
+		<button class="btn btn-def-bouvet col-sm-offset-2" name="deleteWinners" data-toggle="modal" data-target="#confirmDeleteWinnersModal">
+			<span class="glyphicon glyphicon-trash">
+			</span>
+			Slett vinnere
+		</button>
+
+		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
+		<button class="btn btn-def-bouvet" name="deleteParticipants" data-toggle="modal" data-target="#confirmDeleteParticipantsModal" >
+			<span class="glyphicon glyphicon-trash">
+			</span>
+			Slett alle deltakere
+		</button>
+	</div>
+			<div class="text-orange text-medium middle-pos">Deltakere</div>
 
 			<table class="table table-hover bg-white">
 				<thead>
@@ -22,7 +36,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="participant in participants">
+					<tr ng-repeat="participant in participants | limitTo:10">
 						<td>{{participant.name}}</td>
 						<td>{{participant.email}}</td>
 					</tr>
@@ -32,7 +46,7 @@
 		<br><br>
 
 	<div ng-show="winners.length > 0">
-		<div class="text-orange text-medium container">Vinnere</div>
+		<div class="text-orange text-medium middle-pos">Vinnere</div>
 		<table class="table table-hover bg-white">
 			<thead>
 				<tr>
@@ -49,19 +63,6 @@
 		</table>
 	</div>
 
-	<button class="btn btn-def-bouvet" name="deleteWinners" data-toggle="modal" data-target="#confirmDeleteWinnersModal">
-			<span class="glyphicon glyphicon-trash">
-			</span>
-			Slett vinnere
-		</button>
-
-		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
-
-		<button class="btn btn-def-bouvet" name="deleteParticipants" data-toggle="modal" data-target="#confirmDeleteParticipantsModal" >
-			<span class="glyphicon glyphicon-trash">
-			</span>
-			Slett alle deltakere
-		</button>
 
 		<!-- the modal that wants you to confirm that you want to delete all participants in the database -->
 		<div class="modal" id="confirmDeleteParticipantsModal" role="dialog" aria-hidden="true">
