@@ -157,12 +157,12 @@ describe("BoD controllers", function() {
 		});
 
 		it("should have viewAll set to false by default, change it with toggleViewAll and load data again, TESTING toggleViewAll", function(){
-			expect(answersMock.getAll).toHaveBeenCalledWith(false);
-			expect(scope.answers).toBeUndefined();
-			expect(scope.viewAll).toBe(false);
-			scope.toggleViewAll(scope.viewAll);
 			expect(answersMock.getAll).toHaveBeenCalledWith(true);
+			expect(scope.answers).toBeUndefined();
 			expect(scope.viewAll).toBe(true);
+			scope.toggleViewAll(scope.viewAll);
+			expect(answersMock.getAll).toHaveBeenCalledWith(false);
+			expect(scope.viewAll).toBe(false);
 		});
 
 	});

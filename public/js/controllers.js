@@ -3,9 +3,28 @@
 /*Controllers*/
 
 angular.module("bodApp.controllers", [])
-	.controller("AnswerCtrl", ["$scope", "Answers", function($scope, Answers) {
+	.controller("AnswerCtrl", ["$scope", "filterFilter", "Answers", function($scope, filterFilter, Answers) {
 
-		$scope.viewAll = false;
+		$scope.viewAll = true;
+		$scope.limitAnswers = 10;
+		$scope.viewProcessed = 'processed';
+		$scope.startAnswers = 0;
+
+		$scope.tenNextAnswers = function() {
+			if ($scope.startAnswers + 10 < $scope.answers.length) {
+				$scope.startAnswers += 10;
+			}
+		}
+
+		$scope.tenPrevAnswers = function() {
+			if ($scope.startAnswers - 10 >= 0) {
+				$scope.startAnswers -= 10;
+			}
+		}
+
+		$scope.setNumberOfUnprocessed = function() {
+			$scope.numberOfUnprocessed = filterFilter($scope.answers, {processed : 0}).length;
+		}
 
 		$scope.toggleViewAll = function(viewAll) {
 			if (viewAll) {
@@ -16,14 +35,26 @@ angular.module("bodApp.controllers", [])
 			}
 			$scope.getAnswers($scope.viewAll);
 		}
+
+		$scope.toggleView = function(){
+			if ($scope.viewProcessed === 'processed') {
+				$scope.viewProcessed = '-processed';
+			}
+			else{
+				$scope.viewProcessed = 'processed';
+			}
+			
+		}
 		
 		$scope.getAnswers = function(viewAll) {
 			Answers.getAll(viewAll).success(function (data) {
 					$scope.answers = data;
+					$scope.setNumberOfUnprocessed();
 			});
 		};
 
 		$scope.getAnswers($scope.viewAll);
+		//$scope.setNumberOfUnprocessed();
 
 		$scope.getAnswer = function(id) {
 			Answers.get(id).success(function (data) {
@@ -62,6 +93,8 @@ angular.module("bodApp.controllers", [])
 		});
 
 		$scope.winners = [];
+		$scope.startParticipants = 0;
+		$scope.limitParticipants = 10;
 
 		$scope.deleteParticipants = function() {
 			Participants.deleteAll().success(function () {
@@ -80,6 +113,19 @@ angular.module("bodApp.controllers", [])
 
 		$scope.deleteWinners = function() {
 			$scope.winners = [];
+		}
+
+
+		$scope.tenNextParticipants = function() {
+			if ($scope.startParticipants + 10 < $scope.participants.length) {
+				$scope.startParticipants += 10;
+			}
+		}
+
+		$scope.tenPrevParticipants = function() {
+			if ($scope.startParticipants - 10 >= 0) {
+				$scope.startParticipants -= 10;
+			}
 		}
 
 	}])

@@ -1,16 +1,39 @@
 <div>
-		<!--a button that takes you back to the menu -->
-			<a href="#/partial-index.html" name="menuButton" class="btn btn-def-bouvet">
-				<span class="glyphicon glyphicon-home">
-				</span>
-				Tilbake til meny
-			</a>
+	<div class="container top-pad-medium bottom-pad-small">
+		<div class="row">
+			<!--a button that takes you back to the menu -->
+			<div class="col-sm-2">
+				<a href="#/partial-index.html" name="menuButton" class="btn btn-def-bouvet">
+					<span class="glyphicon glyphicon-home">
+					</span>
+					Tilbake til meny
+				</a>
+			</div>
+			<!--
+			<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
+			</button>
+		-->
 
-		<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
-		</button> 
+			<!--
+			<button class="btn btn-def-bouvet" ng-click="toggleView()">Sortering
+			</button> 
+		-->
+			<!--
+			<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
+			</button>
+		-->
 
-		<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
-		</button>
+			<div class="col-sm-3 col-sm-offset-2 text-smaller text-white top-pad-small">
+				Totalt antall svar: {{answers.length}}
+			</div>
+			<div class="col-sm-3 text-smaller text-white top-pad-small">
+				Antall ubehandlede svar: {{numberOfUnprocessed}}
+			</div>
+			<div class="col-sm-2 text-smaller text-white top-pad-small">
+				Index: {{startAnswers + 1}} - {{startAnswers + 10}}
+			</div>
+		</div>
+	</div>
 
 		<!-- table displaying the contents of the database -->
 		<table class="table table-hover bg-white">
@@ -33,7 +56,9 @@
 			</thead>
 			<tbody class="listview">
 				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
-				<tr ng-repeat="answer in answers | orderBy:['processed', 'id_answers']" ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
+				<tr ng-repeat="answer in answers | answersFromTo:startAnswers:startAnswers +  limitAnswers | 
+				orderBy:[viewProcessed, 'id_answers']"
+				ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
 					<td>{{answer.pa_hodet}}</td>
@@ -91,19 +116,29 @@
 								</div>
 							</div>
 						</div>
-
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
 
-		<!--a button that triggers a modal to confirm that you want to delete all answers -->
-		<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
-			<span class="glyphicon glyphicon-trash">
-			</span>
-			Slett alle svar
-		</button>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<!--a button that triggers a modal to confirm that you want to delete all answers -->
+					<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
+						<span class="glyphicon glyphicon-trash">
+						</span>
+						Slett alle svar
+					</button>
+				</div>
+				
+				<div class="col-sm-5 col-sm-offset-4">
+					<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()">Se 10 forrige svar</button>
+					<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()">Se 10 neste svar</button>
+				</div>
+			</div>
+		</div>
 
 		<!--a modal that wants you to confirm that you want to delete all answers -->
 		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
