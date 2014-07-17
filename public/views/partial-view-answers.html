@@ -1,8 +1,7 @@
-<div>
-	<div class="container top-pad-medium bottom-pad-small">
-		<div class="row">
+<div class="container-fluid">
+	<div class="row top-pad-medium bottom-pad-small">
 			<!--a button that takes you back to the menu -->
-			<div class="col-sm-2">
+			<div class="col-sm-2 col-sm-offset-1">
 				<a href="#/partial-index.html" name="menuButton" class="btn btn-def-bouvet">
 					<span class="glyphicon glyphicon-home">
 					</span>
@@ -23,7 +22,7 @@
 			</button>
 		-->
 
-			<div class="col-sm-3 col-sm-offset-2 text-smaller text-white top-pad-small">
+			<div class="col-sm-2 col-sm-offset-2 text-smaller text-white top-pad-small">
 				Totalt antall svar: {{answers.length}}
 			</div>
 			<div class="col-sm-3 text-smaller text-white top-pad-small">
@@ -32,9 +31,8 @@
 			<div class="col-sm-2 text-smaller text-white top-pad-small">
 				Index: {{startAnswers + 1}} - {{startAnswers + 10}}
 			</div>
-		</div>
 	</div>
-
+	<div class="row">
 		<!-- table displaying the contents of the database -->
 		<table class="table table-hover bg-white">
 			<thead>
@@ -120,25 +118,29 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
 
 
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<!--a button that triggers a modal to confirm that you want to delete all answers -->
-					<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
-						<span class="glyphicon glyphicon-trash">
-						</span>
-						Slett alle svar
-					</button>
-				</div>
-				
-				<div class="col-sm-5 col-sm-offset-4">
-					<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()">Se 10 forrige svar</button>
-					<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()">Se 10 neste svar</button>
-				</div>
-			</div>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-1">
+			<!--a button that triggers a modal to confirm that you want to delete all answers -->
+			<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
+				<span class="glyphicon glyphicon-trash">
+				</span>
+				Slett alle svar
+			</button>
 		</div>
+		
+		<div class="col-sm-5 col-sm-offset-4">
+			<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				Se 10 forrige svar</button>
+			<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()">
+				Se 10 neste svar
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</button>
+		</div>
+	</div>
 
 		<!--a modal that wants you to confirm that you want to delete all answers -->
 		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
