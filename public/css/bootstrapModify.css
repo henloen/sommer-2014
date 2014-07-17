@@ -15,12 +15,24 @@ body {
 	background-color: #fff;
 }
 
-.container {
-	text-align: center;
-}
-
 .top-pad {
 	padding-top: 4%;
+}
+
+.top-pad-medium {
+	padding-top:3%;
+}
+
+.top-pad-small {
+	padding-top: 1%;
+}
+
+.bottom-pad-small {
+	padding-bottom: 1%;
+}
+
+.middle-pos {
+	text-align: center;
 }
 
 
