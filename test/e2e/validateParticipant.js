@@ -2,6 +2,8 @@ var util = require("./utilities");
 
 describe('register participant:', function() {
   
+  var timestamp = (new Date).getTime();
+
   it('should hide "register" button when form is not valid', function() {    
     util.directToIndex(browser);
     util.clickRegisterAnswerButton(browser);
@@ -16,7 +18,7 @@ describe('register participant:', function() {
 
 
   it('should show "register" button when form is valid', function() {
-    util.registerParticipant(browser)
+    util.registerParticipant(browser, timestamp);
     
     expect(element(by.name('submitButton')).getAttribute('disabled')).toBeFalsy();
   });

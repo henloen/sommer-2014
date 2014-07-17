@@ -1,6 +1,8 @@
 var util = require("./utilities");
 
 describe('happy flow of application:', function() {
+
+    var timestamp = (new Date).getTime();
   
   it('should click through application with random entries', function() {
         util.directToIndex(browser);
@@ -11,7 +13,7 @@ describe('happy flow of application:', function() {
 
 
   it('should register participant', function() {
-        util.registerParticipant(browser);
+        util.registerParticipant(browser, timestamp);
         util.submitParticipant(browser);
     });
     

@@ -128,9 +128,9 @@ function submitAnswers(browser) {
     browser.findElement(by.name("registerButton")).click();
 }
 
-function registerParticipant(browser) {
+function registerParticipant(browser, timestamp) {
     browser.findElement(By.name("participantName")).sendKeys("test");
-    browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@testing.no");
+    browser.findElement(By.name("participantEmail")).sendKeys("test" + timestamp +"@testing.no");
 }
 
 function submitParticipant(browser) {

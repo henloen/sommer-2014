@@ -2,6 +2,8 @@ var util = require("./utilities");
 
 describe('testing draw winner:', function() {
 
+  var timestamp = (new Date).getTime();
+
   it("should draw a winner from participant table", function(){
 
     util.directToIndex(browser);
@@ -13,7 +15,7 @@ describe('testing draw winner:', function() {
     util.fillAnswer(browser);
     util.submitAnswers(browser);
       
-    util.registerParticipant(browser);
+    util.registerParticipant(browser, timestamp);
     util.submitParticipant(browser);
 
   	util.directToViewParticipants(browser);
@@ -24,3 +26,4 @@ describe('testing draw winner:', function() {
   }); 
 
 });
+
