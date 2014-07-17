@@ -2,6 +2,8 @@ var util = require("./utilities");
 
 describe('test title of pages:', function() {
   
+    var timestamp = (new Date).getTime();
+
   it('should confirm correct title on all pages', function() {
     
     util.directToIndex(browser);
@@ -21,7 +23,7 @@ describe('test title of pages:', function() {
     util.submitAnswers(browser);
     expect(browser.getTitle()).toEqual("The Beauty of Data")
 
-    util.registerParticipant(browser);
+    util.registerParticipant(browser, timestamp);
     util.submitParticipant(browser);
     expect(browser.getTitle()).toEqual("The Beauty of Data")
   });

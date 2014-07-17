@@ -2,6 +2,8 @@ var util = require("./utilities");
 
 describe('adding new participant to database table:', function() {
   
+  var timestamp = (new Date).getTime();
+
   it("should verify that the participant table is truncated", function(){
 
     util.directToIndex(browser);
@@ -24,7 +26,7 @@ describe('adding new participant to database table:', function() {
 
   it('should register participant', function() {
     
-    util.registerParticipant(browser);
+    util.registerParticipant(browser, timestamp);
     util.submitParticipant(browser);
   });
 
