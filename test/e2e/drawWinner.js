@@ -5,12 +5,12 @@ describe('testing draw winner:', function() {
   
 
 
-  iit("should draw a winner from participant table", function(){
+  it("should draw a winner from participant table", function(){
 
     browser.get('/');
     browser.findElement(by.name("seeAllParticipants")).click();
 
-    //Delete all existing entries in answers
+
     methods.deleteParticipants(browser);
 
 
@@ -22,6 +22,8 @@ describe('testing draw winner:', function() {
       
     methods.registerParticipant(browser);
     browser.findElement(By.name("submitButton")).click();
+
+
 
   	browser.get("/public/#/partial-view-participants");
   	expect(element(by.binding("winner.email")).isPresent()).toBe(false);

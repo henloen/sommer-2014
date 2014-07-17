@@ -14,6 +14,17 @@ var premiehvisduvinner = ["moto360", "oculusrift"];
 
 var milliseconds = (new Date).getTime();
 
+
+
+function getIndex(browser) {
+    browser.get('/');
+}
+
+function getToAnswerPage(browser) {
+    browser.findElement(by.name("registerAnswer")).click();
+    browser.findElement(by.name("startButton")).click();
+}
+
 function fillAnswer(browser) {
 	browser.findElement(by.name(getRandom(kjonn))).click();
     browser.findElement(by.name(getRandom(sivilstatus))).click();
@@ -29,13 +40,12 @@ function fillAnswer(browser) {
     browser.findElement(by.name(getRandom(premiehvisduvinner))).click();
 }
 
-
-function getIndex(browser) {
-    browser.get('/');
+function submitAnswers(browser) {
+    browser.findElement(by.name("registerButton")).click();
 }
 
 function registerParticipant(browser) {
-	browser.findElement(By.name("participantName")).sendKeys("test");
+    browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + milliseconds +"@drawWinner.no");
 }
 
@@ -48,24 +58,16 @@ function deleteParticipants(browser) {
     browser.findElement(by.name("confirmDelete")).click();
 }
 
-function getToAnswerPage(browser) {
-    browser.findElement(by.name("registerAnswer")).click();
-    browser.findElement(by.name("startButton")).click();
-}
-
-function submitAnswers(browser) {
-    browser.findElement(by.name("registerButton")).click();
-}
 
 function getRandom(list) {
     return list[Math.floor((Math.random() * list.length))];
 }
 
 
-
+exports.getIndex = getIndex;
+exports.getToAnswerPage = getToAnswerPage;
 exports.fillAnswer = fillAnswer;
 exports.registerParticipant = registerParticipant;
 exports.submitParticipant = submitParticipant;
 exports.deleteParticipants = deleteParticipants;
-exports.getToAnswerPage = getToAnswerPage;
 exports.submitAnswers = submitAnswers;
