@@ -1,38 +1,26 @@
-var methods = require("./utilities");
+var util = require("./utilities");
 
 describe('testing draw winner:', function() {
-  
-  
-
 
   it("should draw a winner from participant table", function(){
 
-    browser.get('/');
-    browser.findElement(by.name("seeAllParticipants")).click();
+    util.directToIndex(browser);
+   
+    util.seeAllParticipants(browser);
+    util.deleteParticipants(browser);
 
-
-    methods.deleteParticipants(browser);
-
-
-    browser.get("/public/#/partial-register-answer");
+    util.directToRegisterAnswer(browser);
+    util.fillAnswer(browser);
+    util.submitAnswers(browser);
       
+    util.registerParticipant(browser);
+    util.submitParticipant(browser);
 
-    methods.fillAnswer(browser);
-    browser.findElement(by.name("registerButton")).click();
-      
-    methods.registerParticipant(browser);
-    browser.findElement(By.name("submitButton")).click();
+  	util.directToViewParticipants(browser);
 
-
-
-  	browser.get("/public/#/partial-view-participants");
   	expect(element(by.binding("winner.email")).isPresent()).toBe(false);
-
-    browser.findElement(by.name("pickWinner")).click();
-
+    util.pickWinner(browser);
     expect(element(by.binding("winner.email")).isPresent()).toBe(true);
-
   }); 
-
 
 });
