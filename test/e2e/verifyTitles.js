@@ -1,4 +1,4 @@
-describe('test titles of pages', function() {
+describe('test title of pages:', function() {
   
 
     var kjonn = ["kvinne", "mann"];

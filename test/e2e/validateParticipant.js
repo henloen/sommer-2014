@@ -1,4 +1,3 @@
-
 describe('register participant:', function() {
   
     var kjonn = ["kvinne", "mann"];
