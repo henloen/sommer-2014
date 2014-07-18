@@ -8,20 +8,7 @@
 					Tilbake til meny
 				</a>
 			</div>
-			<!--
-			<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
-			</button>
-		-->
-
-			<!--
-			<button class="btn btn-def-bouvet" ng-click="toggleView()">Sortering
-			</button> 
-		-->
-			<!--
-			<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
-			</button>
-		-->
-
+						
 			<div class="col-sm-2 col-sm-offset-2 text-smaller text-white top-pad-small">
 				Totalt antall svar: {{answers.length}}
 			</div>
@@ -122,21 +109,38 @@
 
 
 	<div class="row">
-		<div class="col-sm-2 col-sm-offset-1">
+		<div class="col-sm-5 col-sm-offset-1">
 			<!--a button that triggers a modal to confirm that you want to delete all answers -->
 			<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
 				<span class="glyphicon glyphicon-trash">
 				</span>
 				Slett alle svar
 			</button>
+
+			<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
+			</button>
+
+			<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
+			</button>
 		</div>
 		
-		<div class="col-sm-5 col-sm-offset-4">
-			<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()">
+		<div class="col-sm-6">
+			<button class="btn btn-def-bouvet" ng-click="tenFirstAnswers()" ng-disabled="startAnswers <= 0">
 				<span class="glyphicon glyphicon-chevron-left"></span>
-				Se 10 forrige svar</button>
-			<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()">
-				Se 10 neste svar
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				Første
+			</button>
+			<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()" ng-disabled="startAnswers <= 0">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				10 forrige
+			</button>
+			<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()" ng-disabled="startAnswers >= answers.length - 10">
+				10 neste
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</button>
+			<button class="btn btn-def-bouvet" ng-click="tenLastAnswers()" ng-disabled="startAnswers >= answers.length - 10">
+				Siste
+				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</button>
 		</div>

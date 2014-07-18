@@ -22,6 +22,14 @@ angular.module("bodApp.controllers", [])
 			}
 		}
 
+		$scope.tenLastAnswers = function() {
+			$scope.startAnswers = $scope.answers.length - 10;
+		}
+
+		$scope.tenFirstAnswers = function() {
+			$scope.startAnswers = 0;
+		}
+
 		$scope.setNumberOfUnprocessed = function() {
 			$scope.numberOfUnprocessed = filterFilter($scope.answers, {processed : 0}).length;
 		}
