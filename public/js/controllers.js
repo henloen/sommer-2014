@@ -105,10 +105,28 @@ angular.module("bodApp.controllers", [])
 		};
 
 		$scope.pickWinner = function() {
-			var winnerIndex = Math.floor(Math.random() * $scope.participants.length);
-			var winnerName = $scope.participants[winnerIndex].name;
-			var winnerEmail = $scope.participants[winnerIndex].email;
-			$scope.winners.push({name: winnerName, email: winnerEmail});
+			if ($scope.winners.length < $scope.participants.length) {
+				var winnerIndex = Math.floor(Math.random() * $scope.participants.length);
+				var winnerName = $scope.participants[winnerIndex].name;
+				var winnerEmail = $scope.participants[winnerIndex].email
+				var winner = {name: winnerName, email: winnerEmail};
+				if (winnerAlreadyExists(winner)) {
+					$scope.pickWinner();
+				}
+				else {
+					$scope.winners.push(winner);
+				}
+			}
+		}
+
+		function winnerAlreadyExists (winner) {
+			var i;
+			for (i = 0; i< $scope.winners.length; i++) {
+				if ($scope.winners[i].email === winner.email) {
+					return true;
+				}
+			}
+				return false;
 		}
 
 		$scope.deleteWinners = function() {
