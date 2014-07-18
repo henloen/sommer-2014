@@ -35,7 +35,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="participant in participants | 
-					answersFromTo:startParticipants:startParticipants + limitParticipants">
+					answersFromTo:startParticipants:startParticipants + limitParticipants" class="repeated-answer">
 						<td>{{participant.name}}</td>
 						<td>{{participant.email}}</td>
 					</tr>
@@ -93,7 +93,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="winner in winners">
+						<tr ng-repeat="winner in winners" class="repeated-answer">
 							<td>{{winner.name}}</td>
 							<td>{{winner.email}}</td>
 						</tr>

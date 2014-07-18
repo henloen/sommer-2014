@@ -7,7 +7,8 @@ angular.module("bodApp", [
 	"bodApp.controllers",
 	"bodApp.directives",
 	"bodApp.services",
-	"bodApp.filters"
+	"bodApp.filters",
+	"ngAnimate"
 	]).
 config(["$routeProvider", function($routeProvider) {
 	$routeProvider.when("/partial-index", 
