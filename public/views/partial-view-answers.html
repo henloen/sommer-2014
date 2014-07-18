@@ -60,7 +60,7 @@
 					<td>
 						
 						<!--a button that triggers a modal with the data -->
-						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}" ng-click="getAnswer(answer.id_answers)">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal{{answer.id_answers}}" ng-click="getAnswer(answer.id_answers); answer.locked = 1">
 							Behandle svar
 						</button>
 
@@ -95,7 +95,7 @@
 											</div>
 											<div ng-show="oneAnswer.locked === 1">
 												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
-												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers(true)" data-dismiss="modal">Lukk</button>
 											</div>
 									</div>
 								</div>
@@ -109,7 +109,7 @@
 
 
 	<div class="row">
-		<div class="col-sm-5 col-sm-offset-1">
+		<div class="col-sm-6 col-sm-offset-1">
 			<!--a button that triggers a modal to confirm that you want to delete all answers -->
 			<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
 				<span class="glyphicon glyphicon-trash">
@@ -124,11 +124,10 @@
 			</button>
 		</div>
 		
-		<div class="col-sm-6">
+		<div class="col-sm-5">
 			<button class="btn btn-def-bouvet" ng-click="tenFirstAnswers()" ng-disabled="startAnswers <= 0">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 				<span class="glyphicon glyphicon-chevron-left"></span>
-				Første
 			</button>
 			<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()" ng-disabled="startAnswers <= 0">
 				<span class="glyphicon glyphicon-chevron-left"></span>
@@ -139,7 +138,6 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</button>
 			<button class="btn btn-def-bouvet" ng-click="tenLastAnswers()" ng-disabled="startAnswers >= answers.length - 10">
-				Siste
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</button>
