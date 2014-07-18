@@ -34,5 +34,8 @@ describe('should test restrictions towards email database:', function() {
     expect(browser.getCurrentUrl()).toEqual(baseURL + "/public/index.html#/partial-register-participant");
   });
 
-
 });
+
+//***************************************************************
+// Burde hente ut teksten fra feilmeldingen og verifisere denne!!
+//***************************************************************

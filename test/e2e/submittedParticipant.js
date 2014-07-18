@@ -33,6 +33,15 @@ describe('adding new participant to database table:', function() {
   it("should verify new participant in participant table", function(){
   	util.directToViewParticipants(browser);
   	expect(element(by.binding('participant.email')).isPresent()).toBe(true);
+
+
+    //Not very robust test, but checks that email in database is same email registered
+    var entry = element(by.repeater('participant in participants').row(0));
+    expect(entry.getText()).toBe("test test" + timestamp + "@testing.no");
+
+
+
   }); 
 
 });
+

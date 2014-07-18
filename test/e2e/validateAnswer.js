@@ -25,3 +25,8 @@ describe('register answer:', function() {
   });
 
 });
+
+
+//***************************************************************
+// Burde hente ut teksten fra feilmeldingen og verifisere denne!!
+//***************************************************************

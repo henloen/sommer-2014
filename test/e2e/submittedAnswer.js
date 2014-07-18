@@ -30,3 +30,8 @@ describe('adding new answer to database table:', function() {
   }); 
 
 });
+
+
+//***********************************************************************
+// Sjekke at submitted svar stemmer med det som er registrert i databasen
+//***********************************************************************

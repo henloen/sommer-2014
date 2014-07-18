@@ -5,15 +5,6 @@ exports.config = {
     'e2e/*.js'
   ],
 
-
-/*
-capabilities: {
-  'browserName': 'phantomjs',
-  'phantom.binary.path': 'sommer-2014/node_modules/phantomjs/bin'
-},
-*/
-
-
   capabilities: {
     'browserName': 'chrome'
   },
