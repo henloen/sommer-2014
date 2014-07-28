@@ -63,11 +63,19 @@
 		<div class="col-sm-5">
 			<div class="row">
 				<div class="col-sm-12">
-					<button class="btn btn-def-bouvet" ng-click="tenPrevParticipants()">
+					<button class="btn btn-def-bouvet" ng-click="tenFirstParticipants()" ng-disabled="startParticipants <= 0">
 						<span class="glyphicon glyphicon-chevron-left"></span>
-						Se 10 forrige svar</button>
-					<button class="btn btn-def-bouvet" ng-click="tenNextParticipants()">
-						Se 10 neste svar
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</button>
+					<button class="btn btn-def-bouvet" ng-click="tenPrevParticipants()" ng-disabled="startParticipants <= 0">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						10 forrige</button>
+					<button class="btn btn-def-bouvet" ng-click="tenNextParticipants()" ng-disabled="startParticipants >= participants.length - 10">
+						10 neste
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</button>
+					<button class="btn btn-def-bouvet" ng-click="tenLastParticipants()" ng-disabled="startParticipants >= participants.length - 10">
+						<span class="glyphicon glyphicon-chevron-right"></span>
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</button>
 				</div>

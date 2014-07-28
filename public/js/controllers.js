@@ -22,7 +22,7 @@ angular.module("bodApp.controllers", [])
 		}
 
 		$scope.tenLastAnswers = function() {
-			$scope.startAnswers = $scope.answers.length - 10;
+			$scope.startAnswers = $scope.answers.length - ($scope.answers.length % 10);
 		}
 
 		$scope.tenFirstAnswers = function() {
@@ -148,6 +148,14 @@ angular.module("bodApp.controllers", [])
 			if ($scope.startParticipants - 10 >= 0) {
 				$scope.startParticipants -= 10;
 			}
+		}
+
+		$scope.tenLastParticipants = function() {
+			$scope.startParticipants = $scope.participants.length - ($scope.participants.length % 10);
+		}
+
+		$scope.tenFirstParticipants = function() {
+			$scope.startParticipants = 0;
 		}
 
 	}])
