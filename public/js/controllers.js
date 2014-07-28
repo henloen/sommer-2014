@@ -91,7 +91,18 @@ angular.module("bodApp.controllers", [])
 			Answers.deleteAll().success(function () {
 				$scope.getAnswers($scope.viewAll);
 			});
-		};		
+		};
+
+		$scope.findNextUnprocessed = function() {
+			var nextUnprocessed = $scope.answers.indexOf(filterFilter($scope.answers, {processed : 0})[0]);
+			var roundedIndex = roundIndex(nextUnprocessed);
+			$scope.startAnswers = roundedIndex;
+
+		};	
+
+		function roundIndex(index) {
+			return index - (index % 10);
+		};	
 	}])
 
 	.controller("ParticipantsCtrl", ["$scope", "$http", "Participants", function($scope, $http, Participants) {
