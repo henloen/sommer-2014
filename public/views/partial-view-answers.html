@@ -69,9 +69,9 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div ng-class = "{'modal-header': true, 'modal-custom-female': oneAnswer.kjonn==='kvinne', 'modal-custom-male': oneAnswer.kjonn ==='mann'}">
-										<h4 class="modal-title" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
+										<h4 class="modal-title text-small" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
 									</div>
-									<div ng-show="oneAnswer.locked === 0" ng-class="modal-body">
+									<div ng-show="oneAnswer.locked === 0" ng-class="'modal-body text-smaller'">
 										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
 										<b>På hodet: </b> {{oneAnswer.pa_hodet}}<br>
 										<b>Alder: </b> {{oneAnswer.alder}}<br>
