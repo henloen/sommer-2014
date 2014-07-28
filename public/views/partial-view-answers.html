@@ -112,8 +112,8 @@
 										Er du sikker på at du vil slette dette svaret?
 									</div>
 									<div class="modal-footer">
-										<button class="btn modal-confirm-delete" name="confirmDelete" ng-click="deleteAnswer(oneAnswer.id_answers)" data-dismiss="modal">Slett</button>
-										<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
+										<button class="btn modal-confirm-delete" name="confirmDeleteSingle" ng-click="deleteAnswer(oneAnswer.id_answers)" data-dismiss="modal">Slett</button>
+										<button class="btn btn-primary" data-dismiss="modal" ng-click="closeAndUnlock(oneAnswer.id_answers)">Avbryt</button>
 									</div>
 								</div>
 							</div>
