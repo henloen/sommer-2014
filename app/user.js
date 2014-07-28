@@ -7,26 +7,14 @@ function index(req, res){
 
 //Used to get all rows from the database and return them as an array with JSON objects
 function getAnswers(req, res) {
-	if (req.param("viewAll") === "true") {
-		db.readAnswers(function(err, rows) {
-			if (err) {
-				errorHandler(err, res);
-			}
-			else {
-				res.send((rows));
-			}
-		});
-	}
-	else {
-		db.readUnprocessedAnswers(function(err, rows) {
-			if (err) {
-				errorHandler(err, res);
-			}
-			else {
-				res.send((rows));
-			}
-		});
-	}
+	db.readAnswers(function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send((rows));
+		}
+	});
 }
 
 

@@ -5,7 +5,6 @@
 angular.module("bodApp.controllers", [])
 	.controller("AnswerCtrl", ["$scope", "filterFilter", "Answers", function($scope, filterFilter, Answers) {
 
-		$scope.viewAll = true;
 		$scope.limitAnswers = 10;
 		$scope.viewProcessed = 'processed';
 		$scope.startAnswers = 0;
@@ -33,35 +32,15 @@ angular.module("bodApp.controllers", [])
 		$scope.setNumberOfUnprocessed = function() {
 			$scope.numberOfUnprocessed = filterFilter($scope.answers, {processed : 0}).length;
 		}
-
-		$scope.toggleViewAll = function(viewAll) {
-			if (viewAll) {
-				$scope.viewAll = false;
-			}
-			else {
-				$scope.viewAll = true;
-			}
-			$scope.getAnswers($scope.viewAll);
-		}
-
-		$scope.toggleView = function(){
-			if ($scope.viewProcessed === 'processed') {
-				$scope.viewProcessed = '-processed';
-			}
-			else{
-				$scope.viewProcessed = 'processed';
-			}
-			
-		}
 		
-		$scope.getAnswers = function(viewAll) {
-			Answers.getAll(viewAll).success(function (data) {
+		$scope.getAnswers = function() {
+			Answers.getAll().success(function (data) {
 					$scope.answers = data;
 					$scope.setNumberOfUnprocessed();
 			});
 		};
 
-		$scope.getAnswers($scope.viewAll);
+		$scope.getAnswers();
 		//$scope.setNumberOfUnprocessed();
 
 		$scope.getAnswer = function(id) {
@@ -76,20 +55,20 @@ angular.module("bodApp.controllers", [])
 		$scope.updateStatus = function(id) {
 			Answers.toggleLock(id).success(function() {
 				Answers.update(id).success(function() {
-					$scope.getAnswers($scope.viewAll);
+					$scope.getAnswers();
 				});
 			});
 		};
 		
 		$scope.closeAndUnlock = function(id) {
 			Answers.toggleLock(id).success(function() {
-				$scope.getAnswers($scope.viewAll);
+				$scope.getAnswers();
 			});
 		};
 
 		$scope.deleteAnswers = function() {
 			Answers.deleteAll().success(function () {
-				$scope.getAnswers($scope.viewAll);
+				$scope.getAnswers();
 			});
 		};
 

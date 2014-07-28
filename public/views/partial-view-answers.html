@@ -95,7 +95,7 @@
 											</div>
 											<div ng-show="oneAnswer.locked === 1">
 												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
-												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers(viewAll)" data-dismiss="modal">Lukk</button>
+												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
 											</div>
 									</div>
 								</div>
@@ -116,11 +116,8 @@
 				</span>
 				Slett alle svar
 			</button>
-
-			<button class="btn btn-def-bouvet" ng-show="viewAll" ng-click="toggleViewAll(viewAll)">Se bare ubehandlede svar
-			</button>
-
-			<button class="btn btn-def-bouvet" ng-show="!viewAll" ng-click="toggleViewAll(viewAll)">Se alle svar
+			<button class="btn btn-def-bouvet" ng-click="findNextUnprocessed()" ng-disabled="numberOfUnprocessed <= 0">
+				Se neste ubehandlede
 			</button>
 		</div>
 		
@@ -140,9 +137,6 @@
 			<button class="btn btn-def-bouvet" ng-click="tenLastAnswers()" ng-disabled="startAnswers >= answers.length - 10">
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="glyphicon glyphicon-chevron-right"></span>
-			</button>
-			<button class="btn btn-def-bouvet" ng-click="findNextUnprocessed()" ng-disabled="numberOfUnprocessed <= 0">
-				Next unprocessed
 			</button>
 		</div>
 	</div>
