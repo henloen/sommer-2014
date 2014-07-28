@@ -35,7 +35,10 @@ module.exports = function(app) {
 		
 		//used to update the status of an answer with the id as parameter
 		//.put(authorization.authorize, user.updateAnswerStatus);
-		.put(user.updateAnswerStatus);
+		.put(user.updateAnswerStatus)
+
+		//used to delete the answer with that id
+		.delete(user.deleteAnswer);
 
 	app.route("/participants")
 		//used to access all the participants in json format

@@ -65,7 +65,7 @@
 						</button>
 
 						<!-- a modal that displays the answers and gives the user the possibility of changing status -->
-						<div class="modal" id="myModal{{answer.id_answers}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal" id="myModal{{answer.id_answers}}" role="dialog" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div ng-class = "{'modal-header': true, 'modal-custom-female': oneAnswer.kjonn==='kvinne', 'modal-custom-male': oneAnswer.kjonn ==='mann'}">
@@ -91,12 +91,29 @@
 											<div ng-show="oneAnswer.locked === 0">
 												<button ng-show="oneAnswer.processed === 0" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som behandlet</button>
 												<button ng-show="oneAnswer.processed === 1" class="btn btn-primary" ng-click="updateStatus(oneAnswer.id_answers)" data-dismiss="modal">Merk som ubehandlet</button>
+												<button class="btn modal-confirm-delete" data-toggle="modal" data-target="#confirmDeleteSingleModal" data-dismiss="modal">Slett svar</button>
 												<button class="btn btn-default" ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lukk</button>
 											</div>
 											<div ng-show="oneAnswer.locked === 1">
 												<button ng-show="oneAnswer.locked === 1" class="btn btn-primary"  ng-click="closeAndUnlock(oneAnswer.id_answers)" data-dismiss="modal">Lås opp</button>
 												<button ng-show="oneAnswer.locked === 1" class="btn btn-default" ng-click="getAnswers()" data-dismiss="modal">Lukk</button>
 											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal" id="confirmDeleteSingleModal" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class ="modal-header modal-confirm-delete">
+										<h4 class="modal-title">Bekreft sletting</h4>
+									</div>
+									<div ng-class="modal-body">
+										Er du sikker på at du vil slette dette svaret?
+									</div>
+									<div class="modal-footer">
+										<button class="btn modal-confirm-delete" name="confirmDelete" ng-click="deleteAnswer(oneAnswer.id_answers)" data-dismiss="modal">Slett</button>
+										<button class="btn btn-primary" data-dismiss="modal">Avbryt</button>
 									</div>
 								</div>
 							</div>
@@ -142,7 +159,7 @@
 	</div>
 
 		<!--a modal that wants you to confirm that you want to delete all answers -->
-		<div class="modal" id="confirmDeleteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal" id="confirmDeleteModal" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content ">
 					<div class ="modal-header modal-confirm-delete">

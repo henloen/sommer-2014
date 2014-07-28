@@ -24,6 +24,9 @@ angular.module("bodApp.services", [])
 			//not used yet
 			create : function(answer) {
 				return $http.post("/answers", answer);
+			},
+			delete : function(id) {
+				return $http.delete(/answers/ + id);
 			}
 		}
 	})

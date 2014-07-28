@@ -69,6 +69,11 @@ describe("BoD controllers", function() {
 					var deferred = q.defer();
 					deferred.resolve();
 					return deferred.promise;
+				},
+				delete : function(id) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
 				}
 			}
 			spyOn(answersMock, "getAll").andCallThrough();
@@ -77,6 +82,7 @@ describe("BoD controllers", function() {
 			spyOn(answersMock, "update").andCallThrough();
 			spyOn(answersMock, "deleteAll").andCallThrough();
 			spyOn(answersMock, "create").andCallThrough();
+			spyOn(answersMock, "delete").andCallThrough();
 			$provide.value("Answers", answersMock);
 		}));
 
@@ -149,6 +155,19 @@ describe("BoD controllers", function() {
 			scope.deleteAnswers();
 			scope.$apply();
 			expect(answersMock.deleteAll).toHaveBeenCalled();
+			expect(scope.answers).toEqual([
+				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
+				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},
+				{"id_answers":9,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"coolcat","studiested":"selvlaertrover","programmeringsstil":"batenblirtil","musikk":"metal","personlighet":"ekstrovert","hypepreferanse":"internetofthings","favorittgode":"frikantine","planerforkvelden":"mingle","premiehvisduvinner":"moto360","processed":0,"kjonn":"kvinne","locked":0}
+				]);
+		});
+
+		it("should delete the answer and reload all answers, TESTING deleteAnswer", function() {
+			expect(answersMock.getAll).toHaveBeenCalled();
+			expect(scope.answers).toBeUndefined();
+			scope.deleteAnswer(17);
+			scope.$apply();
+			expect(answersMock.delete).toHaveBeenCalledWith(17);
 			expect(scope.answers).toEqual([
 				{"id_answers":1,"sivilstatus":"complicated","pa_hodet":"hette","alder":"hipster","studiested":"selvlaertrover","programmeringsstil":"ordenungmusssein","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"gadgetkonto","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"mann","locked":0},
 				{"id_answers":3,"sivilstatus":"skilt","pa_hodet":"hjelm","alder":"youngster","studiested":"selvlaertrover","programmeringsstil":"detordnerseg","musikk":"disco","personlighet":"ekstrovert","hypepreferanse":"laerkidsakoding","favorittgode":"kurskonferanse","planerforkvelden":"smiskemedsjefen","premiehvisduvinner":"oculusrift","processed":0,"kjonn":"kvinne","locked":0},

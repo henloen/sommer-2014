@@ -50,6 +50,17 @@ function deleteAnswers(req, res) {
 	});
 }
 
+function deleteAnswer(req, res){
+	db.deleteAnswer(req.params.id, function(err, rows) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Successfully deleted answer with id " + req.params.id);
+		}
+	});
+}
+
 
 function insertParticipant(req, res) {
 	values = {email: req.body.email, name: req.body.name};
@@ -141,3 +152,4 @@ exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
 exports.getAnswer          = getAnswer;
 exports.toggleLockAnswer   = toggleLockAnswer;
+exports.deleteAnswer       = deleteAnswer;

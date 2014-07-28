@@ -72,12 +72,18 @@ angular.module("bodApp.controllers", [])
 			});
 		};
 
+		$scope.deleteAnswer = function(id) {
+			Answers.delete(id).success(function() {
+				$scope.getAnswers();
+			});
+		}
+
 		$scope.findNextUnprocessed = function() {
 			var nextUnprocessed = $scope.answers.indexOf(filterFilter($scope.answers, {processed : 0})[0]);
 			var roundedIndex = roundIndex(nextUnprocessed);
 			$scope.startAnswers = roundedIndex;
 
-		};	
+		};
 
 		function roundIndex(index) {
 			return index - (index % 10);

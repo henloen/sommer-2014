@@ -64,6 +64,10 @@ function toggleLockAnswer(id, callback) {
 	query("update bod.answers set locked = not locked where id_answers = " + id, callback);
 }
 
+function deleteAnswer(id, callback) {
+	query("delete from bod.answers where id_answers = " + id, callback);
+}
+
 
 
 
@@ -77,3 +81,4 @@ exports.getParticipants = getParticipants;
 exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
 exports.toggleLockAnswer = toggleLockAnswer;
+exports.deleteAnswer = deleteAnswer;
