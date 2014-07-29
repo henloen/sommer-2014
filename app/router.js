@@ -51,10 +51,19 @@ module.exports = function(app) {
 		
 		//used to truncate table in database
 		//.delete(authorization.authorize, user.deleteParticipants);
-		.delete(user.deleteParticipants);
+		.delete(user.deleteParticipants)
+
+	app.route("/winners/:email")
+		//used to toggle the field indicating whether the participant is a winner
+		.post(user.updateWinner)
+
+	app.route("/winners")
+		//used to reset all fields indicating winners
+		.delete(user.deleteWinners)
 
 	app.route("/toggleLockAnswer/:id")
 		//used to toggle the lock field of the answer in the database
 		//.put(authorization.authorize, user.toggleLockAnswer);
 		.put(user.toggleLockAnswer);
+
 }

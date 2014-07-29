@@ -50,6 +50,12 @@ angular.module("bodApp.services", [])
 			}	*/
 			create : function(participant) {
 				return $http.post("/participants", participant)
+			},
+			updateWinner: function(email) {
+				return $http.post("/winners/" + email)
+			},
+			deleteWinners: function() {
+				return $http.delete("/winners")
 			}
 		}
 	})

@@ -90,15 +90,16 @@ angular.module("bodApp.controllers", [])
 		};	
 	}])
 
-	.controller("ParticipantsCtrl", ["$scope", "$http", "Participants", function($scope, $http, Participants) {
+	.controller("ParticipantsCtrl", ["$scope", "$http", "filterFilter", "Participants", function($scope, $http, filterFilter, Participants) {
 
 		Participants.getAll().success(function (data) {
 			$scope.participants = data;
+			getWinners();
 		});
 
-		$scope.winners = [];
 		$scope.startParticipants = 0;
 		$scope.limitParticipants = 10;
+
 
 		$scope.deleteParticipants = function() {
 			Participants.deleteAll().success(function () {
@@ -111,30 +112,42 @@ angular.module("bodApp.controllers", [])
 		$scope.pickWinner = function() {
 			if ($scope.winners.length < $scope.participants.length) {
 				var winnerIndex = Math.floor(Math.random() * $scope.participants.length);
-				var winnerName = $scope.participants[winnerIndex].name;
 				var winnerEmail = $scope.participants[winnerIndex].email
-				var winner = {name: winnerName, email: winnerEmail};
-				if (winnerAlreadyExists(winner)) {
+				if (winnerAlreadyExists(winnerEmail)) {
 					$scope.pickWinner();
 				}
 				else {
-					$scope.winners.push(winner);
+					Participants.updateWinner(winnerEmail).success(function () {
+						Participants.getAll().success(function (data) {
+							$scope.participants = data;
+							getWinners();
+						})
+					});
 				}
 			}
 		}
 
-		function winnerAlreadyExists (winner) {
+		function winnerAlreadyExists (winnerEmail) {
 			var i;
 			for (i = 0; i< $scope.winners.length; i++) {
-				if ($scope.winners[i].email === winner.email) {
+				if ($scope.winners[i].email === winnerEmail) {
 					return true;
 				}
 			}
 				return false;
 		}
 
+		function getWinners() {
+			$scope.winners = filterFilter($scope.participants, {winner : 1});
+		}
+
 		$scope.deleteWinners = function() {
-			$scope.winners = [];
+			Participants.deleteWinners().success(function () {
+				Participants.getAll().success(function(data) {
+					$scope.participants = data;
+					getWinners();
+				})
+			})
 		}
 
 

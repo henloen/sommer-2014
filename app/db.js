@@ -68,6 +68,13 @@ function deleteAnswer(id, callback) {
 	query("delete from bod.answers where id_answers = " + id, callback);
 }
 
+function updateWinner(email, callback) {
+	query ("update bod.participants set winner = not winner where email = '" + email + "'", callback);
+}
+
+function deleteWinners(callback) {
+	query("update bod.participants set winner = 0 where winner = 1", callback);
+}
 
 
 
@@ -82,3 +89,5 @@ exports.deleteParticipants = deleteParticipants;
 exports.updateAnswerStatus = updateAnswerStatus;
 exports.toggleLockAnswer = toggleLockAnswer;
 exports.deleteAnswer = deleteAnswer;
+exports.updateWinner = updateWinner;
+exports.deleteWinners = deleteWinners;

@@ -210,10 +210,10 @@ describe("BoD controllers", function() {
 				getAll : function() {
 					var deferred = q.defer();
 					deferred.resolve([
-						{"email":"henrik@test.no","name":"Henrik Tester"},
-						{"email":"test1404729597725@lars.no","name":"tester1"},
-						{"email":"test1404730290541@lars.no","name":"tester2"},
-						{"email":"test1404731209305@lars.no","name":"tester3"},
+						{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1},
+						{"email":"test1404729597725@lars.no","name":"tester1", "winner" : 0},
+						{"email":"test1404730290541@lars.no","name":"tester2", "winner" : 0},
+						{"email":"test1404731209305@lars.no","name":"tester3", "winner" : 0},
 						]);
 					return deferred.promise;
 				},
@@ -226,11 +226,23 @@ describe("BoD controllers", function() {
 					var deferred = q.defer();
 					deferred.resolve();
 					return deferred.promise;
+				},
+				updateWinner : function(email) {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;	
+				},
+				deleteWinners : function() {
+					var deferred = q.defer();
+					deferred.resolve();
+					return deferred.promise;
 				}
 			}
 			spyOn(participantsMock, "getAll").andCallThrough();
 			spyOn(participantsMock, "deleteAll").andCallThrough();
 			spyOn(participantsMock, "create").andCallThrough();
+			spyOn(participantsMock, "updateWinner").andCallThrough();
+			spyOn(participantsMock, "deleteWinners").andCallThrough();
 			$provide.value("Participants", participantsMock);
 		}));
 
@@ -244,15 +256,15 @@ describe("BoD controllers", function() {
 
 		it("should have 'participants' undefined on start up and define it by loading all answers in database, here mocked as 4 elements, TESTING instantiation", function() {
 			expect(scope.participants).toBeUndefined();
-			expect(scope.winners).toEqual([]);
+			expect(scope.winners).toBeUndefined();
 			expect(participantsMock.getAll).toHaveBeenCalled();
 			scope.$apply();
 			expect(scope.participants).toEqual([
-				{"email":"henrik@test.no","name":"Henrik Tester"},
-				{"email":"test1404729597725@lars.no","name":"tester1"},
-				{"email":"test1404730290541@lars.no","name":"tester2"},
-				{"email":"test1404731209305@lars.no","name":"tester3"},
-				]);
+						{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1},
+						{"email":"test1404729597725@lars.no","name":"tester1", "winner" : 0},
+						{"email":"test1404730290541@lars.no","name":"tester2", "winner" : 0},
+						{"email":"test1404731209305@lars.no","name":"tester3", "winner" : 0},
+						]);
 		});
 
 		it("should delete all participants and reload all participants, TESTING deleteParticipants", function() {
@@ -264,36 +276,52 @@ describe("BoD controllers", function() {
 			//even though the participants should have been deleted, we use the moced getAll-method,
 			//which doesn't change when the mocked deleteAll method is called.
 			expect(scope.participants).toEqual([
-						{"email":"henrik@test.no","name":"Henrik Tester"},
-						{"email":"test1404729597725@lars.no","name":"tester1"},
-						{"email":"test1404730290541@lars.no","name":"tester2"},
-						{"email":"test1404731209305@lars.no","name":"tester3"},
+						{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1},
+						{"email":"test1404729597725@lars.no","name":"tester1", "winner" : 0},
+						{"email":"test1404730290541@lars.no","name":"tester2", "winner" : 0},
+						{"email":"test1404731209305@lars.no","name":"tester3", "winner" : 0},
 						]);
 		});
 
 		it("should pick a winner from the list of participants", function() {
-			expect(scope.winners).toEqual([]);
+			expect(scope.winners).toBeUndefined();
 			expect(scope.participants).toBeUndefined();
 			scope.$apply();
 			expect(scope.participants).toEqual([
-				{"email":"henrik@test.no","name":"Henrik Tester"},
-				{"email":"test1404729597725@lars.no","name":"tester1"},
-				{"email":"test1404730290541@lars.no","name":"tester2"},
-				{"email":"test1404731209305@lars.no","name":"tester3"},
-				]);
-			expect(scope.winners).toEqual([]);
+						{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1},
+						{"email":"test1404729597725@lars.no","name":"tester1", "winner" : 0},
+						{"email":"test1404730290541@lars.no","name":"tester2", "winner" : 0},
+						{"email":"test1404731209305@lars.no","name":"tester3", "winner" : 0},
+						]);
+			expect(scope.winners).toEqual([{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1}]);
 			scope.pickWinner();
-			expect(scope.winners).not.toEqual([]);
-			expect(scope.participants).toContain(scope.winners[0]);
+			expect(participantsMock.updateWinner).toHaveBeenCalled();
+			expect(participantsMock.getAll).toHaveBeenCalled();
 		});
 
 		it("should be able to reset the list of winners", function() {
-			expect(scope.winners).toEqual([]);
+			expect(scope.winners).toBeUndefined();
 			scope.$apply();
 			scope.pickWinner();
-			expect(scope.winners).not.toEqual([]);
+			expect(participantsMock.updateWinner).toHaveBeenCalled();
+			expect(participantsMock.getAll).toHaveBeenCalled();
 			scope.deleteWinners();
-			expect(scope.winners).toEqual([]);
+			expect(participantsMock.deleteWinners).toHaveBeenCalled();
+			expect(participantsMock.getAll).toHaveBeenCalled();
+		})
+
+		it("should have the filter in getWinners() working properly, showing a winner if the winner attribute is 1", function() {
+			expect(scope.winners).toBeUndefined();
+			scope.participants = [
+						{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1},
+						{"email":"test1404729597725@lars.no","name":"tester1", "winner" : 0},
+						{"email":"test1404730290541@lars.no","name":"tester2", "winner" : 0},
+						{"email":"test1404731209305@lars.no","name":"tester3", "winner" : 0},
+						];
+			scope.winners = [];
+			scope.pickWinner();
+			scope.$apply();
+			expect(scope.winners).toEqual([{"email":"henrik@test.no","name":"Henrik Tester", "winner" : 1}]);
 		})
 
 	});

@@ -129,6 +129,28 @@ function toggleLockAnswer(req, res) {
 	})
 }
 
+function updateWinner(req, res) {
+	db.updateWinner(req.params.email, function(err) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Participant " + req.params.email + " was marked as winner");
+		}
+	})
+}
+
+function deleteWinners(req, res) {
+	db.deleteWinners(function(err) {
+		if (err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("Successfully deleted all winners");
+		}
+	})
+}
+
 //Used to handle errors. Look into the error handler provided by express.js?
 function errorHandler(error, response) {
 			console.log("There has been an error:");
@@ -153,3 +175,5 @@ exports.updateAnswerStatus = updateAnswerStatus;
 exports.getAnswer          = getAnswer;
 exports.toggleLockAnswer   = toggleLockAnswer;
 exports.deleteAnswer       = deleteAnswer;
+exports.updateWinner	   = updateWinner;
+exports.deleteWinners	   = deleteWinners;
