@@ -332,12 +332,12 @@ angular.module("bodApp.controllers", [])
 				name : "musikk",
 				options : [
 					{
-						output: "Indie",
-						value: "indie"
+						output: "Rock",
+						value: "rock"
 					},
 					{
-						output: "Trash",
-						value: "trash"
+						output: "VG-lista",
+						value: "vglista"
 					},
 					{
 						output: "Disco",
@@ -358,6 +358,10 @@ angular.module("bodApp.controllers", [])
 					{
 						output: "Klassisk",
 						value: "klassisk"
+					},
+					{
+						output: "Alternativ",
+						value: "alternativ"
 					}
 				]
 			},
