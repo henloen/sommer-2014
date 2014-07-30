@@ -23,7 +23,7 @@ Fix the "hardcoding" of the values?
 Is called when the user presses submit (http post action)
 */
 function insertAnswer(req, res) {
-	values = {sivilstatus: req.body.sivilstatus, pa_hodet: req.body.pa_hodet, alder: req.body.alder,
+	values = {sivilstatus: req.body.sivilstatus, pa_hodet: req.body.pa_hodet, type: req.body.type,
 	studiested: req.body.studiested, programmeringsstil: req.body.programmeringsstil, musikk: req.body.musikk, 
 	personlighet: req.body.personlighet, hypepreferanse: req.body.hypepreferanse, favorittgode: req.body.favorittgode, 
 	planerforkvelden: req.body.planerforkvelden, premiehvisduvinner: req.body.premiehvisduvinner, kjonn: req.body.kjonn};

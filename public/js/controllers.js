@@ -228,8 +228,8 @@ angular.module("bodApp.controllers", [])
 				]
 			},
 			Calder : {
-				title: "Alder",
-				name : "alder",
+				title: "Type",
+				name : "type",
 				options : [
 					{
 						output: "Youngster",
@@ -247,6 +247,10 @@ angular.module("bodApp.controllers", [])
 						output: "Gammel Ringrev",
 						value: "gammelringrev"
 					},
+					{
+						output: "Nerd",
+						value: "nerd"
+					}
 				]
 			},
 		},

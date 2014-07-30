@@ -25,10 +25,10 @@ function readAnswers(callback) {
 
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
-	query("insert into bod.answers(sivilstatus, pa_hodet, alder, studiested, \
+	query("insert into bod.answers(sivilstatus, pa_hodet, type, studiested, \
 		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
 		planerforkvelden, premiehvisduvinner, kjonn)" +
-		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.alder
+		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.type
 		 +"', '" + values.studiested +"', '" + values.programmeringsstil +"', '" + values.musikk
 		  +"', '" + values.personlighet +"', '" + values.hypepreferanse  +"', '" + values.favorittgode
 		   +"', '" + values.planerforkvelden +"', '" + values.premiehvisduvinner+ "', '" +
