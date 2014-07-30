@@ -37,7 +37,7 @@ describe('test redirection and Urls:', function() {
    	expect(browser.getCurrentUrl()).toEqual(baseURL + "/public/#/partial-register-participant");   	
 
    	util.clickEscapeButton(browser);
-   	expect(browser.getCurrentUrl()).toEqual(baseURL + "/public/#/partial-index");   	
+   	expect(browser.getCurrentUrl()).toEqual(baseURL + "/public/#/partial-start");   	
 	});
 
 });

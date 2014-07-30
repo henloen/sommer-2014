@@ -22,7 +22,6 @@ describe('should test restrictions towards email database:', function() {
   it('should deny duplicate email entry', function() {
 
     util.clickMenuButton(browser);
-    util.clickRegisterAnswerButton(browser);
     util.clickStartButton(browser);
     util.fillAnswer(browser);
     util.submitAnswers(browser);

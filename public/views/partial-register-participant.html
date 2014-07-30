@@ -29,14 +29,14 @@
 						</p>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-4">
-								<input class="form-control form-field text-white" name="participantEmail" placeholder="Email" ng-model="participant.email" required ng-maxlength="90">
+								<input class="form-control form-field text-white" name="participantEmail" placeholder="Kontaktinfo" ng-model="participant.email" required ng-maxlength="90">
 							</div>
 						</div>
 						<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
-							E-postadressen er for lang, maks lengde er 90 tegn.
+							Kontaktinformasjonen er for lang, maks lengde er 90 tegn.
 						</p>
 						<p ng-show="duplicateEmail === participant.email" class="help-block has-error-custom">
-							Denne e-postadressen er allerede registrert.
+							Denne kontaktinformasjonen er allerede registrert.
 							Vennligst prøv en annen.
 						</p>
 						<br>
@@ -63,8 +63,8 @@
 					<br>
 
 				<div>
-					<a href="#/partial-index" name="escapeButton" class="btn btn-escape text-small">
-						Nei takk, tilbake til hovedsiden
+					<a href="#/partial-start" name="escapeButton" class="btn btn-escape text-small">
+						Nei takk
 					</a>
 					<br>
 				</div>
