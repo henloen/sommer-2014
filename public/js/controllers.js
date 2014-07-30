@@ -466,6 +466,14 @@ angular.module("bodApp.controllers", [])
 					{
 						output: "Oculus Rift",
 						value: "oculusrift"
+					},
+					{
+						output: "Blomster",
+						value: "blomster"
+					},
+					{
+						output: "Fruktkurv",
+						value: "fruktkurv"
 					}
 				]
 			}

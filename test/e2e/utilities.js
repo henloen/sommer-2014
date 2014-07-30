@@ -10,7 +10,7 @@ var personlighet = ["introvert", "ekstrovert", "ekstrovertpluss"];
 var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding"];
 var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
 var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
-var premiehvisduvinner = ["moto360", "oculusrift"];
+var premiehvisduvinner = ["moto360", "oculusrift", "blomster", "fruktkurv"];
 
 var milliseconds = (new Date).getTime();
 
