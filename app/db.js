@@ -23,6 +23,10 @@ function readAnswers(callback) {
 	query("select * from bod.answers", callback);
 }
 
+function readUnprocessedAnswers(callback) {
+	query("select * from bod.answers where processed = 0", callback);
+}
+
 //values is an array containing the values to be inserted
 function insertAnswer(values, callback) {
 	query("insert into bod.answers(sivilstatus, pa_hodet, type, studiested, \
@@ -91,3 +95,4 @@ exports.toggleLockAnswer = toggleLockAnswer;
 exports.deleteAnswer = deleteAnswer;
 exports.updateWinner = updateWinner;
 exports.deleteWinners = deleteWinners;
+exports.readUnprocessedAnswers = readUnprocessedAnswers;

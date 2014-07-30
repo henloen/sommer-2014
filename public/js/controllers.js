@@ -8,6 +8,17 @@ angular.module("bodApp.controllers", [])
 		$scope.limitAnswers = 10;
 		$scope.viewProcessed = 'processed';
 		$scope.startAnswers = 0;
+		$scope.viewAll = true;
+
+		$scope.toggleViewAll = function() {
+			if ($scope.viewAll) {
+				$scope.viewAll = false;
+			}
+			else {
+				$scope.viewAll = true;
+			}
+			$scope.getAnswers();
+		}
 
 		$scope.tenNextAnswers = function() {
 			if ($scope.startAnswers + 10 < $scope.answers.length) {
@@ -34,7 +45,7 @@ angular.module("bodApp.controllers", [])
 		}
 		
 		$scope.getAnswers = function() {
-			Answers.getAll().success(function (data) {
+			Answers.getAll($scope.viewAll).success(function (data) {
 					$scope.answers = data;
 					$scope.setNumberOfUnprocessed();
 			});
