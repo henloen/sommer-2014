@@ -2,7 +2,6 @@
 var kjonn = ["kvinne", "mann"];
 var sivilstatus = ["gift/samboer", "skilt", "singel", "complicated"];
 var type = ["youngster","coolcat", "hipster", "gammelringrev", "nerd"];
-var hodet = ["caps","turban","hette","hjelm","solbriller","hijab"];
 var studiested = ["ntnu","selvlaertrover","annet"];
 var programmeringsstil = ["batenblirtil","detordnerseg","ordenungmusssein", "quickanddirty"];
 var musikk = ["rock","vglista","disco","tronderrock","metal","rave","klassisk", "alternativ"];
@@ -94,7 +93,6 @@ function fillAnswer(browser) {
 	browser.findElement(by.name(getRandomWithinLength(kjonn))).click();
     browser.findElement(by.name(getRandomWithinLength(sivilstatus))).click();
     browser.findElement(by.name(getRandomWithinLength(type))).click();
-    browser.findElement(by.name(getRandomWithinLength(hodet))).click();
     browser.findElement(by.name(getRandomWithinLength(studiested))).click();
     browser.findElement(by.name(getRandomWithinLength(programmeringsstil))).click();
     browser.findElement(by.name(getRandomWithinLength(musikk))).click();
@@ -109,7 +107,6 @@ function fillNotValidAnswer(browser) {
     browser.findElement(by.name(getRandomWithinLength(kjonn))).click();
     browser.findElement(by.name(getRandomWithinLength(sivilstatus))).click();
     browser.findElement(by.name(getRandomWithinLength(type))).click();
-    browser.findElement(by.name(getRandomWithinLength(hodet))).click();
     browser.findElement(by.name(getRandomWithinLength(studiested))).click();
     browser.findElement(by.name(getRandomWithinLength(programmeringsstil))).click();
     browser.findElement(by.name(getRandomWithinLength(musikk))).click();
