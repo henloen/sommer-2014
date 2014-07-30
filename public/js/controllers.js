@@ -318,6 +318,10 @@ angular.module("bodApp.controllers", [])
 					{
 						output: "Ordenung Muss Sein",
 						value: "ordenungmusssein"
+					},
+					{
+						output: "Quick and dirty",
+						value: "quickanddirty"
 					}
 				]
 			}
