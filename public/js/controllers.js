@@ -33,7 +33,7 @@ angular.module("bodApp.controllers", [])
 		}
 
 		$scope.tenLastAnswers = function() {
-			$scope.startAnswers = $scope.answers.length - ($scope.answers.length % 10);
+			$scope.startAnswers = $scope.answers.length - lastIndex($scope.answers.length);
 		}
 
 		$scope.tenFirstAnswers = function() {
@@ -98,7 +98,18 @@ angular.module("bodApp.controllers", [])
 
 		function roundIndex(index) {
 			return index - (index % 10);
-		};	
+		};
+
+		function lastIndex(length) {
+			var mod = length % 10;
+			if (mod === 0) {
+				return 10;
+			}
+			else {
+				return mod;
+			}
+		};
+
 	}])
 
 	.controller("ParticipantsCtrl", ["$scope", "$http", "filterFilter", "Participants", function($scope, $http, filterFilter, Participants) {
@@ -175,11 +186,21 @@ angular.module("bodApp.controllers", [])
 		}
 
 		$scope.tenLastParticipants = function() {
-			$scope.startParticipants = $scope.participants.length - ($scope.participants.length % 10);
+			$scope.startParticipants = $scope.participants.length - lastIndex($scope.participants.length);
 		}
 
 		$scope.tenFirstParticipants = function() {
 			$scope.startParticipants = 0;
+		}
+
+		function lastIndex(length) {
+			var mod = length % 10;
+			if (mod === 0) {
+				return 10;
+			}
+			else {
+				return mod;
+			}
 		}
 
 	}])
