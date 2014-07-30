@@ -255,36 +255,6 @@ angular.module("bodApp.controllers", [])
 			},
 		},
 		BsecondCol: {
-			Apa_hodet : {
-				title: "På hodet",
-				name : "pa_hodet",
-				options : [
-					{
-						output: "Caps",
-						value: "caps"
-					},
-					{
-						output: "Turban",
-						value: "turban"
-					},
-					{
-						output: "Hette",
-						value: "hette"
-					},
-					{
-						output: "Hjelm",
-						value: "hjelm"
-					},
-					{
-						output: "Solbriller",
-						value: "solbriller"
-					},
-					{
-						output: "Hijab",
-						value: "hijab"
-					},
-				]
-			},
 			Bstudiested : {
 				title: "Studiested",
 				name : "studiested",
@@ -322,6 +292,24 @@ angular.module("bodApp.controllers", [])
 					{
 						output: "Quick and dirty",
 						value: "quickanddirty"
+					}
+				]
+			},
+			Dpersonlighet : {
+				title: "Personlighet",
+				name : "personlighet",
+				options : [
+					{
+						output: "Introvert",
+						value: "introvert"
+					},
+					{
+						output: "Ekstrovert",
+						value: "ekstrovert"
+					},
+					{
+						output: "Ekstrovert med litt innabords",
+						value: "ekstrovertpluss"
 					}
 				]
 			}
@@ -365,42 +353,33 @@ angular.module("bodApp.controllers", [])
 					}
 				]
 			},
-			Bpersonlighet : {
-				title: "Personlighet",
-				name : "personlighet",
+			Bfavorittgode : {
+				title: "Favorittgode på jobb",
+				name : "favorittgode",
 				options : [
 					{
-						output: "Introvert",
-						value: "introvert"
+						output: "Fri bar på julebordet",
+						value: "fribar"
 					},
 					{
-						output: "Ekstrovert",
-						value: "ekstrovert"
+						output: "Gadgetkonto",
+						value: "gadgetkonto"
 					},
 					{
-						output: "Ekstrovert med litt innabords",
-						value: "ekstrovertpluss"
+						output: "Kurs og konferanser",
+						value: "kurskonferanse"
+					},
+					{
+						output: "Fri kantine",
+						value: "frikantine"
+					},
+					{
+						output: "Pensjon",
+						value: "pensjon"
 					}
 				]
 			},
-			Chypepreferanse : {
-				title: "Hype-preferanse",
-				name : "hypepreferanse",
-				options : [
-					{
-						output: "Big Data",
-						value: "bigdata"
-					},
-					{
-						output: "Internet of Things",
-						value: "internetofthings"
-					},
-					{
-						output: "Lær Kidsa Koding",
-						value: "laerkidsakoding"
-					}
-				]
-			}
+
 		},
 		DfourthCol: {
 			Aplanerforkvelden : {
@@ -429,29 +408,21 @@ angular.module("bodApp.controllers", [])
 					}
 				]
 			},
-			Bfavorittgode : {
-				title: "Favorittgode på jobb",
-				name : "favorittgode",
+			Bhypepreferanse : {
+				title: "Hype-preferanse",
+				name : "hypepreferanse",
 				options : [
 					{
-						output: "Fri bar på julebordet",
-						value: "fribar"
+						output: "Big Data",
+						value: "bigdata"
 					},
 					{
-						output: "Gadgetkonto",
-						value: "gadgetkonto"
+						output: "Internet of Things",
+						value: "internetofthings"
 					},
 					{
-						output: "Kurs og konferanser",
-						value: "kurskonferanse"
-					},
-					{
-						output: "Fri kantine",
-						value: "frikantine"
-					},
-					{
-						output: "Pensjon",
-						value: "pensjon"
+						output: "Lær Kidsa Koding",
+						value: "laerkidsakoding"
 					}
 				]
 			},
