@@ -63,7 +63,7 @@ function deleteAnswer(req, res){
 
 
 function insertParticipant(req, res) {
-	values = {email: req.body.email, name: req.body.name};
+	values = {email: req.body.email, name: req.body.name, prize: req.body.prize};
 	db.insertParticipant(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);

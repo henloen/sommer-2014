@@ -40,8 +40,8 @@ function deleteAnswers(callback) {
 }
 
 function insertParticipant(values, callback) {
-	query("insert into bod.participants(email, name)" + 
-		"values ('" + values.email + "', '" + values.name + "');", callback);
+	query("insert into bod.participants(email, name, prize)" + 
+		"values ('" + values.email + "', '" + values.name + "', '" + values.prize + "');", callback);
 }
 
 function getParticipants(callback) {

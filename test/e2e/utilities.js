@@ -131,6 +131,7 @@ function submitAnswers(browser) {
 function registerParticipant(browser, timestamp) {
     browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + timestamp +"@testing.no");
+    browser.findElement(by.name(getRandomWithinLength(premiehvisduvinner))).click();
 }
 
 function submitParticipant(browser) {
