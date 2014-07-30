@@ -26,7 +26,6 @@
 				<tr>
 					<th>Id</th>
 					<th>Sivilstatus</th>
-					<th>På hodet</th>
 					<th>Type</th>
 					<th>Studiested</th>
 					<th>Programmeringsstil</th>
@@ -46,7 +45,6 @@
 				ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
-					<td>{{answer.pa_hodet}}</td>
 					<td>{{answer.type}}</td>
 					<td>{{answer.studiested}}</td>
 					<td>{{answer.programmeringsstil}}</td>
@@ -73,7 +71,6 @@
 									</div>
 									<div ng-show="oneAnswer.locked === 0" ng-class="'modal-body text-smaller'">
 										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
-										<b>På hodet: </b> {{oneAnswer.pa_hodet}}<br>
 										<b>Type: </b> {{oneAnswer.type}}<br>
 										<b>Studiested: </b> {{oneAnswer.studiested}}<br>
 										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil}}<br>
