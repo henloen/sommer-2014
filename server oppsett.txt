@@ -1,0 +1,20 @@
+Oppsett av server:
+- Last ned og installer git og github fra https://windows.github.com/ (versjon 2.0)
+- Kjør kommandoen "git clone https://github.com/henloen/sommer-2014" fra kommandolinjen
+- Last ned og installer node.js fra http://nodejs.org/download/ (versjon 0.10.29)
+- Last ned og installer MySQL installer fra http://dev.mysql.com/downloads/windows/installer/5.6.html (versjon 5.6.19)
+	- Installer evt programmer som trengs for mysql installer
+	- Konfigurer MySQL Server
+		- Config type: Server Machine
+		- Enable TCP/IP : true
+			- Port nr: 3306
+			- Open firewall port for network access : true
+		- Advanced configuration : false
+- Open connection to localhost
+- import data
+- add a user under "users and priveleges"
+	- name: "bodserver"
+	- pass: "Bodserver2014"
+	- add all administrative roles
+- change the file app/db.js accordingly (edit host, user and password)
+- gå til mappen der prosjektet ligger og kjør "npm start"
