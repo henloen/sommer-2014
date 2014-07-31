@@ -1,42 +1,42 @@
-		<div class="text-large text-orange"> &nbsp <img src="./photos/logo_medium.png"> </div>
-		<br>
+<div class="text-large text-orange">
+	 &nbsp <img src="./photos/logo_medium.png">
+</div>
 
+<br>
 
-		<form name="answerForm" ng-submit="submitAnswer(answerForm.$valid)" novalidate>
-			<div class="container middle-pos">
-				<div ng-repeat="col in questions">
-					<div ng-class="{'col-sm-3 container' : true, 'col-left-border': col === questions.BsecondCol || col === questions.CthirdCol || col === questions.DfourthCol}">	
-						<div ng-repeat="question in col">
-							<div ng-class="{'btn-group-vertical' : true, 'col-bottom-border' : !$last}" id="{{question.name}}" data-toggle="buttons">
-								<div class="header-question">{{question.title}}:</div>
-								<label ng-repeat="option in question.options"class="btn btn-response" name="{{option.value}}">
-									<input type="radio" name="{{question.name}}" value="{{option.value}}" ng-model="formData[question.name]" make-radio-button-detect-change required>{{option.output}}<br>
-								</label>
-								<br>
-									<p ng-show="formData.{{question.name}} === undefined && submitted === true" class="help-block has-error-custom text-smallest">Obligatorisk spørsmål!</p>
-							</div>
-							<br>
-							<br ng-hide="$last">
-						</div>
-						<div ng-show="col === questions.CthirdCol || col === questions.BsecondCol">
-							<br><br>
-						</div>
-						<br ng-show="col === questions.BsecondCol">
+<form name="answerForm" ng-submit="submitAnswer(answerForm.$valid)" novalidate>
+	<div class="container middle-pos">
+		<div ng-repeat="col in questions">
+			<div ng-class="{'col-sm-3 container' : true, 'col-left-border': col === questions.BsecondCol || col === questions.CthirdCol || col === questions.DfourthCol}">	
+				<div ng-repeat="question in col">
+					<div ng-class="{'btn-group-vertical' : true, 'col-bottom-border' : !$last}" id="{{question.name}}" data-toggle="buttons">
+						<div class="header-question">{{question.title}}:</div>
+						<label ng-repeat="option in question.options"class="btn btn-response" name="{{option.value}}">
+							<input type="radio" name="{{question.name}}" value="{{option.value}}" ng-model="formData[question.name]" make-radio-button-detect-change required>{{option.output}}<br>
+						</label>
+
+						<br>
+						<p ng-show="formData.{{question.name}} === undefined && submitted === true" class="help-block has-error-custom text-smallest">Obligatorisk spørsmål!</p>
 					</div>
+					<br>
+					<br ng-hide="$last">
 				</div>
+				<div ng-show="col === questions.CthirdCol || col === questions.BsecondCol">
+					<br><br>
+				</div>
+				<br ng-show="col === questions.BsecondCol">
 			</div>
-			<br><br>
-
-			<div class="container middle-pos">
-
-				<button class="btn btn-def-bouvet" name="registerButton" type="submit">
-					Registrer svar
-				</button>
-				<p ng-show="answerForm.$invalid && submitted === true" class="help-block has-error-custom text-smaller">Vennligst svar på alle spørsmål</p>
-			</form>
 		</div>
-		<br><br>	
-
 	</div>
-	
+	<br><br>
 
+	<div class="container middle-pos">
+		<button class="btn btn-def-bouvet" name="registerButton" type="submit">
+			Registrer svar
+		</button>
+		<p ng-show="answerForm.$invalid && submitted === true" class="help-block has-error-custom text-smaller">Vennligst svar på alle spørsmål</p>
+	</div>
+</form>
+
+<br>
+<br>

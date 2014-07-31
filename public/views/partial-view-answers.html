@@ -1,4 +1,5 @@
 <div class="container-fluid">
+	
 	<div class="row top-pad-medium bottom-pad-small">
 			<!--a button that takes you back to the menu -->
 			<div class="col-sm-2 col-sm-offset-1">
@@ -12,14 +13,18 @@
 			<div class="col-sm-2 col-sm-offset-2 text-smaller text-white top-pad-small" ng-show="viewAll">
 				Totalt antall svar: {{answers.length}}
 			</div>
+
 			<div class="col-sm-4" ng-hide="viewAll"></div>
+
 			<div class="col-sm-3 text-smaller text-white top-pad-small">
 				Antall ubehandlede svar: {{numberOfUnprocessed}}
 			</div>
+
 			<div class="col-sm-2 text-smaller text-white top-pad-small">
 				Index: {{startAnswers + 1}} - {{startAnswers + 10}}
 			</div>
 	</div>
+
 	<div class="row">
 		<!-- table displaying the contents of the database -->
 		<table class="table table-hover bg-white">
@@ -41,9 +46,14 @@
 			</thead>
 			<tbody class="listview">
 				<!--the ng-class is used for dynamically assigning classes to the rows to give them different colors -->
-				<tr ng-repeat="answer in answers | answersFromTo:startAnswers:startAnswers +  limitAnswers | 
-				orderBy:['id_answers']"
-				ng-class="{warning: answer.locked === 1, danger : answer.processed === 0 && answer.locked === 0, success : answer.processed === 1 && answer.locked === 0}">
+				<tr ng-repeat="answer in answers 
+				| answersFromTo:startAnswers:startAnswers +  limitAnswers 
+				| orderBy:['id_answers']"
+				ng-class="{
+				warning: answer.locked === 1, 
+				danger : answer.processed === 0 && answer.locked === 0, 
+				success : answer.processed === 1 && answer.locked === 0
+				}">
 					<td>{{answer.id_answers}}</td>
 					<td>{{answer.sivilstatus}}</td>
 					<td>{{answer.type}}</td>
@@ -100,6 +110,8 @@
 								</div>
 							</div>
 						</div>
+
+						<!-- a modal that wants the user to confirm the  -->
 						<div class="modal" id="confirmDeleteSingleModal" role="dialog" aria-hidden="true">
 							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
@@ -116,6 +128,7 @@
 								</div>
 							</div>
 						</div>
+
 					</td>
 				</tr>
 			</tbody>
@@ -131,27 +144,31 @@
 				</span>
 				Slett alle svar
 			</button>
+
 			<button class="btn btn-def-bouvet" ng-click="findNextUnprocessed()" ng-disabled="numberOfUnprocessed <= 0" ng-show="viewAll">
 				Se neste ubehandlede
 			</button>
+
 			<button class="btn btn-def-bouvet" ng-click="toggleViewAll()">
 				<span ng-show="viewAll">Se bare ubehandlede</span>
 				<span ng-hide="viewAll">Se alle</span>
 			</button>
 		</div>
-		
 
 		<div class="col-sm-3">
 			<button class="btn btn-def-bouvet" ng-click="tenFirstAnswers()" ng-disabled="startAnswers <= 0">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</button>
+
 			<button class="btn btn-def-bouvet" ng-click="tenPrevAnswers()" ng-disabled="startAnswers <= 0">
 				<span class="glyphicon glyphicon-chevron-left"></span>
 			</button>
+
 			<button class="btn btn-def-bouvet" ng-click="tenNextAnswers()" ng-disabled="startAnswers >= answers.length - 10">
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</button>
+
 			<button class="btn btn-def-bouvet" ng-click="tenLastAnswers()" ng-disabled="startAnswers >= answers.length - 10">
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="glyphicon glyphicon-chevron-right"></span>
@@ -176,5 +193,5 @@
 				</div>
 			</div>
 		</div>
-
-	</div>
+		
+</div>

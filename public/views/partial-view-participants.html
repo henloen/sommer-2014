@@ -47,21 +47,21 @@
 	</div>
 
 	<div class="row">
-		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
 		<div class="col-sm-5 col-sm-offset-1">
+		<!--a button that triggers a modal that wants you to confirm that you want to delete -->
 			<button class="btn btn-def-bouvet" name="deleteParticipants" data-toggle="modal" data-target="#confirmDeleteParticipantsModal" >
 				<span class="glyphicon glyphicon-trash">
 				</span>
 				Slett alle deltakere
 			</button>
-
+	
 			<button class="btn btn-def-bouvet" name="pickWinner" ng-click="pickWinner()">
 				<span class="glyphicon glyphicon-star-empty">
 				</span>
 				Trekk vinner
 			</button>
 		</div>
-
+	
 		<div class="col-sm-3 col-sm-offset-2">
 			<div class="row">
 				<div class="col-sm-12">
@@ -69,12 +69,15 @@
 						<span class="glyphicon glyphicon-chevron-left"></span>
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</button>
+	
 					<button class="btn btn-def-bouvet" ng-click="tenPrevParticipants()" ng-disabled="startParticipants <= 0">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</button>
+	
 					<button class="btn btn-def-bouvet" ng-click="tenNextParticipants()" ng-disabled="startParticipants >= participants.length - 10">
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</button>
+	
 					<button class="btn btn-def-bouvet" ng-click="tenLastParticipants()" ng-disabled="startParticipants >= participants.length - 10">
 						<span class="glyphicon glyphicon-chevron-right"></span>
 						<span class="glyphicon glyphicon-chevron-right"></span>
@@ -84,12 +87,13 @@
 		</div>
 	</div>
 
-		<br><br>
+	<br><br>
 
 	<div ng-show="winners.length > 0">
 		<div class="row text-orange text-medium middle-pos">
 			Vinnere
 		</div>
+	
 		<br>
 
 		<div class="row">
@@ -160,5 +164,5 @@
 				</div>
 			</div>
 		</div>
-
+		
 	</div>

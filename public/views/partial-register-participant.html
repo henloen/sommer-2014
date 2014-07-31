@@ -1,79 +1,81 @@
-		<div class="text-large"> &nbsp <img src="./photos/logo_medium.png"> </div>
+<div class="text-large"> &nbsp <img src="./photos/logo_medium.png"> </div>
 
+
+<div class="container middle-pos">	
+	<h2 class="text-orange text-large top-pad">The Beauty of Data</h2>
+	<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
+	<p class="text-white text-smaller">Vakkert i seg selv. Viktig for den det gjelder.</p>
+	
+	<br>
+
+	<div class="text-white">
+		<p> Dine svar er nå registrert.</p>
 		
-		<div class="container middle-pos">	
-			<h2 class="text-orange text-large top-pad">The Beauty of Data</h2>
-			<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
-			<p class="text-white text-smaller">Vakkert i seg selv. Viktig for den det gjelder.</p>
-			
+		<p> Hvis du vil være med i trekningen av premien, kan du fylle
+			ut informasjonen under. </p>
+		<p> Bouvet vil ikke bruke informasjonen til noe annet formål enn selve trekningen.</p> 
+		<p>Data vil bli slettet etter trekningen.</p>
+	</div>
+
+	<br>
+
+
+	<form class="form-horizontal" name="userForm" ng-submit="submitParticipant()" novalidate>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-4">
+				<input type="text" class="form-control form-field text-white" name="participantName" placeholder="Navn" ng-model="participant.name" required ng-maxlength="90">
+			</div>
+		</div>
+		<p ng-show="userForm.participantName.$error.maxlength" class="help-block has-error-custom">
+			Navnet er for langt, maks lengde er 90 tegn.
+		</p>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-4">
+				<input class="form-control form-field text-white" name="participantEmail" placeholder="Kontaktinfo" ng-model="participant.email" required ng-maxlength="90">
+			</div>
+		</div>
+		<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
+			Kontaktinformasjonen er for lang, maks lengde er 90 tegn.
+		</p>
+		<p ng-show="duplicateEmail === participant.email" class="help-block has-error-custom">
+			Denne kontaktinformasjonen er allerede registrert.
+			Vennligst prøv en annen.
+		</p>
+		<br>
+
+		<div class="btn-group-vertical" data-toggle="buttons">
+			<div class="header-question">Ønsket premie:
+			</div>
+			<label class="btn btn-response" name="moto360">
+				<input type="radio" name="prize" value="moto360" ng-model="participant.prize" required make-radio-button-detect-change>Moto360<br>
+			</label>
+			<label class="btn btn-response" name="oculusrift">
+				<input type="radio" name="prize" value="oculusrift" ng-model="participant.prize" required make-radio-button-detect-change>Oculus Rift<br>
+			</label>
+			<label class="btn btn-response" name="blomster">
+				<input type="radio" name="prize" value="blomster" ng-model="participant.prize" required make-radio-button-detect-change>Blomster<br>
+			</label>
+			<label class="btn btn-response" name="fruktkurv">
+				<input type="radio" name="prize" value="fruktkurv" ng-model="participant.prize" required make-radio-button-detect-change>Fruktkurv<br>
+			</label>
 			<br>
-			<div class="text-white">
-				<p> Dine svar er nå registrert.</p>
-				
-				<p> Hvis du vil være med i trekningen av premien, kan du fylle
-					ut informasjonen under. </p>
-				<p> Bouvet vil ikke bruke informasjonen til noe annet formål enn selve trekningen.</p> 
-				<p>Data vil bli slettet etter trekningen.</p>
-				</div>
-				<br>
+		</div>
+		<br>
+		<br>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid || duplicateEmail === participant.email">Submit info</button>
+			</div>
+		</div>
+	</form>
 
+	<br>
 
-					<form class="form-horizontal" name="userForm" ng-submit="submitParticipant()" novalidate>
-						<div class="form-group">
-							<div class="col-sm-offset-4 col-sm-4">
-								<input type="text" class="form-control form-field text-white" name="participantName" placeholder="Navn" ng-model="participant.name" required ng-maxlength="90">
-							</div>
-						</div>
-						<p ng-show="userForm.participantName.$error.maxlength" class="help-block has-error-custom">
-							Navnet er for langt, maks lengde er 90 tegn.
-						</p>
-						<div class="form-group">
-							<div class="col-sm-offset-4 col-sm-4">
-								<input class="form-control form-field text-white" name="participantEmail" placeholder="Kontaktinfo" ng-model="participant.email" required ng-maxlength="90">
-							</div>
-						</div>
-						<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
-							Kontaktinformasjonen er for lang, maks lengde er 90 tegn.
-						</p>
-						<p ng-show="duplicateEmail === participant.email" class="help-block has-error-custom">
-							Denne kontaktinformasjonen er allerede registrert.
-							Vennligst prøv en annen.
-						</p>
-						<br>
-
-						<div class="btn-group-vertical" data-toggle="buttons">
-							<div class="header-question">Ønsket premie:
-							</div>
-							<label class="btn btn-response" name="moto360">
-								<input type="radio" name="prize" value="moto360" ng-model="participant.prize" required make-radio-button-detect-change>Moto360<br>
-							</label>
-							<label class="btn btn-response" name="oculusrift">
-								<input type="radio" name="prize" value="oculusrift" ng-model="participant.prize" required make-radio-button-detect-change>Oculus Rift<br>
-							</label>
-							<label class="btn btn-response" name="blomster">
-								<input type="radio" name="prize" value="blomster" ng-model="participant.prize" required make-radio-button-detect-change>Blomster<br>
-							</label>
-							<label class="btn btn-response" name="fruktkurv">
-								<input type="radio" name="prize" value="fruktkurv" ng-model="participant.prize" required make-radio-button-detect-change>Fruktkurv<br>
-							</label>
-							<br>
-						</div>
-						<br>
-						<br>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8">
-								<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid || duplicateEmail === participant.email">Submit info</button>
-							</div>
-						</div>
-					</form>
-					<br>
-
-				<div>
-					<a href="#/partial-start" name="escapeButton" class="btn btn-escape text-small">
-						Nei takk
-					</a>
-					<br>
-				</div>
-					
-
-				</div>
+	<div>
+		<a href="#/partial-start" name="escapeButton" class="btn btn-escape text-small">
+			Nei takk
+		</a>
+		<br>
+	</div>
+			
+</div>
