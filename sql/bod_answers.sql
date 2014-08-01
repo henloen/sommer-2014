@@ -26,22 +26,20 @@ DROP TABLE IF EXISTS `answers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `answers` (
   `id_answers` int(11) NOT NULL AUTO_INCREMENT,
+  `kjonn` varchar(45) DEFAULT NULL,
   `sivilstatus` varchar(45) DEFAULT NULL,
-  `pa_hodet` varchar(45) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
-  `studiested` varchar(45) DEFAULT NULL,
+  `utdannelse` varchar(45) DEFAULT NULL,
   `programmeringsstil` varchar(45) DEFAULT NULL,
-  `musikk` varchar(45) DEFAULT NULL,
   `personlighet` varchar(45) DEFAULT NULL,
   `hypepreferanse` varchar(45) DEFAULT NULL,
+  `musikk` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   `favorittgode` varchar(45) DEFAULT NULL,
   `planerforkvelden` varchar(45) DEFAULT NULL,
-  `premiehvisduvinner` varchar(45) DEFAULT NULL,
   `processed` tinyint(1) DEFAULT '0',
-  `kjonn` varchar(45) DEFAULT NULL,
   `locked` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_answers`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +48,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
+INSERT INTO `answers` VALUES (1,'kvinne','skilt','bachelor','batenblirtil','introvert','internetofthings','rave','hipster','frikantine','endresivilstatus',0,0),(2,'kvinne','singel','bachelor','batenblirtil','ekstrovertpluss','laerkidsakoding','klassisk','youngster','kurskonferanse','smiskemedsjefen',0,0),(3,'kvinne','gift/samboer','selvstudertrover','quickanddirty','ekstrovertpluss','microservices','rock','gammelringrev','kurskonferanse','endresivilstatus',0,0),(4,'mann','singel','master','batenblirtil','introvert','microservices','alternativ','gammelringrev','pensjon','nytelivet',0,0),(5,'mann','singel','bachelor','ordenungmusssein','ekstrovert','microservices','rave','hipster','gadgetkonto','kode',0,0);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-31 14:05:51
+-- Dump completed on 2014-08-01 11:24:04

@@ -56,13 +56,13 @@ also contains a comment to relax two warnings of JSHint
 */
 function insertAnswer(values, callback) {
 	/*jshint multistr: true, laxbreak: true*/
-	query("insert into bod.answers(sivilstatus, pa_hodet, type, utdannelse, \
-		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
-		planerforkvelden, kjonn)" +
-		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.type
-		 + "', '" + values.utdannelse +"', '" + values.programmeringsstil +"', '" + values.musikk
-		 + "', '" + values.personlighet +"', '" + values.hypepreferanse  +"', '" + values.favorittgode
-		 + "', '" + values.planerforkvelden +"', '" + values.kjonn + "');",callback);
+	query("insert into bod.answers(kjonn, sivilstatus, utdannelse, \
+		programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, \
+		planerforkvelden)" +
+		"values ('" + values.kjonn +"', '" + values.sivilstatus
+		 + "', '" + values.utdannelse +"', '" + values.programmeringsstil +"', '" + values.personlighet
+		 + "', '" + values.hypepreferanse +"', '" + values.musikk  +"', '" + values.type
+		 + "', '" + values.favorittgode +"', '" + values.planerforkvelden + "');",callback);
 }
 
 //delete all answers

@@ -28,7 +28,6 @@ CREATE TABLE `participants` (
   `email` varchar(100) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `winner` tinyint(1) DEFAULT '0',
-  `prize` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,6 +38,7 @@ CREATE TABLE `participants` (
 
 LOCK TABLES `participants` WRITE;
 /*!40000 ALTER TABLE `participants` DISABLE KEYS */;
+INSERT INTO `participants` VALUES ('test1406884464899@testing.no','test',0),('test1406884464903@testing.no','test',0);
 /*!40000 ALTER TABLE `participants` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-31 14:05:51
+-- Dump completed on 2014-08-01 11:24:04

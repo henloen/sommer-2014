@@ -61,16 +61,16 @@ Converts the data values into a new 'values' object for easier naming, which is 
 */
 function insertAnswer(req, res) {
 	var values = {
+		kjonn: req.body.kjonn,
 		sivilstatus: req.body.sivilstatus, 
-		pa_hodet: req.body.pa_hodet, type: req.body.type,
 		utdannelse: req.body.utdannelse, 
 		programmeringsstil: req.body.programmeringsstil, 
-		musikk: req.body.musikk, 
 		personlighet: req.body.personlighet, 
 		hypepreferanse: req.body.hypepreferanse, 
+		musikk: req.body.musikk, 
+		type: req.body.type,
 		favorittgode: req.body.favorittgode, 
-		planerforkvelden: req.body.planerforkvelden, 
-		kjonn: req.body.kjonn
+		planerforkvelden: req.body.planerforkvelden
 	};
 	db.insertAnswer(values, function(err, rows) {
 		if (err) {
