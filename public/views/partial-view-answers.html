@@ -31,17 +31,16 @@
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Kjønn</th>
 					<th>Sivilstatus</th>
-					<th>Type</th>
-					<th>Studiested</th>
+					<th>Utdannelse</th>
 					<th>Programmeringsstil</th>
-					<th>Musikk</th>
 					<th>Personlighet</th>
 					<th>Hype-preferanse</th>
+					<th>Musikk</th>
+					<th>Type</th>
 					<th>Favorittgode</th>
 					<th>Planer for kvelden</th>
-					<th>Premie hvis du vinner</th>
-					<th>Kjønn</th>
 				</tr>
 			</thead>
 			<tbody class="listview">
@@ -55,17 +54,16 @@
 				success : answer.processed === 1 && answer.locked === 0
 				}">
 					<td>{{answer.id_answers}}</td>
+					<td>{{answer.kjonn}}</td>
 					<td>{{answer.sivilstatus}}</td>
-					<td>{{answer.type}}</td>
-					<td>{{answer.studiested}}</td>
+					<td>{{answer.utdannelse}}</td>
 					<td>{{answer.programmeringsstil}}</td>
-					<td>{{answer.musikk}}</td>
 					<td>{{answer.personlighet}}</td>
 					<td>{{answer.hypepreferanse}}</td>
+					<td>{{answer.musikk}}</td>
+					<td>{{answer.type}}</td>
 					<td>{{answer.favorittgode}}</td>
 					<td>{{answer.planerforkvelden}}</td>
-					<td>{{answer.premiehvisduvinner}}</td>
-					<td>{{answer.kjonn}}</td>
 					<td>
 						
 						<!--a button that triggers a modal with the data -->
@@ -81,16 +79,16 @@
 										<h4 class="modal-title text-small" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
 									</div>
 									<div ng-show="oneAnswer.locked === 0" ng-class="'modal-body text-smaller'">
+										<b>Kjønn:</b> {{oneAnswer.kjonn}}<br>
 										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
-										<b>Type: </b> {{oneAnswer.type}}<br>
-										<b>Studiested: </b> {{oneAnswer.studiested}}<br>
+										<b>Utdannelse: </b> {{oneAnswer.utdannelse}}<br>
 										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil}}<br>
-										<b>Musikk: </b> {{oneAnswer.musikk}}<br>
 										<b>Personlighet: </b> {{oneAnswer.personlighet}}<br>
 										<b>Hype-preferanse: </b> {{oneAnswer.hypepreferanse}}<br>
+										<b>Musikk: </b> {{oneAnswer.musikk}}<br>
+										<b>Type: </b> {{oneAnswer.type}}<br>
 										<b>Favorittgode: </b> {{oneAnswer.favorittgode}}<br>
 										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden}}<br>
-										<b>Premie hvis du vinner: </b> {{oneAnswer.premiehvisduvinner}}<br>
 									</div>
 									<div ng-show="oneAnswer.locked === 1" class="modal-body">
 										Dette svaret er låst.

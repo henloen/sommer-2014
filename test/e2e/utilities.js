@@ -2,14 +2,13 @@
 var kjonn = ["kvinne", "mann"];
 var sivilstatus = ["gift/samboer", "skilt", "singel", "complicated"];
 var type = ["youngster","coolcat", "hipster", "gammelringrev", "nerd"];
-var studiested = ["ntnu","selvlaertrover","annet"];
+var utdannelse = ["master","selvstudertrover", "bachelor","annet"];
 var programmeringsstil = ["batenblirtil","detordnerseg","ordenungmusssein", "quickanddirty"];
 var musikk = ["rock","vglista","disco","tronderrock","metal","rave","klassisk", "alternativ"];
 var personlighet = ["introvert", "ekstrovert", "ekstrovertpluss"];
-var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding"];
+var hypepreferanse = ["bigdata", "internetofthings","laerkidsakoding", "microservices"];
 var planerforkvelden = ["endresivilstatus","smiskemedsjefen","mingle","kode","nytelivet"];
 var favorittgode = ["fribar","gadgetkonto","kurskonferanse","frikantine","pensjon"];
-var premiehvisduvinner = ["moto360", "oculusrift", "blomster", "fruktkurv"];
 
 var milliseconds = (new Date).getTime();
 
@@ -93,31 +92,29 @@ function fillAnswer(browser) {
 	browser.findElement(by.name(getRandomWithinLength(kjonn))).click();
     browser.findElement(by.name(getRandomWithinLength(sivilstatus))).click();
     browser.findElement(by.name(getRandomWithinLength(type))).click();
-    browser.findElement(by.name(getRandomWithinLength(studiested))).click();
+    browser.findElement(by.name(getRandomWithinLength(utdannelse))).click();
     browser.findElement(by.name(getRandomWithinLength(programmeringsstil))).click();
     browser.findElement(by.name(getRandomWithinLength(musikk))).click();
     browser.findElement(by.name(getRandomWithinLength(personlighet))).click();
     browser.findElement(by.name(getRandomWithinLength(hypepreferanse))).click();
     browser.findElement(by.name(getRandomWithinLength(planerforkvelden))).click();
     browser.findElement(by.name(getRandomWithinLength(favorittgode))).click();
-    browser.findElement(by.name(getRandomWithinLength(premiehvisduvinner))).click();
 }
 
 function fillNotValidAnswer(browser) {
     browser.findElement(by.name(getRandomWithinLength(kjonn))).click();
     browser.findElement(by.name(getRandomWithinLength(sivilstatus))).click();
     browser.findElement(by.name(getRandomWithinLength(type))).click();
-    browser.findElement(by.name(getRandomWithinLength(studiested))).click();
+    browser.findElement(by.name(getRandomWithinLength(utdannelse))).click();
     browser.findElement(by.name(getRandomWithinLength(programmeringsstil))).click();
     browser.findElement(by.name(getRandomWithinLength(musikk))).click();
     browser.findElement(by.name(getRandomWithinLength(personlighet))).click();
     browser.findElement(by.name(getRandomWithinLength(hypepreferanse))).click();
     browser.findElement(by.name(getRandomWithinLength(planerforkvelden))).click();
-    browser.findElement(by.name(getRandomWithinLength(favorittgode))).click();
 }
 
 function fillLastQuestion(browser) {
-    browser.findElement(by.name(getRandomWithinLength(premiehvisduvinner))).click();
+    browser.findElement(by.name(getRandomWithinLength(favorittgode))).click();
 }
 
 
@@ -128,7 +125,6 @@ function submitAnswers(browser) {
 function registerParticipant(browser, timestamp) {
     browser.findElement(By.name("participantName")).sendKeys("test");
     browser.findElement(By.name("participantEmail")).sendKeys("test" + timestamp +"@testing.no");
-    browser.findElement(by.name(getRandomWithinLength(premiehvisduvinner))).click();
 }
 
 function submitParticipant(browser) {

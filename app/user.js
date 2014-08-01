@@ -63,14 +63,13 @@ function insertAnswer(req, res) {
 	var values = {
 		sivilstatus: req.body.sivilstatus, 
 		pa_hodet: req.body.pa_hodet, type: req.body.type,
-		studiested: req.body.studiested, 
+		utdannelse: req.body.utdannelse, 
 		programmeringsstil: req.body.programmeringsstil, 
 		musikk: req.body.musikk, 
 		personlighet: req.body.personlighet, 
 		hypepreferanse: req.body.hypepreferanse, 
 		favorittgode: req.body.favorittgode, 
 		planerforkvelden: req.body.planerforkvelden, 
-		premiehvisduvinner: req.body.premiehvisduvinner, 
 		kjonn: req.body.kjonn
 	};
 	db.insertAnswer(values, function(err, rows) {
@@ -161,7 +160,7 @@ Insert the participant object received as data of the POST request.
 Converts the data values into a new 'values' object for easier naming, which is passed on to the database script.
 */
 function insertParticipant(req, res) {
-	var values = {email: req.body.email, name: req.body.name, prize: req.body.prize};
+	var values = {email: req.body.email, name: req.body.name};
 	db.insertParticipant(values, function(err, rows) {
 		if (err) {
 			errorHandler(err, res);

@@ -337,53 +337,31 @@ angular.module("bodApp.controllers", [])
 						},
 					]
 				},
-				Calder : {
-					title: "Type",
-					name : "type",
+				CUtdannelse : {
+					title: "Utdannelse",
+					name : "utdannelse",
 					options : [
 						{
-							output: "Youngster",
-							value: "youngster"
+							output: "Master",
+							value: "master"
 						},
 						{
-							output: "Cool Cat",
-							value: "coolcat"
+							output: "Bachelor",
+							value: "bachelor"
 						},
 						{
-							output: "Hipster",
-							value: "hipster"
-						},
-						{
-							output: "Gammel Ringrev",
-							value: "gammelringrev"
-						},
-						{
-							output: "Nerd",
-							value: "nerd"
-						}
-					]
-				},
-			},
-			BsecondCol: {
-				Astudiested : {
-					title: "Studiested",
-					name : "studiested",
-					options : [
-						{
-							output: "NTNU",
-							value: "ntnu"
-						},
-						{
-							output: "Selvlært Røver",
-							value: "selvlaertrover"
+							output: "Selvstudert røver",
+							value: "selvstudertrover"
 						},
 						{
 							output: "Annet",
 							value: "annet"
 						}
 					]
-				},
-				Bprogrammeringsstil : {
+				}
+			},
+			BsecondCol: {
+				Aprogrammeringsstil : {
 					title: "Programmeringsstil",
 					name : "programmeringsstil",
 					options : [
@@ -405,7 +383,7 @@ angular.module("bodApp.controllers", [])
 						}
 					]
 				},
-				Cpersonlighet : {
+				Bpersonlighet : {
 					title: "Personlighet",
 					name : "personlighet",
 					options : [
@@ -420,6 +398,28 @@ angular.module("bodApp.controllers", [])
 						{
 							output: "Ekstrovert med litt innabords",
 							value: "ekstrovertpluss"
+						}
+					]
+				},
+				Chypepreferanse : {
+					title: "Hype-preferanse",
+					name : "hypepreferanse",
+					options : [
+						{
+							output: "Big Data",
+							value: "bigdata"
+						},
+						{
+							output: "Internet of Things",
+							value: "internetofthings"
+						},
+						{
+							output: "Lær Kidsa Koding",
+							value: "laerkidsakoding"
+						},
+						{
+							output: "Microservices",
+							value: "microservices"
 						}
 					]
 				}
@@ -463,36 +463,35 @@ angular.module("bodApp.controllers", [])
 						}
 					]
 				},
-				Bfavorittgode : {
-					title: "Favorittgode på jobb",
-					name : "favorittgode",
+				Btype : {
+					title: "Type",
+					name : "type",
 					options : [
 						{
-							output: "Fri bar på julebordet",
-							value: "fribar"
+							output: "Youngster",
+							value: "youngster"
 						},
 						{
-							output: "Gadgetkonto",
-							value: "gadgetkonto"
+							output: "Cool Cat",
+							value: "coolcat"
 						},
 						{
-							output: "Kurs og konferanser",
-							value: "kurskonferanse"
+							output: "Hipster",
+							value: "hipster"
 						},
 						{
-							output: "Fri kantine",
-							value: "frikantine"
+							output: "Gammel Ringrev",
+							value: "gammelringrev"
 						},
 						{
-							output: "Pensjon",
-							value: "pensjon"
+							output: "Nerd",
+							value: "nerd"
 						}
 					]
-				},
-
+				}
 			},
 			DfourthCol: {
-				Aplanerforkvelden : {
+				Bplanerforkvelden : {
 					title: "Planer for kvelden",
 					name : "planerforkvelden",
 					options : [
@@ -518,43 +517,29 @@ angular.module("bodApp.controllers", [])
 						}
 					]
 				},
-				Bhypepreferanse : {
-					title: "Hype-preferanse",
-					name : "hypepreferanse",
+				Afavorittgode : {
+					title: "Favorittgode på jobb",
+					name : "favorittgode",
 					options : [
 						{
-							output: "Big Data",
-							value: "bigdata"
+							output: "Fri bar på julebordet",
+							value: "fribar"
 						},
 						{
-							output: "Internet of Things",
-							value: "internetofthings"
+							output: "Gadgetkonto",
+							value: "gadgetkonto"
 						},
 						{
-							output: "Lær Kidsa Koding",
-							value: "laerkidsakoding"
-						}
-					]
-				},
-				Cpremie : {
-					title: "Premie hvis du vinner",
-					name : "premiehvisduvinner",
-					options : [
-						{
-							output: "Moto360",
-							value: "moto360"
+							output: "Kurs og konferanser",
+							value: "kurskonferanse"
 						},
 						{
-							output: "Oculus Rift",
-							value: "oculusrift"
+							output: "Fri kantine",
+							value: "frikantine"
 						},
 						{
-							output: "Blomster",
-							value: "blomster"
-						},
-						{
-							output: "Fruktkurv",
-							value: "fruktkurv"
+							output: "Pensjon",
+							value: "pensjon"
 						}
 					]
 				}

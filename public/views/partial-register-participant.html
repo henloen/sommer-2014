@@ -42,26 +42,6 @@
 			Vennligst prøv en annen.
 		</p>
 		<br>
-
-		<div class="btn-group-vertical" data-toggle="buttons">
-			<div class="header-question">Ønsket premie:
-			</div>
-			<label class="btn btn-response" name="moto360">
-				<input type="radio" name="prize" value="moto360" ng-model="participant.prize" required make-radio-button-detect-change>Moto360<br>
-			</label>
-			<label class="btn btn-response" name="oculusrift">
-				<input type="radio" name="prize" value="oculusrift" ng-model="participant.prize" required make-radio-button-detect-change>Oculus Rift<br>
-			</label>
-			<label class="btn btn-response" name="blomster">
-				<input type="radio" name="prize" value="blomster" ng-model="participant.prize" required make-radio-button-detect-change>Blomster<br>
-			</label>
-			<label class="btn btn-response" name="fruktkurv">
-				<input type="radio" name="prize" value="fruktkurv" ng-model="participant.prize" required make-radio-button-detect-change>Fruktkurv<br>
-			</label>
-			<br>
-		</div>
-		<br>
-		<br>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-8">
 				<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid || duplicateEmail === participant.email">Submit info</button>

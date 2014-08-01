@@ -56,14 +56,13 @@ also contains a comment to relax two warnings of JSHint
 */
 function insertAnswer(values, callback) {
 	/*jshint multistr: true, laxbreak: true*/
-	query("insert into bod.answers(sivilstatus, pa_hodet, type, studiested, \
+	query("insert into bod.answers(sivilstatus, pa_hodet, type, utdannelse, \
 		programmeringsstil, musikk, personlighet, hypepreferanse, favorittgode, \
-		planerforkvelden, premiehvisduvinner, kjonn)" +
+		planerforkvelden, kjonn)" +
 		"values ('" + values.sivilstatus +"', '" + values.pa_hodet +"', '" + values.type
-		 + "', '" + values.studiested +"', '" + values.programmeringsstil +"', '" + values.musikk
+		 + "', '" + values.utdannelse +"', '" + values.programmeringsstil +"', '" + values.musikk
 		 + "', '" + values.personlighet +"', '" + values.hypepreferanse  +"', '" + values.favorittgode
-		 + "', '" + values.planerforkvelden +"', '" + values.premiehvisduvinner+ "', '"
-		 + values.kjonn + "');",callback);
+		 + "', '" + values.planerforkvelden +"', '" + values.kjonn + "');",callback);
 }
 
 //delete all answers
@@ -96,8 +95,8 @@ insert a new participant
 values is an array containing the values to be inserted
 */
 function insertParticipant(values, callback) {
-	query("insert into bod.participants(email, name, prize)" + 
-		"values ('" + values.email + "', '" + values.name + "', '" + values.prize + "');", callback);
+	query("insert into bod.participants(email, name)" + 
+		"values ('" + values.email + "', '" + values.name + "');", callback);
 }
 
 //delete all participants
