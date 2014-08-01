@@ -156,6 +156,13 @@ angular.module("bodApp.controllers", [])
 			}
 		}
 
+		$scope.exportAnswers = function() {
+			console.log("exporting answers...");
+			Answers.export().success(function() {
+				console.log("exported answers");
+			});
+		}
+
 	}])
 
 	//the controller used in the viewing of participants
@@ -264,6 +271,12 @@ angular.module("bodApp.controllers", [])
 			else {
 				return mod;
 			}
+		}
+
+		function exportParticipants() {
+			$http.Participants.export().success(function() {
+
+			});
 		}
 
 	}])

@@ -37,6 +37,9 @@ angular.module("bodApp.services", [])
 			//deletes the answer with the specified id
 			delete : function(id) {
 				return $http.delete(/answers/ + id);
+			},
+			export : function() {
+				return $http.get("/exportAnswers");
 			}
 		};
 	})
@@ -63,6 +66,9 @@ angular.module("bodApp.services", [])
 			//deletes all winners (sets the 'winner' field of all participants to 0)
 			deleteWinners: function() {
 				return $http.delete("/winners");
+			},
+			export : function() {
+				return $http.get("/exportParticipants");
 			}
 		};
 	});

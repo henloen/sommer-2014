@@ -230,6 +230,36 @@ function errorHandler(error, response) {
 }
 
 /*
+export answers to csv file
+*/
+function exportAnswers(req, res) {
+	console.log("exporting answers to csv");
+	db.exportAnswers(function(err) {
+		if(err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("exported answers to csv");
+		}
+	});
+}
+
+/*
+export participants to csv file
+*/
+function exportParticipants(req, res) {
+	console.log("exporting participants to csv");
+	db.exportParticipants(function(err) {
+		if(err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.send("exported participants to csv");
+		}
+	});
+}
+
+/*
 Exporting of all methods used by other scripts, mostly by router.js
 */
 
@@ -246,3 +276,5 @@ exports.insertParticipant     = insertParticipant;
 exports.deleteParticipants    = deleteParticipants;
 exports.deleteWinners         = deleteWinners;
 exports.updateWinner          = updateWinner;
+exports.exportAnswers         = exportAnswers;
+exports.exportParticipants    = exportParticipants

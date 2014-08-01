@@ -77,4 +77,10 @@ route for deleting all winners, sets the 'winner' field of all participants to 0
 	app.route("/winners")
 		//used to reset all fields indicating winners
 		.delete(user.deleteWinners);
+
+	app.route("/exportAnswers")
+		.get(user.exportAnswers);
+
+	app.route("/exportParticipants")
+		.get(user.exportParticipants);
 };

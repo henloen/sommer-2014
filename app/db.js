@@ -4,6 +4,9 @@
 //uses the mysql package of node
 var mysql = require("mysql");
 
+//export path of .CSV
+var exportPath = "C:/ProgramData/MySQL/MySQL Server 5.6/data/bod/exported/";
+
 /*
 the connection to the database, needs to be set up correctly
 'host' is the ip of the host of the mysql server,
@@ -114,6 +117,40 @@ function deleteWinners(callback) {
 	query("update bod.participants set winner = 0 where winner = 1", callback);
 }
 
+//export answers to CSV-file without the status fields (locked and processed)
+function exportAnswers(callback) {
+	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden \
+			FROM bod.answers \
+			INTO OUTFILE '" + exportPath + "answers" + dateHelper() + ".csv'\
+			FIELDS TERMINATED BY ',' \
+			ENCLOSED BY '\"'\
+			LINES TERMINATED BY '\n'", callback)
+}
+
+//export participants to CSV-file without the winner field
+function exportParticipants(callback) {
+	query("SELECT email, name \
+			FROM bod.participants \
+			INTO OUTFILE '" + exportPath + "participants" + dateHelper() + ".csv'\
+			FIELDS TERMINATED BY ',' \
+			ENCLOSED BY '\"'\
+			LINES TERMINATED BY '\n'", callback)
+}
+
+function dateHelper() {
+	var date = new Date;
+	return  leadingZero(date.getDate()) + "-" 
+	+ leadingZero(date.getMonth()) + "-" 
+	+ date.getFullYear() + "-" 
+	+ leadingZero(date.getHours()) + ";" 
+	+ leadingZero(date.getMinutes()) + ";" 
+	+ leadingZero(date.getSeconds());
+}
+
+function leadingZero(str) {
+	return ("0" + str).slice(-2);
+}
+
 
 
 exports.readAnswers            = readAnswers;
@@ -129,3 +166,5 @@ exports.insertParticipant      = insertParticipant;
 exports.deleteParticipants     = deleteParticipants;
 exports.updateWinner           = updateWinner;
 exports.deleteWinners          = deleteWinners;
+exports.exportAnswers          = exportAnswers;
+exports.exportParticipants     = exportParticipants
