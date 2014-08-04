@@ -13,9 +13,9 @@ the connection to the database, needs to be set up correctly
 'user' and 'password' is the credentials defined by the mysql server
 */
 var connection = mysql.createConnection( {
-	host: "10.1.102.26",
-	user: "root",
-	password: "test"
+	host: "192.168.56.101",
+        user: "kp",
+	password: "password"
 });
 
 //connect to the db
@@ -119,22 +119,15 @@ function deleteWinners(callback) {
 
 //export answers to CSV-file without the status fields (locked and processed)
 function exportAnswers(callback) {
-	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden \
-			FROM bod.answers \
-			INTO OUTFILE '" + exportPath + "answers" + dateHelper() + ".csv'\
-			FIELDS TERMINATED BY ',' \
-			ENCLOSED BY '\"'\
-			LINES TERMINATED BY '\n'", callback)
+	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden from bod.answers", callback)
+			// INTO OUTFILE '" + exportPath + "answers" + dateHelper() + ".csv'\
 }
 
 //export participants to CSV-file without the winner field
 function exportParticipants(callback) {
 	query("SELECT email, name \
-			FROM bod.participants \
-			INTO OUTFILE '" + exportPath + "participants" + dateHelper() + ".csv'\
-			FIELDS TERMINATED BY ',' \
-			ENCLOSED BY '\"'\
-			LINES TERMINATED BY '\n'", callback)
+			FROM bod.participants", callback)
+			//INTO OUTFILE '" + exportPath + "participants" + dateHelper() + ".csv'\
 }
 
 function dateHelper() {

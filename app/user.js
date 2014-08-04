@@ -234,12 +234,15 @@ export answers to csv file
 */
 function exportAnswers(req, res) {
 	console.log("exporting answers to csv");
-	db.exportAnswers(function(err) {
+	db.exportAnswers(function(err, rows) {
 		if(err) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("exported answers to csv");
+			res.setHeader("Content-Disposition","attachment; filename=answers.cvs");
+			res.setHeader('Content-Type', 'text/csv');
+			res.write(JSON.stringify(rows), "UTF-8");
+			res.end();
 		}
 	});
 }
@@ -249,12 +252,15 @@ export participants to csv file
 */
 function exportParticipants(req, res) {
 	console.log("exporting participants to csv");
-	db.exportParticipants(function(err) {
+	db.exportParticipants(function(err, rows) {
 		if(err) {
 			errorHandler(err, res);
 		}
 		else {
-			res.send("exported participants to csv");
+			res.setHeader("Content-Disposition","attachment; filename=participants.cvs");
+			res.setHeader('Content-Type', 'text/csv');
+			res.write(JSON.stringify(rows), "UTF-8");
+			res.end();
 		}
 	});
 }
