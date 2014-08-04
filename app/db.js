@@ -13,7 +13,7 @@ the connection to the database, needs to be set up correctly
 'user' and 'password' is the credentials defined by the mysql server
 */
 var connection = mysql.createConnection( {
-	host: "10.1.102.26",
+	host: "192.168.1.237",
 	user: "root",
 	password: "test"
 });
