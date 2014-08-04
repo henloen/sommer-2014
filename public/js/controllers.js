@@ -161,7 +161,7 @@ angular.module("bodApp.controllers", [])
 			Answers.export().success(function() {
 				console.log("exported answers");
 			});
-		}
+		};
 
 	}])
 

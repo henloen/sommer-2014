@@ -13,9 +13,15 @@ the connection to the database, needs to be set up correctly
 'user' and 'password' is the credentials defined by the mysql server
 */
 var connection = mysql.createConnection( {
+<<<<<<< HEAD
 	host: "192.168.56.101",
         user: "kp",
 	password: "password"
+=======
+	host: "192.168.1.237",
+	user: "root",
+	password: "test"
+>>>>>>> 528e8281bf014124f8009cd883c9af80052d99e5
 });
 
 //connect to the db
