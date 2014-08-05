@@ -239,9 +239,9 @@ function exportAnswers(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.setHeader("Content-Disposition","attachment; filename=answers.csv");
-			res.setHeader('Content-Type', 'text/csv');
-			res.write(ConvertToCSV(JSON.stringify(rows)), "UTF-8");
+			res.setHeader("Content-Disposition", "attachment; filename=answers.csv");
+			res.setHeader('Content-Type', 'application/octet-stream');
+			res.write(ConvertToCSV(JSON.stringify(rows)));
 			res.end();
 		}
 	});
@@ -258,8 +258,8 @@ function exportParticipants(req, res) {
 		}
 		else {
 			res.setHeader("Content-Disposition","attachment; filename=participants.csv");
-			res.setHeader('Content-Type', 'text/csv');
-			res.write(ConvertToCSV(JSON.stringify(rows)), "UTF-8");
+			res.setHeader('Content-Type', 'application/octet-stream');
+			res.write(ConvertToCSV(JSON.stringify(rows)));
 			res.end();
 		}
 	});
