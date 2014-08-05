@@ -5,4 +5,4 @@ external_libs/
 tmp
 .DS_Store
 .idea
-app/db.js
+app/config.js

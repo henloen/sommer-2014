@@ -239,7 +239,7 @@ function exportAnswers(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.setHeader("Content-Disposition","attachment; filename=answers.cvs");
+			res.setHeader("Content-Disposition","attachment; filename=answers.csv");
 			res.setHeader('Content-Type', 'text/csv');
 			res.write(ConvertToCSV(JSON.stringify(rows)), "UTF-8");
 			res.end();
@@ -257,7 +257,7 @@ function exportParticipants(req, res) {
 			errorHandler(err, res);
 		}
 		else {
-			res.setHeader("Content-Disposition","attachment; filename=participants.cvs");
+			res.setHeader("Content-Disposition","attachment; filename=participants.csv");
 			res.setHeader('Content-Type', 'text/csv');
 			res.write(ConvertToCSV(JSON.stringify(rows)), "UTF-8");
 			res.end();
