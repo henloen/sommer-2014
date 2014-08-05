@@ -3,9 +3,8 @@
 
 //uses the mysql package of node
 var mysql = require("mysql");
+var config = require("./config");
 
-//export path of .CSV
-var exportPath = "C:/ProgramData/MySQL/MySQL Server 5.6/data/bod/exported/";
 
 /*
 the connection to the database, needs to be set up correctly
@@ -13,9 +12,9 @@ the connection to the database, needs to be set up correctly
 'user' and 'password' is the credentials defined by the mysql server
 */
 var connection = mysql.createConnection( {
-	host: "10.1.102.26",
-	user: "root",
-	password: "test"
+	host: config.dbOptions.dburl,
+    user: config.dbOptions.dbuser,
+	password: config.dbOptions.dbpassword
 });
 
 //connect to the db
