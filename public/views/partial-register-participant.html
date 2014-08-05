@@ -31,7 +31,7 @@
 		</p>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<input class="form-control form-field text-white" name="participantEmail" placeholder="Kontaktinfo" ng-model="participant.email" required ng-maxlength="90">
+				<input class="form-control form-field text-white" name="participantEmail" placeholder="Email eller telefonnummer" ng-model="participant.email" required ng-maxlength="90" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$|^[0-9]{8}$/">
 			</div>
 		</div>
 		<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
@@ -41,10 +41,19 @@
 			Denne kontaktinformasjonen er allerede registrert.
 			Vennligst prøv en annen.
 		</p>
+		
+		<p ng-show="userForm.participantEmail.$dirty && userForm.participantEmail.$invalid"
+		
+		class="help-block has-error-custom">
+			Kontaktinformasjonen må inneholde enten telefonnr eller epost
+		</p>
+		
 		<br>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-8">
-				<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="userForm.$invalid || duplicateEmail === participant.email">Submit info</button>
+				<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="
+				(userForm.$invalid || duplicateEmail === participant.email) || userForm.participantEmail.$invalid
+				">Submit info</button>
 			</div>
 		</div>
 	</form>
