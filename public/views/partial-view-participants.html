@@ -30,7 +30,7 @@
 				<thead>
 					<tr>
 						<th class="middle-pos">Navn</th>
-						<th class="middle-pos">E-post</th>
+						<th class="middle-pos">Kontaktinfo</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,8 +50,10 @@
 			<button class="btn btn-def-bouvet" name="deleteParticipants" data-toggle="modal" data-target="#confirmDeleteParticipantsModal" >
 				<span class="glyphicon glyphicon-trash">
 				</span>
-				Slett alle deltakere
+				Slett alle
 			</button>
+			
+			<a href="/exportParticipants" class="btn btn-def-bouvet" download>Eksporter</a>
 	
 			<button class="btn btn-def-bouvet" name="pickWinner" ng-click="pickWinner()">
 				<span class="glyphicon glyphicon-star-empty">
@@ -100,7 +102,7 @@
 					<thead>
 						<tr>
 							<th class="container">Navn</th>
-							<th class="container">E-post</th>
+							<th class="container">Kontaktinfo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -120,10 +122,18 @@
 					</span>
 					Slett vinnere
 				</button>
+				
 			</div>
 		</div>
-	</div>
+		
+		
+		
+			
+		
 
+		
+	</div>
+	
 
 		<!-- the modal that wants you to confirm that you want to delete all participants in the database -->
 		<div class="modal" id="confirmDeleteParticipantsModal" role="dialog" aria-hidden="true">

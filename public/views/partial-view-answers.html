@@ -54,16 +54,16 @@
 				success : answer.processed === 1 && answer.locked === 0
 				}">
 					<td>{{answer.id_answers}}</td>
-					<td>{{answer.kjonn}}</td>
-					<td>{{answer.sivilstatus}}</td>
-					<td>{{answer.utdannelse}}</td>
-					<td>{{answer.programmeringsstil}}</td>
-					<td>{{answer.personlighet}}</td>
-					<td>{{answer.hypepreferanse}}</td>
-					<td>{{answer.musikk}}</td>
-					<td>{{answer.type}}</td>
-					<td>{{answer.favorittgode}}</td>
-					<td>{{answer.planerforkvelden}}</td>
+					<td>{{answer.kjonn | prettyString}}</td>
+					<td>{{answer.sivilstatus | prettyString}}</td>
+					<td>{{answer.utdannelse | prettyString}}</td>
+					<td>{{answer.programmeringsstil | prettyString}}</td>
+					<td>{{answer.personlighet | prettyString}}</td>
+					<td>{{answer.hypepreferanse | prettyString}}</td>
+					<td>{{answer.musikk | prettyString}}</td>
+					<td>{{answer.type | prettyString}}</td>
+					<td>{{answer.favorittgode | prettyString}}</td>
+					<td>{{answer.planerforkvelden | prettyString}}</td>
 					<td>
 						
 						<!--a button that triggers a modal with the data -->
@@ -79,16 +79,16 @@
 										<h4 class="modal-title text-small" id="myModalLabel">Svar: {{oneAnswer.id_answers}}</h4>
 									</div>
 									<div ng-show="oneAnswer.locked === 0" ng-class="'modal-body text-smaller'">
-										<b>Kjønn:</b> {{oneAnswer.kjonn}}<br>
-										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus}}<br>
-										<b>Utdannelse: </b> {{oneAnswer.utdannelse}}<br>
-										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil}}<br>
-										<b>Personlighet: </b> {{oneAnswer.personlighet}}<br>
-										<b>Hype-preferanse: </b> {{oneAnswer.hypepreferanse}}<br>
-										<b>Musikk: </b> {{oneAnswer.musikk}}<br>
-										<b>Type: </b> {{oneAnswer.type}}<br>
-										<b>Favorittgode: </b> {{oneAnswer.favorittgode}}<br>
-										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden}}<br>
+										<b>Kjønn:</b> {{oneAnswer.kjonn | prettyString}}<br>
+										<b>Sivilstatus:</b> {{oneAnswer.sivilstatus | prettyString}}<br>
+										<b>Utdannelse: </b> {{oneAnswer.utdannelse | prettyString}}<br>
+										<b>Programmeringsstil: </b> {{oneAnswer.programmeringsstil | prettyString}}<br>
+										<b>Personlighet: </b> {{oneAnswer.personlighet | prettyString}}<br>
+										<b>Hype-preferanse: </b> {{oneAnswer.hypepreferanse | prettyString}}<br>
+										<b>Musikk: </b> {{oneAnswer.musikk | prettyString}}<br>
+										<b>Type: </b> {{oneAnswer.type | prettyString}}<br>
+										<b>Favorittgode: </b> {{oneAnswer.favorittgode | prettyString}}<br>
+										<b>Planer for kvelden: </b> {{oneAnswer.planerforkvelden | prettyString}}<br>
 									</div>
 									<div ng-show="oneAnswer.locked === 1" class="modal-body">
 										Dette svaret er låst.
@@ -140,7 +140,7 @@
 			<button class="btn btn-def-bouvet" name="deleteAnswers" data-toggle="modal" data-target="#confirmDeleteModal" >
 				<span class="glyphicon glyphicon-trash">
 				</span>
-				Slett alle svar
+				Slett alle
 			</button>
 
 			<button class="btn btn-def-bouvet" ng-click="findNextUnprocessed()" ng-disabled="numberOfUnprocessed <= 0" ng-show="viewAll">
@@ -171,6 +171,12 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3 col-sm-offset-1">
+			<a href="/exportAnswers" class="btn btn-def-bouvet" download>Eksporter</a>
 		</div>
 	</div>
 

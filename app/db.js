@@ -3,6 +3,8 @@
 
 //uses the mysql package of node
 var mysql = require("mysql");
+var config = require("./config");
+
 
 /*
 the connection to the database, needs to be set up correctly
@@ -10,9 +12,9 @@ the connection to the database, needs to be set up correctly
 'user' and 'password' is the credentials defined by the mysql server
 */
 var connection = mysql.createConnection( {
-	host: "10.1.102.26",
-	user: "root",
-	password: "test"
+	host: config.dbOptions.dburl,
+    user: config.dbOptions.dbuser,
+	password: config.dbOptions.dbpassword
 });
 
 //connect to the db
@@ -114,6 +116,33 @@ function deleteWinners(callback) {
 	query("update bod.participants set winner = 0 where winner = 1", callback);
 }
 
+//export answers to CSV-file without the status fields (locked and processed)
+function exportAnswers(callback) {
+	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden from bod.answers", callback)
+			// INTO OUTFILE '" + exportPath + "answers" + dateHelper() + ".csv'\
+}
+
+//export participants to CSV-file without the winner field
+function exportParticipants(callback) {
+	query("SELECT email, name \
+			FROM bod.participants", callback)
+			//INTO OUTFILE '" + exportPath + "participants" + dateHelper() + ".csv'\
+}
+
+function dateHelper() {
+	var date = new Date;
+	return  leadingZero(date.getDate()) + "-" 
+	+ leadingZero(date.getMonth()) + "-" 
+	+ date.getFullYear() + "-" 
+	+ leadingZero(date.getHours()) + ";" 
+	+ leadingZero(date.getMinutes()) + ";" 
+	+ leadingZero(date.getSeconds());
+}
+
+function leadingZero(str) {
+	return ("0" + str).slice(-2);
+}
+
 
 
 exports.readAnswers            = readAnswers;
@@ -129,3 +158,5 @@ exports.insertParticipant      = insertParticipant;
 exports.deleteParticipants     = deleteParticipants;
 exports.updateWinner           = updateWinner;
 exports.deleteWinners          = deleteWinners;
+exports.exportAnswers          = exportAnswers;
+exports.exportParticipants     = exportParticipants

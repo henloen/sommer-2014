@@ -230,6 +230,74 @@ function errorHandler(error, response) {
 }
 
 /*
+export answers to csv file
+*/
+function exportAnswers(req, res) {
+	console.log("exporting answers to csv");
+	db.exportAnswers(function(err, rows) {
+		if(err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.setHeader("Content-Disposition", "attachment; filename=answers.csv");
+			res.setHeader('Content-Type', 'application/octet-stream');
+			res.write(ConvertToCSV(JSON.stringify(rows)));
+			res.end();
+		}
+	});
+}
+
+/*
+export participants to csv file
+*/
+function exportParticipants(req, res) {
+	console.log("exporting participants to csv");
+	db.exportParticipants(function(err, rows) {
+		if(err) {
+			errorHandler(err, res);
+		}
+		else {
+			res.setHeader("Content-Disposition","attachment; filename=participants.csv");
+			res.setHeader('Content-Type', 'application/octet-stream');
+			res.write(ConvertToCSV(JSON.stringify(rows)));
+			res.end();
+		}
+	});
+}
+
+/*
+http://www.gilgh.com/article/Create-CSV-file-using-JSON-data
+*/
+function ConvertToCSV(objArray) {
+            var arrData = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var CSV = '';    
+		    
+		    var row = "";
+		    //This loop will extract the label from 1st index of on array
+		    for (var index in arrData[0]) {
+		    	//Now convert each value to string and comma-seprated
+		        row += index + ',';
+		    }
+		    row = row.slice(0, -1);
+		    //append Label row with line break
+		    CSV += row + '\r\n';
+
+		    //1st loop is to extract each row
+		    for (var i = 0; i < arrData.length; i++) {
+		        var row = "";
+		        //2nd loop will extract each column and convert it in string comma-seprated
+		        for (var index in arrData[i]) {
+					if (row != '') row += ','
+		            row += arrData[i][index];
+		        }
+		        row.slice(0, row.length - 1);
+		        //add a line break after each row
+		        CSV += row + '\r\n';
+		    }
+		return CSV;
+}
+
+/*
 Exporting of all methods used by other scripts, mostly by router.js
 */
 
@@ -246,3 +314,5 @@ exports.insertParticipant     = insertParticipant;
 exports.deleteParticipants    = deleteParticipants;
 exports.deleteWinners         = deleteWinners;
 exports.updateWinner          = updateWinner;
+exports.exportAnswers         = exportAnswers;
+exports.exportParticipants    = exportParticipants
