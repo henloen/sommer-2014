@@ -21,9 +21,9 @@ A documentation on the concept, the use of the application, the intended users, 
     /*jshint node: true*/
     "use strict";
     var dbOptions = {
-      dburl: 'localhost',
-      dbuser: 'root',
-      dbpassword: 'test'
+      dburl: 'yourDBurl',
+      dbuser: 'yourDBuser',
+      dbpassword: 'yourDBpassword'
     }
     exports.dbOptions = dbOptions; 
     ```
