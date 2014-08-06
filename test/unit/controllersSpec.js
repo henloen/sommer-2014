@@ -393,6 +393,12 @@ describe("BoD controllers", function() {
 					return deferred.promise;
 				}
 			}
+
+			var questionsMock = {
+				questions : {
+				}
+			}
+
 			spyOn(answersMock, "getAll").andCallThrough();
 			spyOn(answersMock, "get").andCallThrough();
 			spyOn(answersMock, "toggleLock").andCallThrough();
@@ -400,6 +406,7 @@ describe("BoD controllers", function() {
 			spyOn(answersMock, "deleteAll").andCallThrough();
 			spyOn(answersMock, "create").andCallThrough();
 			$provide.value("Answers", answersMock);
+			$provide.value("Questions", questionsMock);
 		}));
 
 		beforeEach(
