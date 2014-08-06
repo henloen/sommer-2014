@@ -30,6 +30,8 @@ A documentation on the concept, the use of the application, the intended users, 
     
 5. Run *npm start* from the root level of the project. This should install all further dependencies and fire up the application.
 
+6. Access the application at yourip:theportspecified (e.g. localhost:3000).
+
 For more detailed instructions, please consult the documentation.
 
 
