@@ -157,9 +157,7 @@ angular.module("bodApp.controllers", [])
 		}
 
 		$scope.exportAnswers = function() {
-			console.log("exporting answers...");
 			Answers.export().success(function() {
-				console.log("exported answers");
 			});
 		};
 
@@ -274,8 +272,7 @@ angular.module("bodApp.controllers", [])
 		}
 
 		function exportParticipants() {
-			$http.Participants.export().success(function() {
-
+			Participants.export().success(function() {
 			});
 		}
 

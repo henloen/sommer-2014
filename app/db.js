@@ -118,19 +118,19 @@ function deleteWinners(callback) {
 
 //export answers to CSV-file without the status fields (locked and processed)
 function exportAnswers(callback) {
-	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden from bod.answers", callback)
+	query("SELECT id_answers, kjonn, sivilstatus, utdannelse, programmeringsstil, personlighet, hypepreferanse, musikk, type, favorittgode, planerforkvelden from bod.answers", callback);
 			// INTO OUTFILE '" + exportPath + "answers" + dateHelper() + ".csv'\
 }
 
 //export participants to CSV-file without the winner field
 function exportParticipants(callback) {
-	query("SELECT email, name \
-			FROM bod.participants", callback)
+	query("SELECT email, name FROM bod.participants", callback);
 			//INTO OUTFILE '" + exportPath + "participants" + dateHelper() + ".csv'\
 }
 
+/*
 function dateHelper() {
-	var date = new Date;
+	var date = new Date();
 	return  leadingZero(date.getDate()) + "-" 
 	+ leadingZero(date.getMonth()) + "-" 
 	+ date.getFullYear() + "-" 
@@ -142,7 +142,7 @@ function dateHelper() {
 function leadingZero(str) {
 	return ("0" + str).slice(-2);
 }
-
+*/
 
 
 exports.readAnswers            = readAnswers;
@@ -159,4 +159,4 @@ exports.deleteParticipants     = deleteParticipants;
 exports.updateWinner           = updateWinner;
 exports.deleteWinners          = deleteWinners;
 exports.exportAnswers          = exportAnswers;
-exports.exportParticipants     = exportParticipants
+exports.exportParticipants     = exportParticipants;
