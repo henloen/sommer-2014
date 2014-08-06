@@ -16,6 +16,7 @@ A documentation on the concept, the use of the application, the intended users, 
 2. Download and install [node.js](http://nodejs.org/download/) (version 0.10.29 was used during development).
 3. Set up a working [mysql server](http://dev.mysql.com/downloads/windows/installer/5.6.html) and create the two tables it needs by using the sql scripts in the sql folder.
 4. Configure your own config.local.js file to define the url you will access the mysql server on. The file should follow this example:
+
     ```javascript
     /*jshint node: true*/
     "use strict";
@@ -26,6 +27,7 @@ A documentation on the concept, the use of the application, the intended users, 
     }
     exports.dbOptions = dbOptions; 
     ```
+    
 5. Run *npm start* from the root level of the project. This should install all further dependencies and fire up the application.
 
 For more detailed instructions, please consult the documentation.
