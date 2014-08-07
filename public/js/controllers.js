@@ -335,4 +335,30 @@ angular.module("bodApp.controllers", [])
 				}
 			});
 		};
+	}])
+	
+	.controller("VisualizeCtrl", ["$scope", "Answers", "Questions", function($scope, Answers, Questions) {
+		/*
+		get all answers from the server,
+		always returns all answers
+		*/
+		$scope.getAnswers = function() {
+			Answers.getAll(true).success(function (data) {
+					$scope.answers = data;
+					$scope.$broadcast('draw');
+			});
+		};
+		
+		$scope.getAnswers();
+		
+		/*
+		get all answers from the server,
+		always returns all answers
+		*/
+		
+		$scope.questions = Questions.questions;
+		
+		
+		
+		
 	}]);
