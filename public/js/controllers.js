@@ -22,6 +22,7 @@ angular.module("bodApp.controllers", [])
 			else {
 				$scope.viewAll = true;
 			}
+			$scope.tenFirstAnswers();
 			$scope.getAnswers();
 		};
 
@@ -279,7 +280,7 @@ angular.module("bodApp.controllers", [])
 	}])
 
 	//the controller used on the page where the user registers answers
-	.controller("RegisterAnswerCtrl", ["$scope", "$location", "Answers", "Questions", function($scope, $location, Answers, Questions) {
+	.controller("RegisterAnswerCtrl", ["$scope", "$location", "Answers", "Questions", "RecentAnswer", function($scope, $location, Answers, Questions, RecentAnswer) {
 
 		//initial object of form data
 		$scope.formData = {};
@@ -293,6 +294,7 @@ angular.module("bodApp.controllers", [])
 		$scope.submitAnswer = function(isValid) {
 			if (isValid) {
 				Answers.create($scope.formData).success(function(data) {
+					RecentAnswer.answer = $scope.formData;
 					$location.path("/partial-register-participant");
 				});
 			}
@@ -348,6 +350,7 @@ angular.module("bodApp.controllers", [])
 					$scope.$broadcast('draw');
 			});
 		};
+
 		
 		$scope.getAnswers();
 		
@@ -361,4 +364,20 @@ angular.module("bodApp.controllers", [])
 		
 		
 		
-	}]);
+	}])
+
+	.controller("VisualizeSingleCtrl", ["$scope", "RecentAnswer", "Questions", function($scope, RecentAnswer, Questions) {
+
+		$scope.answers = [RecentAnswer.answer];
+		$scope.questions = Questions.questions;
+		
+		$scope.broadcast = function() {
+			$scope.broadcasted = true;
+			$scope.$broadcast('draw');
+		};
+
+		console.log($scope.answers);
+		console.log($scope.questions);
+
+
+	}])

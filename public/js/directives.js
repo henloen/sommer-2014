@@ -56,8 +56,8 @@ angular.module("bodApp.directives", [])
 		    	}
 
 		    	function draw(){
+                    console.log("drawing...");
 					reset();
-					console.log("starting drawing");
 					var lX = 20;
 					var lY = 20;
 
@@ -92,11 +92,25 @@ angular.module("bodApp.directives", [])
 						var startY = null;
 						var toX = null;
 						var toY = null;
-						ctx.strokeStyle = getRandomColor();
+
+                        ctx.strokeStyle = getRandomColor();
+
+
+                        /*for white/orange color depending on gender
+
+
+                        if (scope.answers[i]["kjonn"] === "mann") {
+					       	ctx.strokeStyle = "#ff6400";
+                        }
+                        else {
+                            ctx.strokeStyle = "ff6400";
+                        }
+                        */
+
+
 						ctx.lineWidth = 1;
 						for (var p in scope.answers[i]) {
 							if (scope.answers[i].hasOwnProperty(p)) {
-							   console.log(p);
 							   var c = coordList[scope.answers[i][p]];
 							   if (c != null) {
 								 if (startX == null && startX == null) {
@@ -111,19 +125,15 @@ angular.module("bodApp.directives", [])
 											   ctx.moveTo(startX,startY);
 											   ctx.lineTo(toX, toY);
 											   ctx.stroke();
-											   console.log(p + " ," + "coords : " + startX + ", " + startY + " to " + toX + ", " + toY);
 											   startX = c['x'];
 											   startY = c['y'];
 								   }
 								   
 								}
-							   } else {
-								console.log(p + " is null");
 							   }
 							}
 						}
 					}	
-					console.log("ending draw");
 				}
 				
 				function getRandomColor() {
@@ -148,6 +158,7 @@ angular.module("bodApp.directives", [])
 				}
 				
 				scope.$on('draw', function() {
+                    console.log("event received");
 				   draw();
 				});
 			

@@ -328,4 +328,9 @@ angular.module("bodApp.services", [])
 				}
 			}
 		};
+	})
+	.factory("RecentAnswer", function() {
+		return {
+			answer : {}
+		};
 	});

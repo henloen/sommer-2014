@@ -42,12 +42,13 @@ config(["$routeProvider", function($routeProvider) {
 		{
 			templateUrl: "views/partial-participant-registered.html", controller: "RegisterParticipantCtrl"
 		});
-
 	$routeProvider.when("/visualize", 
 		{
 			templateUrl: "views/partial-view-answersvisual.html", controller: "VisualizeCtrl"
 		});
-
-	
+	$routeProvider.when("/visualize-single", 
+		{
+			templateUrl: "views/partial-view-answersvisual-single.html", controller: "VisualizeSingleCtrl"
+		});
 	$routeProvider.otherwise({redirectTo: "/partial-index"});
 }]);
