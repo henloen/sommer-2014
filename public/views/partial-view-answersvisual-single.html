@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<div class="btn btn-def-bouvet" ng-click="broadcast()" ng-hide="broadcasted">
+		Draw
+	</div>
+	<div>
+		<a href="#/partial-register-participant" name="menuButton" class="btn btn-def-bouvet">
+			<span class="glyphicon glyphicon-home">
+			</span>
+			Tilbake
+		</a>
+	</div>
+		
+			<style>
+		    .container-canvas {
+		        /* This could be done in one single declaration. See the extended sample. */
+		        margin-right: auto;
+		        margin-left: auto;
+		        width: 100%;
+		    }
+			canvas {
+			            left: 0;
+			            right: 0;
+			            width: 100%;
+			           
+			        }
+		</style>
+			
+		<div class="container-canvas">
+		    <canvas drawing id="mycanvas" width="800" height="480"></canvas>
+		</div>
+
+
+</div>
