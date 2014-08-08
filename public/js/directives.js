@@ -28,7 +28,6 @@ angular.module("bodApp.directives", [])
     }])
 	.directive('drawing', function() {
 	 	return {
-		    restrict: "A",
             replace: false,
             scope: false,
 		    link: function (scope, element, attrs, ngModelCtrl) {
@@ -38,6 +37,7 @@ angular.module("bodApp.directives", [])
 			 	ctx.canvas.height = window.innerHeight;
 			
 				var questions = scope.questions;
+				var answers = scope.answers;
 				
 				
 				var categories = [];
@@ -56,7 +56,7 @@ angular.module("bodApp.directives", [])
 		    	}
 
 		    	function draw(){
-                    console.log("drawing...");
+					console.log("testing2");
 					reset();
 					var lX = 20;
 					var lY = 20;
@@ -69,7 +69,6 @@ angular.module("bodApp.directives", [])
 						ctx.strokeText(categories[t]['title'],lX + tempX,lY);
 						var tempY = 100;
 
-						
 						for (var u in categories[t]['options'])	{
 							ctx.strokeStyle = "#4bf";
 							ctx.fillStyle = null;
@@ -95,17 +94,16 @@ angular.module("bodApp.directives", [])
 
                         ctx.strokeStyle = getRandomColor();
 
-
-                        /*for white/orange color depending on gender
-
-
-                        if (scope.answers[i]["kjonn"] === "mann") {
-					       	ctx.strokeStyle = "#ff6400";
+						// for single answer visualization
+						if (scope.answers.length == 1) {
+							console.log(scope.answers[i]["kjonn"]);
+                        	if (scope.answers[i]["kjonn"] === "mann") {
+					       		ctx.strokeStyle = "#FFFFFF";
+                        	}
+                        	else {
+                            	ctx.strokeStyle = "#ff6400";
+                        	}
                         }
-                        else {
-                            ctx.strokeStyle = "ff6400";
-                        }
-                        */
 
 
 						ctx.lineWidth = 1;
@@ -120,7 +118,7 @@ angular.module("bodApp.directives", [])
 	
 								   toX = c['x'] + Math.random() * (2 - -2) + -2;
 								   toY = c['y'] + Math.random() * (2 - -2) + -2;
-								   if(startX < toX) {
+								   if(startX <= toX) {
 											   ctx.beginPath();
 											   ctx.moveTo(startX,startY);
 											   ctx.lineTo(toX, toY);
@@ -158,10 +156,9 @@ angular.module("bodApp.directives", [])
 				}
 				
 				scope.$on('draw', function() {
-                    console.log("event received");
+                   console.log("event received");
 				   draw();
-				});
-			
+				});			
 			}
 		};
 	});

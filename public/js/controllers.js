@@ -351,33 +351,23 @@ angular.module("bodApp.controllers", [])
 			});
 		};
 
-		
 		$scope.getAnswers();
-		
-		/*
-		get all answers from the server,
-		always returns all answers
-		*/
-		
 		$scope.questions = Questions.questions;
-		
-		
-		
 		
 	}])
 
 	.controller("VisualizeSingleCtrl", ["$scope", "RecentAnswer", "Questions", function($scope, RecentAnswer, Questions) {
-
-		$scope.answers = [RecentAnswer.getAnswer()];
-		$scope.questions = Questions.questions;
+		$scope.questions = Questions.questions;		
 		
-		$scope.broadcast = function() {
-			$scope.broadcasted = true;
-			$scope.$broadcast('draw');
-		};
-
-		console.log($scope.answers);
-		console.log($scope.questions);
-
+		$scope.getAnswers = function() {
+			$scope.answers = [RecentAnswer.getAnswer()];
+			var millisecondsToWait = 100;
+			setTimeout(function() {
+			    $scope.$broadcast('draw');		
+			}, millisecondsToWait);	
+		}
+		
+		$scope.broadcasted = true;
+		$scope.getAnswers();
 
 	}])

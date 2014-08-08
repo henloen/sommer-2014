@@ -329,7 +329,7 @@ angular.module("bodApp.services", [])
 			}
 		};
 	})
-	.factory("RecentAnswer", function() {
+	.factory("RecentAnswer", function($http) {
 		var answer = {};
 		return {
 			setAnswer : function(recAnswer) {
