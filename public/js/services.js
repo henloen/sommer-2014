@@ -330,7 +330,24 @@ angular.module("bodApp.services", [])
 		};
 	})
 	.factory("RecentAnswer", function() {
+		var answer = {};
 		return {
-			answer : {}
+			setAnswer : function(recAnswer) {
+				answer = {
+					kjonn : recAnswer.kjonn,
+					sivilstatus : recAnswer.sivilstatus,
+					utdannelse : recAnswer.utdannelse,
+					programmeringsstil : recAnswer.programmeringsstil,
+					personlighet : recAnswer.programmeringsstil,
+					hypepreferanse : recAnswer.hypepreferanse,
+					musikk : recAnswer.musikk,
+					type : recAnswer.type,
+					planerforkvelden : recAnswer.planerforkvelden,
+					favorittgode : recAnswer.favorittgode
+				};
+			},
+			getAnswer : function() {
+				return answer;
+			}
 		};
 	});

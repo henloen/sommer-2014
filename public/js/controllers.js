@@ -294,7 +294,7 @@ angular.module("bodApp.controllers", [])
 		$scope.submitAnswer = function(isValid) {
 			if (isValid) {
 				Answers.create($scope.formData).success(function(data) {
-					RecentAnswer.answer = $scope.formData;
+					RecentAnswer.setAnswer($scope.formData);
 					$location.path("/partial-register-participant");
 				});
 			}
@@ -368,7 +368,7 @@ angular.module("bodApp.controllers", [])
 
 	.controller("VisualizeSingleCtrl", ["$scope", "RecentAnswer", "Questions", function($scope, RecentAnswer, Questions) {
 
-		$scope.answers = [RecentAnswer.answer];
+		$scope.answers = [RecentAnswer.getAnswer()];
 		$scope.questions = Questions.questions;
 		
 		$scope.broadcast = function() {

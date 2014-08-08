@@ -400,8 +400,9 @@ describe("BoD controllers", function() {
 			}
 
 			var recentAnswerMock = {
-				answer : {
-
+				getAnswer : function(){
+				},
+				setAnswer : function() {
 				}
 			}
 
