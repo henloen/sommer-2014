@@ -31,57 +31,73 @@ angular.module("bodApp.directives", [])
             replace: false,
             scope: false,
 		    link: function (scope, element, attrs, ngModelCtrl) {
-		    	var ctx = element[0].getContext('2d');
+		    	
+				var ctx = element[0].getContext('2d');
 
-			 	ctx.canvas.width  = window.innerWidth;
-			 	ctx.canvas.height = window.innerHeight;
+			 	var width = ctx.canvas.width  = window.innerWidth;
+			 	var height = ctx.canvas.height = window.innerHeight;
 			
 				var questions = scope.questions;
 				var answers = scope.answers;
 				
-				
 				var categories = [];
 				
 				var coordList = new Object();
+				var maxYOptions = 1;
+				
 				
 				// set up data in a simpler structure
 				for(var propt in questions){
 					for(var p in questions[propt]) {
 						categories.push(questions[propt][p]);
+						if (maxYOptions < questions[propt][p]['options'].length) {
+							maxYOptions = questions[propt][p]['options'].length;
+						}
 					}
 				}
+				
+				window.addEventListener('resize', resize, false);
+				window.addEventListener('orientationchange', resize, false);
+			
+				function resize() {
+				    width = ctx.canvas.width  = window.innerWidth;
+				 	height = ctx.canvas.height = window.innerHeight;
+					draw();
+				}
+			
+				
 		    	// canvas reset
 		    	function reset(){
 		       		element[0].width = element[0].width; 
 		    	}
 
 		    	function draw(){
-					console.log("testing2");
 					reset();
-					var lX = 20;
-					var lY = 20;
-
-					var tempX = 0;
+					var lX = width / 100 * 2;  
+					var lY = height / 100 * 2;  // shouild be calc from height / maxOptions - font heigth
+					var restHeight = height - lY;
+					var interval = restHeight / maxYOptions;
 					
+					var tempX = 0;
 					for (var t in categories) {
 						ctx.strokeStyle = "#FF0000";
 						ctx.lineWidth = 1;					
 						ctx.strokeText(categories[t]['title'],lX + tempX,lY);
-						var tempY = 100;
+						var tempY = restHeight / categories[t]['options'].length / 2;
 
 						for (var u in categories[t]['options'])	{
 							ctx.strokeStyle = "#4bf";
 							ctx.fillStyle = null;
 							ctx.lineWidth = 1;
-							ctx.strokeText(categories[t]['options'][u]['output'],lX + tempX,lY+tempY);	
+							ctx.strokeText(categories[t]['options'][u]['output'],lX + tempX,tempY);	
 							drawCircle(ctx,lX+tempX,tempY);
 							var coord = {};
 							coord['x'] = lX + tempX;
 							coord['y'] = tempY;
 							coordList[categories[t]['options'][u]['value']] = coord;
-							tempY += 100;
+							tempY +=  interval;
 						}
-						tempX += 150;
+						tempX += (width - lX) / categories.length;
 					}
 					ctx.stroke();
 					
@@ -99,8 +115,7 @@ angular.module("bodApp.directives", [])
 							console.log(scope.answers[i]["kjonn"]);
                         	if (scope.answers[i]["kjonn"] === "mann") {
 					       		ctx.strokeStyle = "#FFFFFF";
-                        	}
-                        	else {
+                        	} else {
                             	ctx.strokeStyle = "#ff6400";
                         	}
                         }
@@ -152,7 +167,6 @@ angular.module("bodApp.directives", [])
 					context.lineWidth = 5;
 					context.strokeStyle = '#003300';
 					context.stroke();
-					
 				}
 				
 				scope.$on('draw', function() {
