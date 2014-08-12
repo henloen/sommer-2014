@@ -38,7 +38,7 @@ angular.module("bodApp.directives", [])
 			 	var height = ctx.canvas.height = window.innerHeight;
 			
 				var questions = scope.questions;
-				var answers = scope.answers;
+				
 				
 				var categories = [];
 				
@@ -58,6 +58,7 @@ angular.module("bodApp.directives", [])
 				
 				window.addEventListener('resize', resize, false);
 				window.addEventListener('orientationchange', resize, false);
+				
 			
 				function resize() {
 				    width = ctx.canvas.width  = window.innerWidth;
@@ -86,11 +87,11 @@ angular.module("bodApp.directives", [])
 						var tempY = restHeight / categories[t]['options'].length / 2;
 
 						for (var u in categories[t]['options'])	{
-							ctx.strokeStyle = "#4bf";
+							drawCircle(ctx,lX+tempX,tempY);
 							ctx.fillStyle = null;
 							ctx.lineWidth = 1;
+							ctx.strokeStyle = "#4bf";
 							ctx.strokeText(categories[t]['options'][u]['output'],lX + tempX,tempY);	
-							drawCircle(ctx,lX+tempX,tempY);
 							var coord = {};
 							coord['x'] = lX + tempX;
 							coord['y'] = tempY;
@@ -100,6 +101,7 @@ angular.module("bodApp.directives", [])
 						tempX += (width - lX) / categories.length;
 					}
 					ctx.stroke();
+					
 					
 					for (var i = 0; i < scope.answers.length; i++) {
 						
@@ -174,6 +176,7 @@ angular.module("bodApp.directives", [])
 				   draw();
 				});			
 			}
+			
 		};
 	});
 
