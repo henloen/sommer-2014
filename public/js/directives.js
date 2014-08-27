@@ -71,35 +71,55 @@ angular.module("bodApp.directives", [])
 		    	function reset(){
 		       		element[0].width = element[0].width; 
 		    	}
+		
+				function getRandomInt(min, max) {
+				  return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
 
 		    	function draw(){
 					reset();
 					var lX = width / 100 * 2;  
 					var lY = height / 100 * 2;  // shouild be calc from height / maxOptions - font heigth
-					var restHeight = height - lY;
+					var restHeight = height - lY * 2;
 					var interval = restHeight / maxYOptions;
 					
 					var tempX = 0;
+					var oldX = lX;
 					for (var t in categories) {
-						ctx.strokeStyle = "#FF0000";
+						ctx.strokeStyle = "#FFFFFF";
+						ctx.fillStyle = "#FFFFFF";
 						ctx.lineWidth = 1;					
-						ctx.strokeText(categories[t]['title'],lX + tempX,lY);
+						ctx.font = 'bold 10pt Calibri';
+						ctx.fillText(categories[t]['title'].toUpperCase(),lX + tempX,lY);
+						
 						var tempY = restHeight / categories[t]['options'].length / 2;
-
 						for (var u in categories[t]['options'])	{
-							drawCircle(ctx,lX+tempX,tempY);
-							ctx.fillStyle = null;
+							var randomInt = + getRandomInt(0, 40);
 							ctx.lineWidth = 1;
-							ctx.strokeStyle = "#4bf";
-							ctx.strokeText(categories[t]['options'][u]['output'],lX + tempX,tempY);	
+							ctx.strokeStyle = "#FFFFFF";
+							ctx.fillStyle = "#FFFFFF";
+							ctx.font = 'bold 8pt Calibri';
+							ctx.fillText(categories[t]['options'][u]['output'].toUpperCase(), lX + tempX + (ctx.measureText(categories[t]['title'].toUpperCase()).width / 2) - (ctx.measureText(categories[t]['options'][u]['output'].toUpperCase()).width / 2)  ,tempY + randomInt);	
 							var coord = {};
-							coord['x'] = lX + tempX;
-							coord['y'] = tempY;
+							coord['x'] = lX + tempX + (ctx.measureText(categories[t]['title'].toUpperCase()).width / 2)  ;
+							coord['y'] = tempY  - 15  + randomInt;
+
+							ctx.strokeStyle = "#FFFFFF";
+							ctx.fillStyle = "#FFFFFF";
+							drawCircle(ctx, coord['x'], coord['y']);
 							coordList[categories[t]['options'][u]['value']] = coord;
-							tempY +=  interval;
+							tempY += interval;
 						}
-						tempX += (width - lX) / categories.length;
+						
+						tempX += (width) / categories.length;
 					}
+					ctx.stroke();
+					
+					// draw line under headings
+					ctx.strokeStyle = "#FFFFFF";
+					ctx.fillStyle = "#FFFFFF";
+					ctx.moveTo(0, lY + 5);
+					ctx.lineTo(width, lY + 5);
 					ctx.stroke();
 					
 					
@@ -166,8 +186,8 @@ angular.module("bodApp.directives", [])
 					context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
 					context.fillStyle = 'green';
 					context.fill();
-					context.lineWidth = 5;
-					context.strokeStyle = '#003300';
+					
+					//context.strokeStyle = '#003300';
 					context.stroke();
 				}
 				

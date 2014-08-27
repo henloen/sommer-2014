@@ -274,6 +274,33 @@ angular.module("bodApp.services", [])
 				}
 			},
 			DfourthCol: {
+				
+				Afavorittgode : {
+					title: "Favorittgode på jobb",
+					name : "favorittgode",
+					options : [
+						{
+							output: "Fri bar på julebord",
+							value: "fribar"
+						},
+						{
+							output: "Gadgetkonto",
+							value: "gadgetkonto"
+						},
+						{
+							output: "Kurs og konferanser",
+							value: "kurskonferanse"
+						},
+						{
+							output: "Fri kantine",
+							value: "frikantine"
+						},
+						{
+							output: "Pensjon",
+							value: "pensjon"
+						}
+					]},
+				
 				Bplanerforkvelden : {
 					title: "Planer for kvelden",
 					name : "planerforkvelden",
@@ -300,31 +327,7 @@ angular.module("bodApp.services", [])
 						}
 					]
 				},
-				Afavorittgode : {
-					title: "Favorittgode på jobb",
-					name : "favorittgode",
-					options : [
-						{
-							output: "Fri bar på julebordet",
-							value: "fribar"
-						},
-						{
-							output: "Gadgetkonto",
-							value: "gadgetkonto"
-						},
-						{
-							output: "Kurs og konferanser",
-							value: "kurskonferanse"
-						},
-						{
-							output: "Fri kantine",
-							value: "frikantine"
-						},
-						{
-							output: "Pensjon",
-							value: "pensjon"
-						}
-					]}
+				
 				}
 			}
 		};
@@ -338,12 +341,12 @@ angular.module("bodApp.services", [])
 					sivilstatus : recAnswer.sivilstatus,
 					utdannelse : recAnswer.utdannelse,
 					programmeringsstil : recAnswer.programmeringsstil,
-					personlighet : recAnswer.programmeringsstil,
+					personlighet : recAnswer.personlighet,
 					hypepreferanse : recAnswer.hypepreferanse,
 					musikk : recAnswer.musikk,
 					type : recAnswer.type,
-					planerforkvelden : recAnswer.planerforkvelden,
-					favorittgode : recAnswer.favorittgode
+					favorittgode : recAnswer.favorittgode,
+					planerforkvelden : recAnswer.planerforkvelden
 				};
 			},
 			getAnswer : function() {
