@@ -31,7 +31,7 @@
 		</p>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<input type="email" class="form-control form-field text-white" name="participantEmail" placeholder="Email eller telefonnummer" ng-model="participant.email" required ng-maxlength="90" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$|^[0-9]{8}$/">
+				<input type="text" class="form-control form-field text-white" name="participantEmail" placeholder="Email eller telefonnummer" ng-model="participant.email" required ng-maxlength="90" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$|^[0-9]{8}$/">
 			</div>
 		</div>
 		<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
