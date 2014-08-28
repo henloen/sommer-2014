@@ -2,10 +2,10 @@
 
 
 <div class="container middle-pos">	
-	<h2 class="text-orange text-large top-pad">The Beauty of Data</h2>
+	<h2 class="text-orange text-large top-pad">The beauty of data</h2>
 	<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
 	<p class="text-white text-smaller">Vakkert i seg selv. Viktig for den det gjelder.</p>
-	
+	<h6 class="text-white"> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h6>
 	<br>
 
 	<div class="text-white">
@@ -31,7 +31,7 @@
 		</p>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<input class="form-control form-field text-white" name="participantEmail" placeholder="Email eller telefonnummer" ng-model="participant.email" required ng-maxlength="90" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$|^[0-9]{8}$/">
+				<input type="email" class="form-control form-field text-white" name="participantEmail" placeholder="Email eller telefonnummer" ng-model="participant.email" required ng-maxlength="90" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$|^[0-9]{8}$/">
 			</div>
 		</div>
 		<p ng-show="userForm.participantEmail.$error.maxlength" class="help-block has-error-custom">
@@ -42,7 +42,7 @@
 			Vennligst prøv en annen.
 		</p>
 		
-		<p ng-show="userForm.participantEmail.$dirty && userForm.participantEmail.$invalid"
+		<p ng-show="userForm.participantEmail.$dirty && userForm.participantEmail.$error.pattern"
 		
 		class="help-block has-error-custom">
 			Kontaktinformasjonen må inneholde enten telefonnr eller epost
@@ -52,7 +52,10 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-8">
 				<button type="submit" name="submitButton" class="btn btn-def-bouvet" ng-disabled="
-				(userForm.$invalid || duplicateEmail === participant.email) || userForm.participantEmail.$invalid
+				(userForm.participantName.$invalid 
+				|| duplicateEmail === participant.email 
+				|| userForm.participantEmail.$error.pattern 
+				|| userForm.participantEmail.$error.required)
 				">Submit info</button>
 			</div>
 		</div>
@@ -66,5 +69,13 @@
 		</a>
 		<br>
 	</div>
-			
+
+
+	<br><br><br><br>
+
+	<div>
+		<a href="#/visualize-single" name="visualiser" class="btn btn-def-bouvet">
+			Se visualisering
+		</a>
+	</div>
 </div>

@@ -27,6 +27,12 @@ supports GET, POST, DELETE
 		
 		//used to truncate the table containing the answers
 		.delete(user.deleteAnswers);
+		
+/*
+route for accessing multiple answers and visualize them
+supports GET
+*/		
+	app.route("/visualize").get(user.getAnswers);
 
 /*
 route for accessing specific answers based on the id provided as parameter

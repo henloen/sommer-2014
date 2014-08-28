@@ -22,6 +22,7 @@ angular.module("bodApp.controllers", [])
 			else {
 				$scope.viewAll = true;
 			}
+			$scope.tenFirstAnswers();
 			$scope.getAnswers();
 		};
 
@@ -157,9 +158,7 @@ angular.module("bodApp.controllers", [])
 		}
 
 		$scope.exportAnswers = function() {
-			console.log("exporting answers...");
 			Answers.export().success(function() {
-				console.log("exported answers");
 			});
 		};
 
@@ -274,15 +273,14 @@ angular.module("bodApp.controllers", [])
 		}
 
 		function exportParticipants() {
-			$http.Participants.export().success(function() {
-
+			Participants.export().success(function() {
 			});
 		}
 
 	}])
 
 	//the controller used on the page where the user registers answers
-	.controller("RegisterAnswerCtrl", ["$scope", "$location", "Answers", "Questions", function($scope, $location, Answers, Questions) {
+	.controller("RegisterAnswerCtrl", ["$scope", "$location", "Answers", "Questions", "RecentAnswer", function($scope, $location, Answers, Questions, RecentAnswer) {
 
 		//initial object of form data
 		$scope.formData = {};
@@ -296,6 +294,7 @@ angular.module("bodApp.controllers", [])
 		$scope.submitAnswer = function(isValid) {
 			if (isValid) {
 				Answers.create($scope.formData).success(function(data) {
+					RecentAnswer.setAnswer($scope.formData);
 					$location.path("/partial-register-participant");
 				});
 			}
@@ -338,4 +337,37 @@ angular.module("bodApp.controllers", [])
 				}
 			});
 		};
-	}]);
+	}])
+	
+	.controller("VisualizeCtrl", ["$scope", "Answers", "Questions", function($scope, Answers, Questions) {
+		/*
+		get all answers from the server,
+		always returns all answers
+		*/
+		$scope.getAnswers = function() {
+			Answers.getAll(true).success(function (data) {
+					$scope.answers = data;
+					$scope.$broadcast('draw');
+			});
+		};
+
+		$scope.getAnswers();
+		$scope.questions = Questions.questions;
+		
+	}])
+
+	.controller("VisualizeSingleCtrl", ["$scope", "RecentAnswer", "Questions", function($scope, RecentAnswer, Questions) {
+		$scope.questions = Questions.questions;		
+		
+		$scope.getAnswers = function() {
+			$scope.answers = [RecentAnswer.getAnswer()];
+			var millisecondsToWait = 100;
+			setTimeout(function() {
+			    $scope.$broadcast('draw');		
+			}, millisecondsToWait);	
+		}
+		
+		$scope.broadcasted = true;
+		$scope.getAnswers();
+
+	}])

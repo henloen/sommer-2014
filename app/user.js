@@ -241,7 +241,7 @@ function exportAnswers(req, res) {
 		else {
 			res.setHeader("Content-Disposition", "attachment; filename=answers.csv");
 			res.setHeader('Content-Type', 'application/octet-stream');
-			res.write(ConvertToCSV(JSON.stringify(rows)));
+			res.write(convertToCSV(JSON.stringify(rows)));
 			res.end();
 		}
 	});
@@ -259,7 +259,7 @@ function exportParticipants(req, res) {
 		else {
 			res.setHeader("Content-Disposition","attachment; filename=participants.csv");
 			res.setHeader('Content-Type', 'application/octet-stream');
-			res.write(ConvertToCSV(JSON.stringify(rows)));
+			res.write(convertToCSV(JSON.stringify(rows)));
 			res.end();
 		}
 	});
@@ -268,7 +268,7 @@ function exportParticipants(req, res) {
 /*
 http://www.gilgh.com/article/Create-CSV-file-using-JSON-data
 */
-function ConvertToCSV(objArray) {
+function convertToCSV(objArray) {
             var arrData = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
             var CSV = '';    
 		    
@@ -284,10 +284,10 @@ function ConvertToCSV(objArray) {
 
 		    //1st loop is to extract each row
 		    for (var i = 0; i < arrData.length; i++) {
-		        var row = "";
+		        row = "";
 		        //2nd loop will extract each column and convert it in string comma-seprated
-		        for (var index in arrData[i]) {
-					if (row != '') row += ','
+		        for (index in arrData[i]) {
+					if (row !== '') row += ',';
 		            row += arrData[i][index];
 		        }
 		        row.slice(0, row.length - 1);
@@ -315,4 +315,4 @@ exports.deleteParticipants    = deleteParticipants;
 exports.deleteWinners         = deleteWinners;
 exports.updateWinner          = updateWinner;
 exports.exportAnswers         = exportAnswers;
-exports.exportParticipants    = exportParticipants
+exports.exportParticipants    = exportParticipants;

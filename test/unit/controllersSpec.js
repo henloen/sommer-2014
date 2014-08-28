@@ -399,6 +399,13 @@ describe("BoD controllers", function() {
 				}
 			}
 
+			var recentAnswerMock = {
+				getAnswer : function(){
+				},
+				setAnswer : function() {
+				}
+			}
+
 			spyOn(answersMock, "getAll").andCallThrough();
 			spyOn(answersMock, "get").andCallThrough();
 			spyOn(answersMock, "toggleLock").andCallThrough();
@@ -407,6 +414,7 @@ describe("BoD controllers", function() {
 			spyOn(answersMock, "create").andCallThrough();
 			$provide.value("Answers", answersMock);
 			$provide.value("Questions", questionsMock);
+			$provide.value("RecentAnswer", recentAnswerMock);
 		}));
 
 		beforeEach(
