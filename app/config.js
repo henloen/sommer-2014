@@ -12,9 +12,9 @@ try {
 console.log(dbOptions);
 if(dbOptions.length === 0) {
 dbOptions = {
-  dburl: '',
-  dbuser: '',
-  dbpassword: ''
+  dburl: 'localhost',
+  dbuser: 'root',
+  dbpassword: 'test'
 };
 }
 
